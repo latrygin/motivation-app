@@ -4,47 +4,60 @@ import 'package:flutter/material.dart';
 import 'package:motivation/assets/colors/colors.dart';
 
 var lightTheme = ThemeData(
+    brightness: Brightness.light,
+    iconTheme: const IconThemeData(color: Color(0xFF21232b)),
     appBarTheme: const AppBarTheme(
       backgroundColor: whiteColorForLightTheme,
       elevation: 0,
     ),
     fontFamily: 'YandexSansText',
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: greyMediumColorForLightTheme,
+      selectionColor: greyMediumColorForLightTheme,
+      selectionHandleColor: greyMediumColorForLightTheme,
+    ),
+    dividerColor: greyMediumColorForLightTheme,
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      hoverColor: const Color(0xFFf7f8fa),
+      fillColor: const Color(0xFFf7f8fa),
+      focusColor: const Color(0xFFf7f8fa), //eeeff5
+      hintStyle: const TextStyle(
+          fontSize: 16, fontWeight: FontWeight.w300, color: Color(0xFF9ca3ae)),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: const BorderSide(color: Color(0xFFeeeff5), width: 2)),
+      enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: const BorderSide(color: Color(0xFFeeeff5), width: 2)),
+      focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: const BorderSide(color: Color(0xFFeeeff5), width: 2)),
+    ),
     scaffoldBackgroundColor: whiteColorForLightTheme,
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            primary: blackColorForLightTheme,
+            backgroundColor: const Color(0xFF21232b),
             elevation: 0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
+              borderRadius: BorderRadius.circular(8.0),
             ),
-            minimumSize: const Size(double.infinity, 52))),
+            minimumSize: const Size(double.infinity, 60))),
     textTheme: const TextTheme(
-      headline1: TextStyle(
+      headlineLarge: TextStyle(
           fontSize: 32,
           fontWeight: FontWeight.w700,
           color: blackColorForLightTheme),
-      headline2: TextStyle(
-          fontSize: 24,
+      headlineMedium: TextStyle(
+          fontSize: 18,
           fontWeight: FontWeight.w500,
           color: blackColorForLightTheme),
-      headline3: TextStyle(
-          fontSize: 18,
+      headlineSmall: TextStyle(
+          fontSize: 14,
           fontWeight: FontWeight.w300,
           color: blackColorForLightTheme),
-      headline4: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w100,
-          color: blackColorForLightTheme),
-      bodyText1: TextStyle(
-          fontSize: 32,
-          fontWeight: FontWeight.w900,
-          color: greyDarkColorForLightTheme),
-      bodyText2: TextStyle(
-          fontSize: 32,
-          fontWeight: FontWeight.w900,
-          color: greyDarkColorForLightTheme),
       labelMedium: TextStyle(
           fontSize: 18,
-          fontWeight: FontWeight.w300,
+          fontWeight: FontWeight.w500,
           color: whiteColorForLightTheme),
     ));
