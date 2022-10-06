@@ -1,26 +1,24 @@
 //Dark theme for app
-
 import 'package:flutter/material.dart';
 import 'package:motivation/assets/colors/colors.dart';
 
 var lightTheme = ThemeData(
     brightness: Brightness.light,
-    iconTheme: const IconThemeData(color: Color(0xFF21232b)),
     appBarTheme: const AppBarTheme(
       backgroundColor: whiteColorForLightTheme,
       elevation: 0,
     ),
-    colorScheme: const ColorScheme.light(
-      background: whiteColorForLightTheme,
-      primary: greyDarkColorForLightTheme,
-    ),
+    primaryColor: primaryColorForDarkTheme,
+    hintColor: const Color(0xFFeeeff5),
+    cardColor: const Color(0xFFf7f8fa),
     fontFamily: 'YandexSansText',
     textSelectionTheme: const TextSelectionThemeData(
-      cursorColor: greyMediumColorForLightTheme,
-      selectionColor: greyMediumColorForLightTheme,
-      selectionHandleColor: greyMediumColorForLightTheme,
+      cursorColor: primaryColorForDarkTheme,
+      selectionColor: primaryColorForDarkTheme,
+      selectionHandleColor: primaryColorForDarkTheme,
     ),
     dividerColor: greyMediumColorForLightTheme,
+    scaffoldBackgroundColor: whiteColorForLightTheme,
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       hoverColor: const Color(0xFFf7f8fa),
@@ -38,15 +36,14 @@ var lightTheme = ThemeData(
           borderRadius: BorderRadius.circular(8.0),
           borderSide: const BorderSide(color: Color(0xFFeeeff5), width: 2)),
     ),
-    scaffoldBackgroundColor: whiteColorForLightTheme,
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
             textStyle: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 color: whiteColorForLightTheme),
-            backgroundColor: Color(0xFFA35BFF),
-            foregroundColor: Color(0xFFA35BFF),
+            backgroundColor: greyMediumColorForDarkTheme,
+            foregroundColor: greyMediumColorForDarkTheme,
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
@@ -69,4 +66,8 @@ var lightTheme = ThemeData(
           fontSize: 18,
           fontWeight: FontWeight.w500,
           color: whiteColorForLightTheme),
+      labelLarge: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w300,
+          color: blackColorForLightTheme),
     ));

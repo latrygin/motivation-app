@@ -3,17 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:motivation/assets/colors/colors.dart';
 
 var darkTheme = ThemeData(
-    textSelectionTheme: const TextSelectionThemeData(
-      cursorColor: greyMediumColorForLightTheme,
-      selectionColor: greyMediumColorForLightTheme,
-      selectionHandleColor: greyMediumColorForLightTheme,
-    ),
     brightness: Brightness.dark,
     appBarTheme: const AppBarTheme(
       backgroundColor: blackColorForDarkTheme,
       elevation: 0,
     ),
+    primaryColor: primaryColorForDarkTheme,
+    hintColor: greyMediumColorForDarkTheme,
+    cardColor: greyDarkColorForDarkTheme,
     fontFamily: 'YandexSansText',
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: primaryColorForDarkTheme,
+      selectionColor: primaryColorForDarkTheme,
+      selectionHandleColor: primaryColorForDarkTheme,
+    ),
+    dividerColor: greyMediumColorForLightTheme,
     scaffoldBackgroundColor: blackColorForDarkTheme,
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
@@ -21,7 +25,10 @@ var darkTheme = ThemeData(
       fillColor: greyDarkColorForDarkTheme,
       focusColor: greyDarkColorForDarkTheme, //eeeff5
       hintStyle: const TextStyle(
-          fontSize: 16, fontWeight: FontWeight.w300, color: Color(0xFF9ca3ae)),
+        fontSize: 16,
+        fontWeight: FontWeight.w300,
+        color: Color(0xFF9ca3ae),
+      ),
       border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
           borderSide:
@@ -41,8 +48,8 @@ var darkTheme = ThemeData(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 color: whiteColorForLightTheme),
-            backgroundColor: Color(0xFFA35BFF),
-            foregroundColor: Color(0xFFA35BFF),
+            backgroundColor: const Color(0xFFA35BFF),
+            foregroundColor: const Color(0xFFA35BFF),
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
@@ -65,4 +72,8 @@ var darkTheme = ThemeData(
           fontSize: 18,
           fontWeight: FontWeight.w500,
           color: greyDarkColorForDarkTheme),
+      labelLarge: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w300,
+          color: whiteColorForDarkTheme),
     ));

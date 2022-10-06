@@ -44,4 +44,12 @@ class SVGs {
   /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Eye - Slash.svg" alt="Eye.svg" height=100 width=100> custom icon "Eye".
   static SvgPicture eye_slash_dark =
       SvgPicture.asset('assets/icons/icons_light_theme/Eye - Slash.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Arrow - Left.svg" alt="Arrow - Left.svg" height=100 width=100> custom icon "Arrow - Left.svg".
+  static SvgPicture chevrone_left_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Arrow - Left.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Arrow - Left.svg" alt="Arrow - Left.svg" height=100 width=100> custom icon "Arrow - Left.svg".
+  static SvgPicture chevrone_left_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Arrow - Left.svg');
 }

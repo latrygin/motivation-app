@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
  *  - Medium grey color (grey.shade300)
  *  - Dark grey color (grey.shade400)
  */
-
+const primaryColorForLightTheme = Color(0xFFA35BFF);
 const whiteColorForLightTheme = Colors.white;
 const blackColorForLightTheme = Color(0xFF21232b);
 const greyLightColorForLightTheme = Color(0xFFEEEEEE);
@@ -23,7 +23,7 @@ const greyDarkColorForLightTheme = Color(0xFF9E9E9E);
  *   - Medium grey color (grey.shade800)
  *   - Dark grey color (grey.shade900)
  */
-
+const primaryColorForDarkTheme = Color(0xFFA35BFF);
 const whiteColorForDarkTheme = Colors.white;
 const blackColorForDarkTheme = Color(0xFF1F2127);
 const greyLightColorForDarkTheme = Color(0xFF21232b);
