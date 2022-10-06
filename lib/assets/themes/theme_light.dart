@@ -10,6 +10,10 @@ var lightTheme = ThemeData(
       backgroundColor: whiteColorForLightTheme,
       elevation: 0,
     ),
+    colorScheme: const ColorScheme.light(
+      background: whiteColorForLightTheme,
+      primary: greyDarkColorForLightTheme,
+    ),
     fontFamily: 'YandexSansText',
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: greyMediumColorForLightTheme,
@@ -37,7 +41,7 @@ var lightTheme = ThemeData(
     scaffoldBackgroundColor: whiteColorForLightTheme,
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF21232b),
+            primary: const Color(0xFF21232b),
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),

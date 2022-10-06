@@ -1,5 +1,4 @@
 //Dark theme for app
-
 import 'package:flutter/material.dart';
 import 'package:motivation/assets/colors/colors.dart';
 
@@ -38,7 +37,7 @@ var darkTheme = ThemeData(
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            backgroundColor: whiteColorForDarkTheme,
+            primary: whiteColorForDarkTheme,
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
