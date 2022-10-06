@@ -41,7 +41,12 @@ var lightTheme = ThemeData(
     scaffoldBackgroundColor: whiteColorForLightTheme,
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            primary: const Color(0xFF21232b),
+            textStyle: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: whiteColorForLightTheme),
+            backgroundColor: Color(0xFFA35BFF),
+            foregroundColor: Color(0xFFA35BFF),
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),

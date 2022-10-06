@@ -28,4 +28,20 @@ class SVGs {
   /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Moon.svg" alt="Moon.svg" height=100 width=100> custom icon "Moon".
   static SvgPicture moon =
       SvgPicture.asset('assets/icons/icons_light_theme/Moon.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Eye.svg" alt="Eye.svg" height=100 width=100> custom icon "Eye".
+  static SvgPicture eye_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Eye.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Eye.svg" alt="Eye.svg" height=100 width=100> custom icon "Eye".
+  static SvgPicture eye_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Eye.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Eye - Slash.svg" alt="Eye.svg" height=100 width=100> custom icon "Eye".
+  static SvgPicture eye_slash_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Eye - Slash.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Eye - Slash.svg" alt="Eye.svg" height=100 width=100> custom icon "Eye".
+  static SvgPicture eye_slash_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Eye - Slash.svg');
 }
