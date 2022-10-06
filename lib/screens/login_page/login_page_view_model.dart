@@ -15,9 +15,7 @@ class LoginPageViewModel extends ChangeNotifier {
   }
 
   void onTapButtonLogin() {
-    if (validateEmail() && validatePassword()) {
-      print(123);
-    }
+    if (validateEmail() && validatePassword()) {}
   }
 
   bool validatePassword() {

@@ -17,12 +17,14 @@ class RegistrationScreen extends StatelessWidget {
 }
 
 class _RegistrationBodyWidget extends StatelessWidget {
-  const _RegistrationBodyWidget({super.key});
+  const _RegistrationBodyWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final model = context.watch<RegistrationPageViewModel>();
-    return Stack(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        const _ChangingThemeButtonWidget(),
         Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -36,7 +38,7 @@ class _RegistrationBodyWidget extends StatelessWidget {
               ),
               TextFormField(
                 controller: model.name,
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.labelLarge,
                 decoration: InputDecoration(
                     hintText: 'Имя', errorText: model.errorName),
                 onChanged: (value) => model.resetErrorName(),
@@ -46,8 +48,8 @@ class _RegistrationBodyWidget extends StatelessWidget {
               ),
               TextFormField(
                 controller: model.email,
-                scrollPadding: EdgeInsets.all(0),
-                style: Theme.of(context).textTheme.headlineSmall,
+                scrollPadding: const EdgeInsets.all(0),
+                style: Theme.of(context).textTheme.labelLarge,
                 decoration: InputDecoration(
                     hintText: 'Электронная почта', errorText: model.errorEmail),
                 onChanged: (value) => model.resetErrorEmail(),
@@ -58,7 +60,7 @@ class _RegistrationBodyWidget extends StatelessWidget {
               TextFormField(
                 controller: model.password,
                 obscureText: model.obscure,
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.labelLarge,
                 decoration: InputDecoration(
                     errorText: model.errorPassword,
                     hintText: 'Пароль',
@@ -82,7 +84,8 @@ class _RegistrationBodyWidget extends StatelessWidget {
                 height: 24,
               ),
               ElevatedButton(
-                onPressed: () => model.onTapButtonRegistration(),
+                onPressed: () => context.go('/registration/pincode'),
+                //onPressed: () => model.onTapButtonRegistration(),
                 child: Text(
                   'Зарегистрироваться',
                   style: Theme.of(context).textTheme.labelMedium,
@@ -129,42 +132,39 @@ class _RegistrationBodyWidget extends StatelessWidget {
             ],
           ),
         ),
-        const _ChangingThemeButtonWidget(),
-        Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 32),
-              child: InkWell(
-                onTap: () => context.go('/'),
-                child: RichText(
-                  text: TextSpan(
-                    text: 'Есть аккаунта? ',
-                    style: DefaultTextStyle.of(context).style,
-                    children: const <TextSpan>[
-                      TextSpan(
-                          text: 'Войти',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFA35BFF))),
-                    ],
-                  ),
-                ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 32),
+          child: InkWell(
+            onTap: () => context.go('/'),
+            child: RichText(
+              text: TextSpan(
+                text: 'Есть аккаунта? ',
+                style: DefaultTextStyle.of(context).style,
+                children: const <TextSpan>[
+                  TextSpan(
+                      text: 'Войти',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFA35BFF))),
+                ],
               ),
-            )),
+            ),
+          ),
+        ),
       ],
     );
   }
 }
 
 class _ChangingThemeButtonWidget extends StatelessWidget {
-  const _ChangingThemeButtonWidget({super.key});
+  const _ChangingThemeButtonWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topRight,
       child: Padding(
-          padding: const EdgeInsets.only(top: 8),
+          padding: const EdgeInsets.only(top: 20),
           child: Consumer<ThemeModel>(
             builder: (context, ThemeModel themeNotifier, child) {
               return SVG(

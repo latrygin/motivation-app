@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
 }
 
 class _LoginBodyWidget extends StatelessWidget {
-  const _LoginBodyWidget({super.key});
+  const _LoginBodyWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final model = context.watch<LoginPageViewModel>();
@@ -39,7 +39,7 @@ class _LoginBodyWidget extends StatelessWidget {
               ),
               TextFormField(
                 controller: model.email,
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.labelLarge,
                 onChanged: (value) => model.resetErrorEmail(),
                 decoration: InputDecoration(
                     hintText: 'Электронная почта', errorText: model.errorEmail),
@@ -50,7 +50,7 @@ class _LoginBodyWidget extends StatelessWidget {
               TextFormField(
                   controller: model.password,
                   obscureText: model.obscure,
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: Theme.of(context).textTheme.labelLarge,
                   onChanged: (value) => model.resetErrorPassword(),
                   decoration: InputDecoration(
                       hintText: 'Пароль',
@@ -145,14 +145,14 @@ class _LoginBodyWidget extends StatelessWidget {
 }
 
 class _ChangingThemeButtonWidget extends StatelessWidget {
-  const _ChangingThemeButtonWidget({super.key});
+  const _ChangingThemeButtonWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topRight,
       child: Padding(
-          padding: const EdgeInsets.only(top: 8),
+          padding: const EdgeInsets.only(top: 20),
           child: Consumer<ThemeModel>(
             builder: (context, ThemeModel themeNotifier, child) {
               return SVG(

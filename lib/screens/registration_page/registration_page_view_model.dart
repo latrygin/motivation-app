@@ -17,9 +17,7 @@ class RegistrationPageViewModel extends ChangeNotifier {
   }
 
   void onTapButtonRegistration() {
-    if (validateName() && validateEmail() && validatePassword()) {
-      print(123);
-    }
+    if (validateName() && validateEmail() && validatePassword()) {}
   }
 
   bool validateName() {
