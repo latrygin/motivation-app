@@ -32,3 +32,24 @@ class FrameWidget extends StatelessWidget {
     });
   }
 }
+
+class FrameForBottomNavigationItemWidget extends StatelessWidget {
+  final Widget child;
+  const FrameForBottomNavigationItemWidget({Key? key, required this.child})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ThemeModel>(
+        builder: (context, ThemeModel themeNotifier, children) {
+      return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle(
+            statusBarIconBrightness:
+                themeNotifier.isDark ? Brightness.dark : Brightness.light,
+            statusBarBrightness:
+                themeNotifier.isDark ? Brightness.dark : Brightness.light,
+          ),
+          child: child);
+    });
+  }
+}
