@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:motivation/assets/icons/svg.dart';
 import 'package:motivation/screens/reset_password_page/reset_password_page_view_model.dart';
 import 'package:motivation/widgets/frame.dart';
 import 'package:provider/provider.dart';
 import '../../assets/icons/svgs.dart';
 import '../../assets/themes/change_theme.dart';
+import '../../widgets/change_theme_button.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({Key? key}) : super(key: key);
@@ -28,7 +30,7 @@ class _ResetPasswordBodyWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const _ChangingThemeButtonWidget(),
+              const _HeaderWidget(),
               const SizedBox(
                 height: 24,
               ),
@@ -58,7 +60,8 @@ class _ResetPasswordBodyWidget extends StatelessWidget {
                 height: 24,
               ),
               ElevatedButton(
-                onPressed: () => model.onTapButtonResetPassword(),
+                onPressed: () => context.go('/main'),
+                //onPressed: () => model.onTapButtonResetPassword(),
                 child: Text(
                   'Отправить пароль',
                   style: Theme.of(context).textTheme.labelMedium,
@@ -91,29 +94,28 @@ class _ResetPasswordBodyWidget extends StatelessWidget {
   }
 }
 
-class _ChangingThemeButtonWidget extends StatelessWidget {
-  const _ChangingThemeButtonWidget({Key? key}) : super(key: key);
+class _HeaderWidget extends StatelessWidget {
+  const _HeaderWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.topRight,
+      alignment: Alignment.topCenter,
       child: Padding(
           padding: const EdgeInsets.only(top: 20),
-          child: Consumer<ThemeModel>(
-            builder: (context, ThemeModel themeNotifier, child) {
-              return SVG(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SVG(
                 Theme.of(context).brightness == Brightness.dark
-                    ? SVGs.sun
-                    : SVGs.moon,
-                onPressed: () {
-                  themeNotifier.isDark
-                      ? themeNotifier.isDark = false
-                      : themeNotifier.isDark = true;
-                },
-                size: 36,
-              );
-            },
+                    ? SVGs.chevrone_left_light
+                    : SVGs.chevrone_left_dark,
+                onPressed: () => context.go('/'),
+                size: 40,
+              ),
+              const ChangingThemeButtonWidget()
+            ],
           )),
     );
   }

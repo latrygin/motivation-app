@@ -8,25 +8,39 @@ class ResetPasswordPageViewModel extends ChangeNotifier {
   String? errorEmail;
   Duration countdown = const Duration(seconds: 1);
   String durationSendMessage = 'Отправить повторно';
+  int _start = 30;
+  late Timer _timer;
+
+  ResetPasswordPageViewModel() {
+    startCountdown();
+  }
 
   void onTapButtonResetPassword() {
     if (validateEmail()) {}
   }
 
   void startCountdown() {
-    int _start = 10;
-    Timer.periodic(countdown, (Timer timer) {
-      durationSendMessage = 'Подождите ${_start.toString()} секунд';
-      print(_start);
-      if (_start == 0) {
-        timer.cancel();
-        durationSendMessage = 'Отправить повторно';
+    if (_start == 30) {
+      _timer = Timer.periodic(countdown, (Timer timer) {
+        durationSendMessage = 'Подождите ${_start.toString()} секунд';
+        if (_start == 0) {
+          timer.cancel();
+          durationSendMessage = 'Отправить повторно';
+          _start = 30;
+        } else {
+          _start--;
+        }
         notifyListeners();
-      } else {
-        _start--;
-        notifyListeners();
-      }
-    });
+      });
+    } else {
+      return;
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 
   void sendMessageRepeat() {
