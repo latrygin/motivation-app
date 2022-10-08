@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:motivation/widgets/change_theme_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +31,7 @@ class _PinCodeBodyWidget extends StatelessWidget {
       children: [
         Column(
           children: [
-            const _ChangingThemeButtonWidget(),
+            const _HeaderWidget(),
             const SizedBox(
               height: 24,
             ),
@@ -71,16 +72,14 @@ class _PinCodeBodyWidget extends StatelessWidget {
               backgroundColor: Colors.transparent,
               enableActiveFill: true,
               controller: model.pinCode,
-              onCompleted: (v) {
-                print("Completed");
-              },
+              onCompleted: (v) => context.go('/registration'),
               onChanged: (value) {},
             ),
             const SizedBox(
               height: 24,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => context.go('/registration'),
               child: Text(
                 'Отправить код',
                 style: Theme.of(context).textTheme.labelMedium,
@@ -88,32 +87,41 @@ class _PinCodeBodyWidget extends StatelessWidget {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 32),
-          child: InkWell(
-            onTap: () => model.repeadSendEmailMessage(),
-            child: RichText(
-              text: TextSpan(
-                text: 'Не пришло письмо? ',
-                style: DefaultTextStyle.of(context).style,
-                children: const <TextSpan>[
-                  TextSpan(
-                      text: 'Отправить повторно',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFA35BFF))),
-                ],
-              ),
-            ),
-          ),
-        ),
+        const _SendingMessageWidget(),
       ],
     );
   }
 }
 
-class _ChangingThemeButtonWidget extends StatelessWidget {
-  const _ChangingThemeButtonWidget({Key? key}) : super(key: key);
+class _SendingMessageWidget extends StatelessWidget {
+  const _SendingMessageWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final model = context.watch<PinCodePageViewModel>();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 32),
+      child: InkWell(
+        onTap: () => model.sendMessageRepeat(),
+        child: RichText(
+          text: TextSpan(
+            text: 'Не пришло письмо? ',
+            style: DefaultTextStyle.of(context).style,
+            children: <TextSpan>[
+              TextSpan(
+                  text: model.durationSendMessage,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Color(0xFFA35BFF))),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _HeaderWidget extends StatelessWidget {
+  const _HeaderWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -130,23 +138,9 @@ class _ChangingThemeButtonWidget extends StatelessWidget {
                     ? SVGs.chevrone_left_light
                     : SVGs.chevrone_left_dark,
                 onPressed: () => context.go('/registration'),
-                size: 36,
+                size: 40,
               ),
-              Consumer<ThemeModel>(
-                builder: (context, ThemeModel themeNotifier, child) {
-                  return SVG(
-                    Theme.of(context).brightness == Brightness.dark
-                        ? SVGs.sun
-                        : SVGs.moon,
-                    onPressed: () {
-                      themeNotifier.isDark
-                          ? themeNotifier.isDark = false
-                          : themeNotifier.isDark = true;
-                    },
-                    size: 36,
-                  );
-                },
-              )
+              const ChangingThemeButtonWidget()
             ],
           )),
     );
