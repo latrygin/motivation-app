@@ -52,4 +52,92 @@ class SVGs {
   /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Arrow - Left.svg" alt="Arrow - Left.svg" height=100 width=100> custom icon "Arrow - Left.svg".
   static SvgPicture chevrone_left_dark =
       SvgPicture.asset('assets/icons/icons_light_theme/Arrow - Left.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Message - 4.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Message - 4.svg".
+  static SvgPicture message_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Message - 4.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Message - 4.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Message - 4.svg".
+  static SvgPicture message_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Message - 4.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/Message - 4.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture unactive_message_light = SvgPicture.asset(
+      'assets/icons/unactive_icons_dark_theme/Message - 4.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/Message - 4.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture unactive_message_dark = SvgPicture.asset(
+      'assets/icons/unactive_icons_light_theme/Message - 4.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Status.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture statistic_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Status.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Status.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture statistic_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Status.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/Status.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture unactive_statistic_light =
+      SvgPicture.asset('assets/icons/unactive_icons_dark_theme/Status.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/Status.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture unactive_statistic_dark =
+      SvgPicture.asset('assets/icons/unactive_icons_light_theme/Status.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/User.svg" alt="User.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture user_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/User.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/User.svg" alt="User.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture user_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/User.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/User.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture unactive_user_light =
+      SvgPicture.asset('assets/icons/unactive_icons_dark_theme/User.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/User.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture unactive_user_dark =
+      SvgPicture.asset('assets/icons/unactive_icons_light_theme/User.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Document.svg" alt="Document.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture document_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Document.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Document.svg" alt="Document.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture document_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Document.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/Document.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture unactive_document_light =
+      SvgPicture.asset('assets/icons/unactive_icons_dark_theme/Document.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/Document.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture unactive_document_dark =
+      SvgPicture.asset('assets/icons/unactive_icons_light_theme/Document.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Edit.svg" alt="Edit.svg" height=100 width=100> custom icon "Edit.svg".
+  static SvgPicture edit_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Edit.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Edit.svg" alt="Edit.svg" height=100 width=100> custom icon "Edit.svg".
+  static SvgPicture edit_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Edit.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/Edit.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture unactive_edit_light =
+      SvgPicture.asset('assets/icons/unactive_icons_dark_theme/Edit.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/Edit.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture unactive_edit_dark =
+      SvgPicture.asset('assets/icons/unactive_icons_light_theme/Edit.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/More - Circle.svg" alt="Setting" height=100 width=100> custom icon "Setting".
+  static SvgPicture settings_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/More - Circle.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/More - Circle.svg" alt="Setting" height=100 width=100> custom icon "Setting".
+  static SvgPicture settings_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/More - Circle.svg');
 }
