@@ -11,6 +11,7 @@ var lightTheme = ThemeData(
     primaryColor: primaryColorForDarkTheme,
     hintColor: const Color(0xFFeeeff5),
     cardColor: const Color(0xFFf7f8fa),
+    hoverColor: const Color(0xFF1F2127),
     fontFamily: 'YandexSansText',
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: primaryColorForDarkTheme,
