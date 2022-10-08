@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:motivation/assets/icons/svg.dart';
 import 'package:motivation/screens/registration_page/registration_page_view_model.dart';
+import 'package:motivation/widgets/change_theme_button.dart';
 import 'package:motivation/widgets/frame.dart';
 import 'package:provider/provider.dart';
 import '../../assets/icons/svgs.dart';
-import '../../assets/themes/change_theme.dart';
 
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _RegistrationBodyWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const _ChangingThemeButtonWidget(),
+        const _HeaderWidget(),
         Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -156,30 +156,16 @@ class _RegistrationBodyWidget extends StatelessWidget {
   }
 }
 
-class _ChangingThemeButtonWidget extends StatelessWidget {
-  const _ChangingThemeButtonWidget({Key? key}) : super(key: key);
+class _HeaderWidget extends StatelessWidget {
+  const _HeaderWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Align(
+    return const Align(
       alignment: Alignment.topRight,
       child: Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: Consumer<ThemeModel>(
-            builder: (context, ThemeModel themeNotifier, child) {
-              return SVG(
-                Theme.of(context).brightness == Brightness.dark
-                    ? SVGs.sun
-                    : SVGs.moon,
-                onPressed: () {
-                  themeNotifier.isDark
-                      ? themeNotifier.isDark = false
-                      : themeNotifier.isDark = true;
-                },
-                size: 36,
-              );
-            },
-          )),
+          padding: EdgeInsets.only(top: 20),
+          child: ChangingThemeButtonWidget()),
     );
   }
 }
