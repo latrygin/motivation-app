@@ -5,7 +5,7 @@ class SVG extends StatelessWidget {
   final double? size;
   final VoidCallback? onPressed;
 
-  const SVG(this.icon, {super.key, this.size, this.onPressed});
+  const SVG(this.icon, {super.key, this.size = 24, this.onPressed});
 
   @override
   Widget build(BuildContext context) {

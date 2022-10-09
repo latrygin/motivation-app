@@ -140,4 +140,28 @@ class SVGs {
   /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/More - Circle.svg" alt="Setting" height=100 width=100> custom icon "Setting".
   static SvgPicture settings_dark =
       SvgPicture.asset('assets/icons/icons_light_theme/More - Circle.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Filter.svg" alt="Filter" height=100 width=100> custom icon "Filter".
+  static SvgPicture filter_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Filter.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Filter.svg" alt="Filter" height=100 width=100> custom icon "Filter".
+  static SvgPicture filter_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Filter.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/More - Circle.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture unactive_more_light = SvgPicture.asset(
+      'assets/icons/unactive_icons_dark_theme/More - Circle.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/More - Circle.svg" alt="Message - 4.svg" height=100 width=100> custom icon "Status.svg".
+  static SvgPicture unactive_more_dark = SvgPicture.asset(
+      'assets/icons/unactive_icons_light_theme/More - Circle.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Saved.svg" alt="Saved.svg" height=100 width=100> custom icon "Saved.svg".
+  static SvgPicture saved_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Saved.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Saved.svg" alt="Saved.svg" height=100 width=100> custom icon "Saved.svg".
+  static SvgPicture saved_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Saved.svg');
 }
