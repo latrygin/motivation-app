@@ -1,5 +1,6 @@
 //Dark theme for app
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:motivation/assets/colors/colors.dart';
 
 var darkTheme = ThemeData(
@@ -56,25 +57,30 @@ var darkTheme = ThemeData(
               borderRadius: BorderRadius.circular(8.0),
             ),
             minimumSize: const Size(double.infinity, 60))),
-    textTheme: const TextTheme(
-      headlineLarge: TextStyle(
+    textTheme: TextTheme(
+      headlineLarge: const TextStyle(
           fontSize: 32,
           fontWeight: FontWeight.w700,
           color: whiteColorForDarkTheme),
-      headlineMedium: TextStyle(
+      headlineMedium: const TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w500,
           color: whiteColorForDarkTheme),
-      headlineSmall: TextStyle(
+      headlineSmall: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w300,
           color: whiteColorForDarkTheme),
-      labelMedium: TextStyle(
+      labelMedium: const TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w500,
           color: greyDarkColorForDarkTheme),
-      labelLarge: TextStyle(
+      labelLarge: const TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w300,
           color: whiteColorForDarkTheme),
+      titleSmall: GoogleFonts.inter(
+          height: 1.4,
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: Colors.grey.shade400),
     ));
