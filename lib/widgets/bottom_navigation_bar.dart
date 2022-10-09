@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:motivation/assets/icons/svg.dart';
 import 'package:motivation/assets/icons/svgs.dart';
 import 'package:motivation/screens/chat_page/chat_page.dart';
+import 'package:motivation/screens/forum_page/forum_page.dart';
 import 'package:motivation/screens/profile_page/profile_page.dart';
 import 'package:motivation/screens/statistic_page/statistic_page.dart';
 import 'package:motivation/widgets/change_theme_button.dart';
@@ -36,11 +37,7 @@ class BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   static const List<Widget> _widgetOptions = <Widget>[
     StatisticScreen(),
     ChatScreen(),
-    Center(
-      child: Text(
-        'Форум',
-      ),
-    ),
+    ForumScreen(),
     Center(
       child: Text(
         'Статьи',
