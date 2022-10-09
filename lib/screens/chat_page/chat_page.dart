@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:motivation/assets/icons/svg.dart';
 import 'package:motivation/assets/icons/svgs.dart';
+import 'package:motivation/widgets/header.dart';
+import 'package:motivation/widgets/search_widget.dart';
 import 'package:provider/provider.dart';
 import 'chat_page_view_model.dart';
 
@@ -20,80 +22,28 @@ class _ChatBodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
-        physics: const ScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Сообщения',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineLarge!
-                        .copyWith(fontSize: 24),
-                  ),
-                  SizedBox(
-                    width: 32,
-                    height: 32,
-                    child: SVG(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.settings_light
-                          : SVGs.settings_dark,
-                      onPressed: () {
-                        print(123);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              const _SearchWidget(),
-              const SizedBox(
-                height: 16,
-              ),
-              const _ListChatsWidget()
-            ],
-          ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            const _HeaderWidget(),
+            Expanded(
+              child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    children: const [
+                      SearchWidget(
+                        title: 'Поиск по чату',
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      _ListChatsWidget(),
+                    ],
+                  )),
+            )
+          ],
         ),
-      ),
-    );
-  }
-}
-
-class _SearchWidget extends StatelessWidget {
-  const _SearchWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 40,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-          color: Theme.of(context).hintColor,
-          borderRadius: BorderRadius.circular(8)),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Icon(
-            Icons.search,
-            size: 18,
-          ),
-          Text('Поиск по чату'),
-          SizedBox(
-            width: 8,
-          ),
-        ],
       ),
     );
   }
@@ -186,6 +136,31 @@ class _ChatItemWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _HeaderWidget extends StatelessWidget {
+  const _HeaderWidget({Key? key}) : super(key: key);
+  static const double size = 28;
+  @override
+  Widget build(BuildContext context) {
+    return HeaderWidget(
+      title: 'Сообщения',
+      children: [
+        SizedBox(
+          width: 32,
+          height: 32,
+          child: SVG(
+            Theme.of(context).brightness == Brightness.dark
+                ? SVGs.settings_light
+                : SVGs.settings_dark,
+            onPressed: () {
+              print(123);
+            },
+          ),
+        ),
+      ],
     );
   }
 }
