@@ -1,11 +1,11 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class ThemeModel extends ChangeNotifier {
   bool _isDark = false;
-  final ThemePreferences _preferences = ThemePreferences();
+  final ThemeHive _hivetheme = ThemeHive();
   bool get isDark => _isDark;
 
   ThemeModel() {
@@ -13,26 +13,27 @@ class ThemeModel extends ChangeNotifier {
   }
   set isDark(bool value) {
     _isDark = value;
-    _preferences.setTheme(value);
+    _hivetheme.setTheme(value);
     notifyListeners();
   }
 
   getPreferences() async {
-    _isDark = await _preferences.getTheme();
+    _isDark = await _hivetheme.getTheme();
     notifyListeners();
   }
 }
 
-class ThemePreferences {
-  static const THEME_KEY = "theme_key";
+class ThemeHive {
+  static const THEME_KEY = 'theme_key';
+  static const IS_DARK = 'dark';
 
   Future<void> setTheme(bool value) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setBool(THEME_KEY, value);
+    var box = await Hive.openBox(THEME_KEY);
+    box.put(IS_DARK, value);
   }
 
   Future<bool> getTheme() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getBool(THEME_KEY) ?? false;
+    var box = await Hive.openBox(THEME_KEY);
+    return box.get(IS_DARK) ?? false;
   }
 }
