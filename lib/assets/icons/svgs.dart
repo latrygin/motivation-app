@@ -180,4 +180,28 @@ class SVGs {
   /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Send.svg" alt="Send" height=100 width=100> custom icon "Send".
   static SvgPicture send_dark =
       SvgPicture.asset('assets/icons/icons_light_theme/Send.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Trash.svg" alt="Trash" height=100 width=100> custom icon "Trash".
+  static SvgPicture trash_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Trash.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Trash.svg" alt="Trash" height=100 width=100> custom icon "Trash".
+  static SvgPicture trash_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Trash.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Volume - Cross.svg" alt="Volume - Cross" height=100 width=100> custom icon "Volume - Cross".
+  static SvgPicture volume_cross_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Volume - Cross.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Volume - Cross.svg" alt="Volume - Cross" height=100 width=100> custom icon "Volume - Cross".
+  static SvgPicture volume_cross_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Volume - Cross.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Volume - High.svg" alt="Volume - High" height=100 width=100> custom icon "Volume - High".
+  static SvgPicture volume_high_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Volume - High.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Volume - High.svg" alt="Volume - High" height=100 width=100> custom icon "Volume - High".
+  static SvgPicture volume_high_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Volume - High.svg');
 }
