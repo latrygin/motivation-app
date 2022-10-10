@@ -70,8 +70,6 @@ flutter:
     - assets/icons/icons_light_theme/
     - assets/icons/unactive_icons_dark_theme/
     - assets/icons/unactive_icons_light_theme/
-    - assets/gifs/gifs_light/bookmark.gif
-    - assets/gifs/gifs_dark/bookmark.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
