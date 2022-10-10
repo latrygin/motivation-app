@@ -9,8 +9,10 @@ import 'package:provider/provider.dart';
 import 'assets/themes/change_theme.dart';
 import 'screens/login_page/login_page.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
   runApp(const MyApp());
 }
 
