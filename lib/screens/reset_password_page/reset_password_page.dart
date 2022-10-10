@@ -5,7 +5,6 @@ import 'package:motivation/screens/reset_password_page/reset_password_page_view_
 import 'package:motivation/widgets/frame.dart';
 import 'package:provider/provider.dart';
 import '../../assets/icons/svgs.dart';
-import '../../assets/themes/change_theme.dart';
 import '../../widgets/change_theme_button.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
