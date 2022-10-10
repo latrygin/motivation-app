@@ -2,40 +2,89 @@ import 'package:flutter/material.dart';
 
 class SearchWidget extends StatelessWidget {
   final String title;
-  final VoidCallback? onTap;
-  const SearchWidget({Key? key, required this.title, this.onTap})
-      : super(key: key);
+  final TextEditingController? controller;
+  const SearchWidget({
+    Key? key,
+    this.controller,
+    required this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(8),
-        child: Container(
-          width: double.infinity,
-          height: 40,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          decoration: BoxDecoration(
-              color: Theme.of(context).hintColor,
-              borderRadius: BorderRadius.circular(8)),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Icon(
-                Icons.search,
-                size: 18,
-              ),
-              Text(title),
-              const SizedBox(
-                width: 18,
-              ),
-            ],
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: TextFormField(
+          controller: controller,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
           ),
-        ),
-      ),
+          decoration: InputDecoration(
+            focusColor: Theme.of(context).hintColor,
+            fillColor: Theme.of(context).hintColor,
+            hoverColor: Theme.of(context).hintColor,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide.none),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide.none),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide.none),
+            contentPadding: const EdgeInsets.only(right: 50),
+            hintText: title,
+            hintStyle: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Theme.of(context).hoverColor),
+            prefixIcon: Icon(
+              Icons.search,
+              size: 18,
+              color: Theme.of(context).hoverColor,
+            ),
+          )),
     );
   }
 }
+
+// class SearchWidget extends StatelessWidget {
+//   final String title;
+//   final VoidCallback? onTap;
+//   const SearchWidget({Key? key, required this.title, this.onTap})
+//       : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//       child: InkWell(
+//         onTap: onTap,
+//         borderRadius: BorderRadius.circular(8),
+//         child: Container(
+//           width: double.infinity,
+//           height: 40,
+//           padding: const EdgeInsets.symmetric(horizontal: 16),
+//           decoration: BoxDecoration(
+//               color: Theme.of(context).hintColor,
+//               borderRadius: BorderRadius.circular(8)),
+//           child: Row(
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               const Icon(
+//                 Icons.search,
+//                 size: 18,
+//               ),
+//               Text(title),
+//               const SizedBox(
+//                 width: 18,
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
