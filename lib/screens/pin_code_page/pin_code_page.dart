@@ -9,7 +9,6 @@ import 'package:motivation/screens/pin_code_page/pin_code_page_view_model.dart';
 import 'package:motivation/widgets/frame.dart';
 
 import '../../assets/icons/svgs.dart';
-import '../../assets/themes/change_theme.dart';
 
 class PinCodeScreen extends StatelessWidget {
   const PinCodeScreen({Key? key}) : super(key: key);
