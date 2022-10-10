@@ -164,4 +164,20 @@ class SVGs {
   /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Saved.svg" alt="Saved.svg" height=100 width=100> custom icon "Saved.svg".
   static SvgPicture saved_dark =
       SvgPicture.asset('assets/icons/icons_light_theme/Saved.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Close.svg" alt="Close" height=100 width=100> custom icon "Close".
+  static SvgPicture close_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Close.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Close.svg" alt="Close" height=100 width=100> custom icon "Close".
+  static SvgPicture close_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Close.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Send.svg" alt="Send" height=100 width=100> custom icon "Send".
+  static SvgPicture send_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Send.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Send.svg" alt="Send" height=100 width=100> custom icon "Send".
+  static SvgPicture send_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Send.svg');
 }

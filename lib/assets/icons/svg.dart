@@ -9,18 +9,30 @@ class SVG extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      borderRadius: BorderRadius.circular(size ?? 24),
-      child: SizedBox(
-        height: size,
-        width: size,
-        child: FittedBox(
-          fit: BoxFit.fill,
-          alignment: Alignment.center,
-          child: icon,
-        ),
-      ),
-    );
+    return onPressed == null
+        ? SizedBox(
+            height: size,
+            width: size,
+            child: FittedBox(
+              fit: BoxFit.fill,
+              alignment: Alignment.center,
+              child: SizedBox.fromSize(
+                  size: Size(size ?? 24, size ?? 24), child: icon),
+            ),
+          )
+        : InkWell(
+            onTap: onPressed,
+            borderRadius: BorderRadius.circular(size ?? 24),
+            child: SizedBox(
+              height: size,
+              width: size,
+              child: FittedBox(
+                fit: BoxFit.fill,
+                alignment: Alignment.center,
+                child: SizedBox.fromSize(
+                    size: Size(size ?? 24, size ?? 24), child: icon),
+              ),
+            ),
+          );
   }
 }
