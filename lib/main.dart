@@ -39,6 +39,13 @@ class Secondwidget extends StatelessWidget {
         },
       ),
       GoRoute(
+        path: '/login',
+        builder: (BuildContext context, GoRouterState state) {
+          //return const BottomNavigationBarWidget();
+          return const LoginScreen();
+        },
+      ),
+      GoRoute(
         path: '/reset_password',
         builder: (context, state) {
           return const ResetPasswordScreen();
