@@ -5,7 +5,6 @@ import 'package:motivation/screens/chat_page/chat_page.dart';
 import 'package:motivation/screens/forum_page/forum_page.dart';
 import 'package:motivation/screens/profile_page/profile_page.dart';
 import 'package:motivation/screens/statistic_page/statistic_page.dart';
-import 'package:motivation/widgets/change_theme_button.dart';
 import 'frame.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
