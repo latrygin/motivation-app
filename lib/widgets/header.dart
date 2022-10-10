@@ -18,6 +18,7 @@ class HeaderWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(bottom: 2),
       color: Colors.transparent,
+      height: 68,
       child: Container(
         decoration: BoxDecoration(
             color: Theme.of(context).scaffoldBackgroundColor,
