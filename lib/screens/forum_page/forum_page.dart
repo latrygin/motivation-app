@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gif_view/gif_view.dart';
 import 'package:motivation/widgets/header.dart';
 import 'package:motivation/widgets/search_widget.dart';
 import 'package:provider/provider.dart';
@@ -90,6 +91,63 @@ class _ForumItemWidget extends StatelessWidget {
   static const String description =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
 
+  void getDialogWindow(BuildContext context, TapDownDetails details) {
+    showDialog<void>(
+      useSafeArea: false,
+      barrierDismissible: true,
+      context: context,
+      builder: (context) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                  right: 54, top: details.globalPosition.dy - 50),
+              child: Container(
+                height: 50,
+                width: 160,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).hintColor,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        topRight: Radius.circular(25),
+                        bottomLeft: Radius.circular(25))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    AnimatedSwitcher(
+                      duration: Duration(seconds: 5),
+                      child: TextButton(
+                          onPressed: () {},
+                          child: SVG(
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? SVGs.close_light
+                                  : SVGs.close_dark)),
+                    ),
+                    TextButton(
+                        onPressed: () {},
+                        child: SVG(
+                            Theme.of(context).brightness == Brightness.dark
+                                ? SVGs.saved_light
+                                : SVGs.saved_dark)),
+                    TextButton(
+                        onPressed: () {},
+                        child: SVG(
+                            Theme.of(context).brightness == Brightness.dark
+                                ? SVGs.send_light
+                                : SVGs.send_dark)),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final model = context.read<ForumPageViewModel>();
@@ -116,7 +174,7 @@ class _ForumItemWidget extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTapDown: (details) => model.getDialogWindow(context, details),
+                onTapDown: (details) => getDialogWindow(context, details),
                 child: SizedBox(
                   height: 24,
                   width: 24,
