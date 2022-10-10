@@ -98,6 +98,7 @@ class _ChatItemWidget extends StatelessWidget {
           ? Theme.of(context).hintColor
           : Theme.of(context).scaffoldBackgroundColor,
       child: InkWell(
+        splashColor: Theme.of(context).hintColor,
         onLongPress: () => model.selectChatItem(index),
         onTap: () => model.isModeSelected ? model.selectChatItem(index) : null,
         child: Container(
@@ -210,85 +211,81 @@ class _HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ChatPageViewModel>();
-    return model.isModeSelected
-        ? HeaderWidget(
-            isShadow: model.isShowFloatingActionButton,
-            actions: [
-              SizedBox(
-                width: size,
-                height: size,
-                child: SVG(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? SVGs.close_light
-                      : SVGs.close_dark,
-                  onPressed: () => model.deletedListItems(),
-                ),
-              ),
-              const SizedBox(
-                width: 12,
-              ),
-              Text(
-                model.selectedItemsList.length.toString(),
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineLarge!
-                    .copyWith(fontSize: 20),
+    return AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        switchInCurve: Curves.easeInBack,
+        switchOutCurve: Curves.easeInBack,
+        child: model.isModeSelected
+            ? HeaderWidget(
+                key: const Key("loading"),
+                isShadow: model.isShowFloatingActionButton,
+                actions: [
+                  GestureDetector(
+                    child: SVG(
+                      Theme.of(context).brightness == Brightness.dark
+                          ? SVGs.close_light
+                          : SVGs.close_dark,
+                      size: size,
+                      onPressed: () => model.deletedListItems(),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  Text(
+                    model.selectedItemsList.length.toString(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineLarge!
+                        .copyWith(fontSize: 20),
+                  )
+                ],
+                children: [
+                  SVG(
+                    Theme.of(context).brightness == Brightness.dark
+                        ? SVGs.trash_light
+                        : SVGs.trash_dark,
+                    size: size,
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  SVG(
+                    Theme.of(context).brightness == Brightness.dark
+                        ? SVGs.volume_cross_light
+                        : SVGs.volume_cross_dark,
+                    size: size,
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    width: 14,
+                  ),
+                  SVG(
+                    Theme.of(context).brightness == Brightness.dark
+                        ? SVGs.volume_high_light
+                        : SVGs.volume_high_dark,
+                    size: size,
+                    onPressed: () {},
+                  ),
+                ],
               )
-            ],
-            children: [
-              SizedBox(
-                width: size,
-                height: size,
-                child: SVG(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? SVGs.trash_light
-                      : SVGs.trash_dark,
-                  onPressed: () {},
-                ),
-              ),
-              const SizedBox(
-                width: 16,
-              ),
-              SizedBox(
-                width: size,
-                height: size,
-                child: SVG(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? SVGs.volume_cross_light
-                      : SVGs.volume_cross_dark,
-                  onPressed: () {},
-                ),
-              ),
-              const SizedBox(
-                width: 14,
-              ),
-              SizedBox(
-                width: size,
-                height: size,
-                child: SVG(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? SVGs.volume_high_light
-                      : SVGs.volume_high_dark,
-                  onPressed: () {},
-                ),
-              ),
-            ],
-          )
-        : HeaderWidget(
-            isShadow: model.isShowFloatingActionButton,
-            title: 'Сообщения',
-            children: [
-              SizedBox(
-                width: size,
-                height: size,
-                child: SVG(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? SVGs.settings_light
-                      : SVGs.settings_dark,
-                  onPressed: () {},
-                ),
-              ),
-            ],
-          );
+            : HeaderWidget(
+                key: const Key("normal"),
+                isShadow: model.isShowFloatingActionButton,
+                title: 'Сообщения',
+                children: [
+                  SizedBox(
+                    width: size,
+                    height: size,
+                    child: SVG(
+                      Theme.of(context).brightness == Brightness.dark
+                          ? SVGs.settings_light
+                          : SVGs.settings_dark,
+                      onPressed: () {},
+                    ),
+                  ),
+                ],
+              ));
   }
 }
