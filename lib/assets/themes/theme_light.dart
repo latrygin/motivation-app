@@ -38,6 +38,15 @@ var lightTheme = ThemeData(
           borderRadius: BorderRadius.circular(8.0),
           borderSide: const BorderSide(color: Color(0xFFeeeff5), width: 2)),
     ),
+    textButtonTheme: TextButtonThemeData(
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.grey.shade200,
+            foregroundColor: Colors.grey.shade200,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            minimumSize: const Size(32, 32))),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
             textStyle: const TextStyle(

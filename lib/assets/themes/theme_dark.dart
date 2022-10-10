@@ -44,6 +44,15 @@ var darkTheme = ThemeData(
           borderSide:
               const BorderSide(color: greyMediumColorForDarkTheme, width: 2)),
     ),
+    textButtonTheme: TextButtonThemeData(
+        style: ElevatedButton.styleFrom(
+            backgroundColor: greyMediumColorForDarkTheme,
+            foregroundColor: greyMediumColorForDarkTheme,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            minimumSize: const Size(32, 32))),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
             textStyle: const TextStyle(
