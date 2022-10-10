@@ -65,7 +65,7 @@ class _HeaderForStatisticWidget extends StatelessWidget {
                         Theme.of(context).brightness == Brightness.dark
                             ? SVGs.chevrone_left_light
                             : SVGs.chevrone_left_dark,
-                        onPressed: () => context.go('/')),
+                        onPressed: () => context.go('/login')),
                   ),
                   Container(
                     height: 80,
