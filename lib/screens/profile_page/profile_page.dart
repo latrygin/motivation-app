@@ -87,9 +87,7 @@ class _HeaderForStatisticWidget extends StatelessWidget {
                       Theme.of(context).brightness == Brightness.dark
                           ? SVGs.settings_light
                           : SVGs.settings_dark,
-                      onPressed: () {
-                        print(123);
-                      },
+                      onPressed: () {},
                     ),
                   ),
                 ],
