@@ -3,6 +3,7 @@ import 'package:motivation/assets/icons/svg.dart';
 import 'package:motivation/assets/icons/svgs.dart';
 import 'package:motivation/screens/statistic_page/statistic_page_view_model.dart';
 import 'package:motivation/widgets/change_theme_button.dart';
+import 'package:motivation/widgets/search_widget.dart';
 import 'package:provider/provider.dart';
 
 class StatisticScreen extends StatelessWidget {
@@ -28,14 +29,16 @@ class _StatisticBodyWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const _HeaderForStatisticWidget(),
+              const SizedBox(
+                height: 24,
+              ),
+              const SearchWidget(
+                title: 'Поиск по приложению',
+              ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    const _SearchWidget(),
                     const SizedBox(
                       height: 24,
                     ),
@@ -190,36 +193,6 @@ class _HeaderForStatisticWidget extends StatelessWidget {
   }
 }
 
-class _SearchWidget extends StatelessWidget {
-  const _SearchWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 40,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-          color: Theme.of(context).hintColor,
-          borderRadius: BorderRadius.circular(8)),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          SizedBox(
-            width: 8,
-          ),
-          Text('Поиск по приложению'),
-          Icon(
-            Icons.search,
-            size: 18,
-          )
-        ],
-      ),
-    );
-  }
-}
-
 class _CardItemWidget extends StatelessWidget {
   final Color colorsTitle;
   final Color color;
@@ -236,7 +209,7 @@ class _CardItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 160,
+      height: 164,
       width: double.infinity,
       decoration:
           BoxDecoration(color: color, borderRadius: BorderRadius.circular(24)),
