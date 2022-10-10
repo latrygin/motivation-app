@@ -226,11 +226,12 @@ class _CardItemWidget extends StatelessWidget {
   final Widget icon;
   final String title;
   const _CardItemWidget(
-      {super.key,
+      {Key? key,
       required this.color,
       required this.icon,
       required this.title,
-      required this.colorsTitle});
+      required this.colorsTitle})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
