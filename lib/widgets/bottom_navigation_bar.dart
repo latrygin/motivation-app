@@ -5,6 +5,7 @@ import 'package:motivation/screens/chat_page/chat_page.dart';
 import 'package:motivation/screens/forum_page/forum_page.dart';
 import 'package:motivation/screens/profile_page/profile_page.dart';
 import 'package:motivation/screens/statistic_page/statistic_page.dart';
+import '../screens/blog_page/blog_page.dart';
 import 'frame.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
@@ -37,11 +38,7 @@ class BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     StatisticScreen(),
     ChatScreen(),
     ForumScreen(),
-    Center(
-      child: Text(
-        'Статьи',
-      ),
-    ),
+    BlogScreen(),
     ProfileScreen(),
   ];
 
