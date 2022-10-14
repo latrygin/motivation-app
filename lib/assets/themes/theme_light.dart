@@ -84,6 +84,6 @@ var lightTheme = ThemeData(
       titleSmall: GoogleFonts.inter(
           height: 1.4,
           fontSize: 14,
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w400,
           color: Colors.grey.shade600),
     ));
