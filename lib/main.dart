@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:motivation/assets/themes/theme_dark.dart';
 import 'package:motivation/assets/themes/theme_light.dart';
-import 'package:motivation/screens/pin_code_page/pin_code_page.dart';
-import 'package:motivation/screens/registration_page/registration_page.dart';
-import 'package:motivation/screens/reset_password_page/reset_password_page.dart';
+import 'package:motivation/screens/auth_pages/login_page/login_page.dart';
+import 'package:motivation/screens/auth_pages/pin_code_page/pin_code_page.dart';
+import 'package:motivation/screens/auth_pages/registration_page/registration_page.dart';
+import 'package:motivation/screens/auth_pages/reset_password_page/reset_password_page.dart';
 import 'package:motivation/widgets/bottom_navigation_bar.dart';
 import 'package:provider/provider.dart';
 import 'assets/themes/change_theme.dart';
-import 'screens/login_page/login_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
