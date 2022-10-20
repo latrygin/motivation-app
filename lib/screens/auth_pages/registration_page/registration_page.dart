@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:motivation/assets/icons/svg.dart';
-import 'package:motivation/screens/login_page/login_page_view_model.dart';
+import 'package:motivation/assets/icons/svgs.dart';
+import 'package:motivation/screens/auth_pages/registration_page/registration_page_view_model.dart';
 import 'package:motivation/widgets/change_theme_button.dart';
 import 'package:motivation/widgets/frame.dart';
 import 'package:provider/provider.dart';
-import '../../assets/icons/svgs.dart';
-import 'package:go_router/go_router.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegistrationScreen extends StatelessWidget {
+  const RegistrationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
-        create: (context) => LoginPageViewModel(),
-        child: const FrameWidget(child: _LoginBodyWidget()),
-      );
+      create: (context) => RegistrationPageViewModel(),
+      child: const FrameWidget(child: _RegistrationBodyWidget()));
 }
 
-class _LoginBodyWidget extends StatelessWidget {
-  const _LoginBodyWidget({Key? key}) : super(key: key);
+class _RegistrationBodyWidget extends StatelessWidget {
+  const _RegistrationBodyWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final model = context.watch<LoginPageViewModel>();
+    final model = context.watch<RegistrationPageViewModel>();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -32,51 +31,63 @@ class _LoginBodyWidget extends StatelessWidget {
             children: [
               Align(
                   alignment: Alignment.centerLeft,
-                  child: Text('Войти',
+                  child: Text('Регистрация',
                       style: Theme.of(context).textTheme.headlineLarge)),
               const SizedBox(
                 height: 24,
               ),
               TextFormField(
-                controller: model.email,
+                controller: model.name,
                 style: Theme.of(context).textTheme.labelLarge,
-                onChanged: (value) => model.resetErrorEmail(),
                 decoration: InputDecoration(
-                    hintText: 'Электронная почта', errorText: model.errorEmail),
+                    hintText: 'Имя', errorText: model.errorName),
+                onChanged: (value) => model.resetErrorName(),
               ),
               const SizedBox(
                 height: 24,
               ),
               TextFormField(
-                  controller: model.password,
-                  obscureText: model.obscure,
-                  style: Theme.of(context).textTheme.labelLarge,
-                  onChanged: (value) => model.resetErrorPassword(),
-                  decoration: InputDecoration(
-                      hintText: 'Пароль',
-                      errorText: model.errorPassword,
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: SVG(
-                          model.obscure
-                              ? Theme.of(context).brightness == Brightness.dark
-                                  ? SVGs.eye_light
-                                  : SVGs.eye_dark
-                              : Theme.of(context).brightness == Brightness.dark
-                                  ? SVGs.eye_slash_light
-                                  : SVGs.eye_slash_dark,
-                          onPressed: () => model.changeObscureValue(),
-                          size: 12,
-                        ),
-                      ))),
+                controller: model.email,
+                scrollPadding: const EdgeInsets.all(0),
+                style: Theme.of(context).textTheme.labelLarge,
+                decoration: InputDecoration(
+                    hintText: 'Электронная почта', errorText: model.errorEmail),
+                onChanged: (value) => model.resetErrorEmail(),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              TextFormField(
+                controller: model.password,
+                obscureText: model.obscure,
+                style: Theme.of(context).textTheme.labelLarge,
+                decoration: InputDecoration(
+                    errorText: model.errorPassword,
+                    hintText: 'Пароль',
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SVG(
+                        model.obscure
+                            ? Theme.of(context).brightness == Brightness.dark
+                                ? SVGs.eye_light
+                                : SVGs.eye_dark
+                            : Theme.of(context).brightness == Brightness.dark
+                                ? SVGs.eye_slash_light
+                                : SVGs.eye_slash_dark,
+                        onPressed: () => model.changeObscureValue(),
+                        size: 12,
+                      ),
+                    )),
+                onChanged: (value) => model.resetErrorPassword(),
+              ),
               const SizedBox(
                 height: 24,
               ),
               ElevatedButton(
-                onPressed: () => context.go('/reset_password'),
-                //onPressed: () => model.onTapButtonLogin(),
+                onPressed: () => context.go('/registration/pincode'),
+                //onPressed: () => model.onTapButtonRegistration(),
                 child: Text(
-                  'Войти',
+                  'Зарегистрироваться',
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
@@ -124,14 +135,14 @@ class _LoginBodyWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 32),
           child: InkWell(
-            onTap: () => context.go('/registration'),
+            onTap: () => context.go('/'),
             child: RichText(
               text: TextSpan(
-                text: 'Нет аккаунта? ',
+                text: 'Есть аккаунта? ',
                 style: DefaultTextStyle.of(context).style,
                 children: const <TextSpan>[
                   TextSpan(
-                      text: 'Зарегистрируйся',
+                      text: 'Войти',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color(0xFFA35BFF))),

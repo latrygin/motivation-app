@@ -160,13 +160,12 @@ class _ForumItemWidget extends StatelessWidget {
               children: [
                 Container(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                   decoration: BoxDecoration(
                       color: Theme.of(context).scaffoldBackgroundColor,
                       borderRadius: BorderRadius.circular(12)),
-                  child: Text(
+                  child: const Text(
                     'Игры',
-                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
                 GestureDetector(
@@ -185,81 +184,84 @@ class _ForumItemWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(
-              height: 8,
+              height: 12,
             ),
             Text(
               'Что делать, если друг зовёт в доту?',
+              maxLines: 2,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             Text(description,
-                maxLines: 3,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.titleSmall),
             const SizedBox(
-              height: 8,
+              height: 12,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      height: 28,
-                      width: 28,
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                          borderRadius: BorderRadius.circular(30)),
-                      child: SVG(
-                        Theme.of(context).brightness == Brightness.dark
-                            ? SVGs.unactive_user_light
-                            : SVGs.unactive_user_dark,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 12,
-                    ),
-                    Text(
-                      'Latrygin Arseniy',
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                  ],
+              children: const [
+                _StatisticItemWidget(
+                  icon: CupertinoIcons.eye_fill,
+                  title: '3.2k',
                 ),
-                Row(
-                  children: [
-                    Icon(
-                      CupertinoIcons.eye_fill,
-                      size: 16,
-                      color: Colors.grey.shade600,
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                      '342',
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Icon(
-                      CupertinoIcons.hand_thumbsup_fill,
-                      size: 16,
-                      color: Colors.grey.shade600,
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                      '52',
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                  ],
+                SizedBox(
+                  width: 4,
+                ),
+                _StatisticItemWidget(
+                  icon: CupertinoIcons.hand_thumbsup_fill,
+                  title: '1.2k',
+                ),
+                SizedBox(
+                  width: 4,
+                ),
+                _StatisticItemWidget(
+                  icon: CupertinoIcons.hand_thumbsdown_fill,
+                  title: '52',
+                ),
+                SizedBox(
+                  width: 4,
+                ),
+                _StatisticItemWidget(
+                  icon: CupertinoIcons.chat_bubble_fill,
+                  title: '187',
                 ),
               ],
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _StatisticItemWidget extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  const _StatisticItemWidget(
+      {Key? key, required this.title, required this.icon})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(bottom: 4, left: 10, right: 10, top: 4),
+      decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(20)),
+      alignment: Alignment.center,
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            size: 14,
+            color: Colors.grey.shade700,
+          ),
+          const SizedBox(
+            width: 4,
+          ),
+          Text(title),
+        ],
       ),
     );
   }

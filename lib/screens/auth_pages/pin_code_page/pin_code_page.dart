@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:motivation/assets/icons/svgs.dart';
+import 'package:motivation/screens/auth_pages/pin_code_page/pin_code_page_view_model.dart';
 import 'package:motivation/widgets/change_theme_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
-
 import 'package:motivation/assets/icons/svg.dart';
-import 'package:motivation/screens/pin_code_page/pin_code_page_view_model.dart';
 import 'package:motivation/widgets/frame.dart';
-
-import '../../assets/icons/svgs.dart';
 
 class PinCodeScreen extends StatelessWidget {
   const PinCodeScreen({Key? key}) : super(key: key);

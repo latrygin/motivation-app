@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:motivation/assets/icons/svg.dart';
-import 'package:motivation/screens/reset_password_page/reset_password_page_view_model.dart';
+import 'package:motivation/assets/icons/svgs.dart';
+import 'package:motivation/screens/auth_pages/reset_password_page/reset_password_page_view_model.dart';
+import 'package:motivation/widgets/change_theme_button.dart';
 import 'package:motivation/widgets/frame.dart';
 import 'package:provider/provider.dart';
-import '../../assets/icons/svgs.dart';
-import '../../widgets/change_theme_button.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({Key? key}) : super(key: key);

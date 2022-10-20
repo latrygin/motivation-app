@@ -34,12 +34,12 @@ class _BlogBodyWidget extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   child: Column(
                     children: const [
-                      SearchWidget(
-                        title: 'Поиск по форуму',
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
+                      // SearchWidget(
+                      //   title: 'Поиск по форуму',
+                      // ),
+                      // SizedBox(
+                      //   height: 16,
+                      // ),
                       _ListBlogWidget(),
                     ],
                   )),
