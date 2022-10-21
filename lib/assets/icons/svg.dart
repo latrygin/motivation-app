@@ -10,11 +10,10 @@ class SVG extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return onPressed == null
-        ? SizedBox(
-            height: size,
-            width: size,
+        ? SizedBox.fromSize(
+            size: Size(size ?? 24, size ?? 24),
             child: FittedBox(
-              fit: BoxFit.fill,
+              fit: BoxFit.contain,
               alignment: Alignment.center,
               child: SizedBox.fromSize(
                   size: Size(size ?? 24, size ?? 24), child: icon),
@@ -27,7 +26,7 @@ class SVG extends StatelessWidget {
               height: size,
               width: size,
               child: FittedBox(
-                fit: BoxFit.fill,
+                fit: BoxFit.contain,
                 alignment: Alignment.center,
                 child: SizedBox.fromSize(
                     size: Size(size ?? 24, size ?? 24), child: icon),

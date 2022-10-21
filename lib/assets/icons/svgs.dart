@@ -204,4 +204,52 @@ class SVGs {
   /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Volume - High.svg" alt="Volume - High" height=100 width=100> custom icon "Volume - High".
   static SvgPicture volume_high_dark =
       SvgPicture.asset('assets/icons/icons_light_theme/Volume - High.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/Saved.svg" alt="Saved" height=100 width=100> custom icon "Saved.svg".
+  static SvgPicture unactive_bookmark_light =
+      SvgPicture.asset('assets/icons/unactive_icons_dark_theme/Saved.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/Saved.svg" alt="Saved" height=100 width=100> custom icon "Saved.svg".
+  static SvgPicture unactive_bookmark_dark =
+      SvgPicture.asset('assets/icons/unactive_icons_light_theme/Saved.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/More.svg" alt="More" height=100 width=100> custom icon "More.svg".
+  static SvgPicture more_light =
+      SvgPicture.asset('assets/icons/unactive_icons_dark_theme/More.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/More.svg" alt="More" height=100 width=100> custom icon "More.svg".
+  static SvgPicture more_dark =
+      SvgPicture.asset('assets/icons/unactive_icons_light_theme/More.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/Filter.svg" alt="Filter" height=100 width=100> custom icon "Filter.svg".
+  static SvgPicture unactive_filter_light =
+      SvgPicture.asset('assets/icons/unactive_icons_dark_theme/Filter.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/Filter.svg" alt="Filter" height=100 width=100> custom icon "Filter.svg".
+  static SvgPicture unactive_filter_dark =
+      SvgPicture.asset('assets/icons/unactive_icons_light_theme/Filter.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/Edit1.svg" alt="Edit1" height=100 width=100> custom icon "Edit1.svg".
+  static SvgPicture unactive_edit1_light =
+      SvgPicture.asset('assets/icons/unactive_icons_dark_theme/Edit1.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/Edit1.svg" alt="Edit1" height=100 width=100> custom icon "Edit1.svg".
+  static SvgPicture unactive_edit1_dark =
+      SvgPicture.asset('assets/icons/unactive_icons_light_theme/Edit1.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/Arrow-Top.svg" alt="Arrow-Top" height=100 width=100> custom icon "Arrow-Top.svg".
+  static SvgPicture chevron_up_light =
+      SvgPicture.asset('assets/icons/unactive_icons_dark_theme/Arrow-Top.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/Arrow-Top.svg" alt="Arrow-Top" height=100 width=100> custom icon "Arrow-Top.svg".
+  static SvgPicture chevron_up_dark =
+      SvgPicture.asset('assets/icons/unactive_icons_light_theme/Arrow-Top.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/Arrow-Bottom.svg" alt="Arrow-Bottom" height=100 width=100> custom icon "Arrow-Bottom.svg".
+  static SvgPicture chevron_down_light = SvgPicture.asset(
+      'assets/icons/unactive_icons_dark_theme/Arrow-Bottom.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/Arrow-Bottom.svg" alt="Arrow-Bottom" height=100 width=100> custom icon "Arrow-Bottom.svg".
+  static SvgPicture chevron_down_dark = SvgPicture.asset(
+      'assets/icons/unactive_icons_light_theme/Arrow-Bottom.svg');
 }
