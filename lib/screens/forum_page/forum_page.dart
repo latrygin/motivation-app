@@ -23,42 +23,34 @@ class _ForumBodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ForumPageViewModel>();
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            const _HeaderWidget(),
-            Expanded(
-              child: SingleChildScrollView(
-                  controller: model.controller,
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    children: const [
-                      SearchWidget(
-                        title: 'Поиск по форуму',
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      _ListForumWidget(),
-                    ],
-                  )),
-            )
-          ],
-        ),
-      ),
-      floatingActionButton: model.isShowFloatingActionButton
-          ? FloatingActionButton(
-              backgroundColor: Theme.of(context).primaryColor,
-              onPressed: () => model.scrollUpOnTapFloatingActionButton(),
-              tooltip: 'Подняться наверх',
-              child: const Icon(
-                CupertinoIcons.chevron_up,
-                size: 18,
+    return DefaultTabController(
+        initialIndex: 0,
+        length: 3,
+        child: Scaffold(
+          appBar: const ForumAppBar(),
+          body: const TabBarView(
+            children: <Widget>[
+              _ListForumWidget(),
+              Center(
+                child: Text("It's rainy here"),
               ),
-            )
-          : const SizedBox(),
-    );
+              Center(
+                child: Text("It's sunny here"),
+              ),
+            ],
+          ),
+          floatingActionButton: model.isShowFloatingActionButton
+              ? FloatingActionButton(
+                  backgroundColor: Theme.of(context).primaryColor,
+                  onPressed: () => model.scrollUpOnTapFloatingActionButton(),
+                  tooltip: 'Подняться наверх',
+                  child: const Icon(
+                    CupertinoIcons.chevron_up,
+                    size: 18,
+                  ),
+                )
+              : const SizedBox(),
+        ));
   }
 }
 
@@ -67,9 +59,10 @@ class _ListForumWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = context.watch<ForumPageViewModel>();
     return ListView.separated(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
+      controller: model.controller,
+      physics: const BouncingScrollPhysics(),
       itemCount: 20,
       itemBuilder: (context, index) {
         return const _ForumItemWidget();
@@ -98,7 +91,7 @@ class _ForumItemWidget extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                  right: 54, top: details.globalPosition.dy - 50),
+                  right: 28, top: details.globalPosition.dy - 50),
               child: Container(
                 height: 50,
                 width: 160,
@@ -145,46 +138,50 @@ class _ForumItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     //final model = context.read<ForumPageViewModel>();
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            color: Theme.of(context).hintColor,
-            borderRadius: BorderRadius.circular(12)),
+          color: Theme.of(context).hintColor,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                      borderRadius: BorderRadius.circular(12)),
-                  child: const Text(
-                    'Игры',
-                  ),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 2),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).scaffoldBackgroundColor,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: const Text(
+                        'Игры',
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Text('3ч', style: Theme.of(context).textTheme.titleSmall),
+                  ],
                 ),
                 GestureDetector(
                   onTapDown: (details) => getDialogWindow(context, details),
-                  child: SizedBox(
-                    height: 24,
-                    width: 24,
-                    child: SVG(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.unactive_more_light
-                          : SVGs.unactive_more_dark,
-                      //onPressed: () => getDialogWindow(context),
-                    ),
+                  child: SVG(
+                    Theme.of(context).brightness == Brightness.dark
+                        ? SVGs.more_light
+                        : SVGs.more_dark,
+                    onPressed: () {},
                   ),
                 )
               ],
             ),
             const SizedBox(
-              height: 12,
+              height: 8,
             ),
             Text(
               'Что делать, если друг зовёт в доту?',
@@ -196,36 +193,79 @@ class _ForumItemWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.titleSmall),
             const SizedBox(
-              height: 12,
+              height: 16,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                _StatisticItemWidget(
-                  icon: CupertinoIcons.eye_fill,
-                  title: '3.2k',
+              children: [
+                Row(
+                  children: [
+                    SVG(
+                      Theme.of(context).brightness == Brightness.dark
+                          ? SVGs.unactive_message_light
+                          : SVGs.unactive_message_dark,
+                      onPressed: () {},
+                      size: 24,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      '32',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineLarge!
+                          .copyWith(fontSize: 14),
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    SVG(
+                      Theme.of(context).brightness == Brightness.dark
+                          ? SVGs.unactive_bookmark_light
+                          : SVGs.unactive_bookmark_dark,
+                      onPressed: () {},
+                      size: 24,
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  width: 4,
-                ),
-                _StatisticItemWidget(
-                  icon: CupertinoIcons.hand_thumbsup_fill,
-                  title: '1.2k',
-                ),
-                SizedBox(
-                  width: 4,
-                ),
-                _StatisticItemWidget(
-                  icon: CupertinoIcons.hand_thumbsdown_fill,
-                  title: '52',
-                ),
-                SizedBox(
-                  width: 4,
-                ),
-                _StatisticItemWidget(
-                  icon: CupertinoIcons.chat_bubble_fill,
-                  title: '187',
-                ),
+                Row(
+                  children: [
+                    SVG(
+                      Theme.of(context).brightness == Brightness.dark
+                          ? SVGs.chevron_down_light
+                          : SVGs.chevron_down_dark,
+                      size: 32,
+                    ),
+                    // const Icon(
+                    //   CupertinoIcons.chevron_down,
+                    //   size: 20,
+                    // ),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    Text(
+                      '132',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineLarge!
+                          .copyWith(fontSize: 14, color: Colors.green),
+                    ),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    SVG(
+                      Theme.of(context).brightness == Brightness.dark
+                          ? SVGs.chevron_up_light
+                          : SVGs.chevron_up_dark,
+                      size: 32,
+                    ),
+                    // const Icon(
+                    //   CupertinoIcons.chevron_up,
+                    //   size: 20,
+                    // ),
+                  ],
+                )
               ],
             ),
           ],
@@ -235,85 +275,91 @@ class _ForumItemWidget extends StatelessWidget {
   }
 }
 
-class _StatisticItemWidget extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  const _StatisticItemWidget(
-      {Key? key, required this.title, required this.icon})
-      : super(key: key);
+class ForumAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const ForumAppBar({
+    Key? key,
+  }) : super(key: key);
+
+  static const double size = 26;
+  static const double height = 88;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(bottom: 4, left: 10, right: 10, top: 4),
-      decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(20)),
-      alignment: Alignment.center,
-      child: Row(
-        children: [
-          Icon(
-            icon,
-            size: 14,
-            color: Colors.grey.shade700,
+    final model = context.watch<ForumPageViewModel>();
+    return AppBar(
+      elevation: 2,
+      title: Text(
+        'Форум',
+        style:
+            Theme.of(context).textTheme.headlineLarge!.copyWith(fontSize: 24),
+      ),
+      actions: [
+        SVG(
+          Theme.of(context).brightness == Brightness.dark
+              ? SVGs.unactive_bookmark_light
+              : SVGs.unactive_bookmark_dark,
+          size: size,
+        ),
+        const SizedBox(
+          width: 18,
+        ),
+        SVG(
+          Theme.of(context).brightness == Brightness.dark
+              ? SVGs.unactive_edit1_light
+              : SVGs.unactive_edit1_dark,
+          size: size,
+        ),
+        const SizedBox(
+          width: 18,
+        ),
+        SVG(
+          Theme.of(context).brightness == Brightness.dark
+              ? SVGs.unactive_filter_light
+              : SVGs.unactive_filter_dark,
+          size: size,
+        ),
+        const SizedBox(
+          width: 18,
+        ),
+      ],
+      bottom: TabBar(
+        indicatorColor: Theme.of(context).primaryColor,
+        splashBorderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(12), topRight: Radius.circular(12)),
+        tabs: <Widget>[
+          Tab(
+            height: 32,
+            child: Text(
+              'Новые',
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall!
+                  .copyWith(fontWeight: FontWeight.w400),
+            ),
           ),
-          const SizedBox(
-            width: 4,
-          ),
-          Text(title),
+          Tab(
+              height: 32,
+              child: Text(
+                'Популярные',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(fontWeight: FontWeight.w400),
+              )),
+          Tab(
+              height: 32,
+              child: Text(
+                'Мои',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(fontWeight: FontWeight.w400),
+              )),
         ],
       ),
     );
   }
-}
 
-class _HeaderWidget extends StatelessWidget {
-  const _HeaderWidget({Key? key}) : super(key: key);
-  static const double size = 28;
   @override
-  Widget build(BuildContext context) {
-    final model = context.watch<ForumPageViewModel>();
-    return HeaderWidget(
-      title: 'Форум',
-      isShadow: model.isShowFloatingActionButton,
-      children: [
-        SizedBox(
-          width: size,
-          height: size,
-          child: SVG(
-            Theme.of(context).brightness == Brightness.dark
-                ? SVGs.saved_light
-                : SVGs.saved_dark,
-            onPressed: () {},
-          ),
-        ),
-        const SizedBox(
-          width: 18,
-        ),
-        SizedBox(
-          width: size,
-          height: size,
-          child: SVG(
-            Theme.of(context).brightness == Brightness.dark
-                ? SVGs.edit_light
-                : SVGs.edit_dark,
-            onPressed: () {},
-          ),
-        ),
-        const SizedBox(
-          width: 18,
-        ),
-        SizedBox(
-          width: size,
-          height: size,
-          child: SVG(
-            Theme.of(context).brightness == Brightness.dark
-                ? SVGs.filter_light
-                : SVGs.filter_dark,
-            onPressed: () {},
-          ),
-        ),
-      ],
-    );
-  }
+  Size get preferredSize => const Size.fromHeight(height);
 }
