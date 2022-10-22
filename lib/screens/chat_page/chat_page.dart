@@ -24,29 +24,8 @@ class _ChatBodyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = context.watch<ChatPageViewModel>();
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            const _HeaderWidget(),
-            Expanded(
-              child: SingleChildScrollView(
-                  controller: model.controller,
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    children: const [
-                      SearchWidget(
-                        title: 'Поиск по чату',
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      _ListChatsWidget(),
-                    ],
-                  )),
-            )
-          ],
-        ),
-      ),
+      appBar: const ChatAppBar(),
+      body: const _ListChatsWidget(),
       floatingActionButton: model.isShowFloatingActionButton
           ? FloatingActionButton(
               backgroundColor: Theme.of(context).primaryColor,
@@ -67,9 +46,10 @@ class _ListChatsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = context.watch<ChatPageViewModel>();
     return ListView.separated(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
+        controller: model.controller,
+        physics: const BouncingScrollPhysics(),
         itemCount: 20,
         separatorBuilder: (context, index) {
           return Padding(
@@ -205,9 +185,14 @@ class _ChatItemWidget extends StatelessWidget {
   }
 }
 
-class _HeaderWidget extends StatelessWidget {
-  const _HeaderWidget({Key? key}) : super(key: key);
-  static const double size = 28;
+class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const ChatAppBar({
+    Key? key,
+  }) : super(key: key);
+
+  static const double size = 26;
+  static const double height = 60;
+
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ChatPageViewModel>();
@@ -216,31 +201,32 @@ class _HeaderWidget extends StatelessWidget {
         switchInCurve: Curves.easeInBack,
         switchOutCurve: Curves.easeInBack,
         child: model.isModeSelected
-            ? HeaderWidget(
-                key: const Key("loading"),
-                isShadow: model.isShowFloatingActionButton,
-                actions: [
-                  GestureDetector(
-                    child: SVG(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.close_light
-                          : SVGs.close_dark,
-                      size: size,
-                      onPressed: () => model.deletedListItems(),
+            ? AppBar(
+                elevation: model.isShowFloatingActionButton ? 1 : 0,
+                title: Row(
+                  children: [
+                    GestureDetector(
+                      child: SVG(
+                        Theme.of(context).brightness == Brightness.dark
+                            ? SVGs.close_light
+                            : SVGs.close_dark,
+                        size: size,
+                        onPressed: () => model.deletedListItems(),
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Text(
-                    model.selectedItemsList.length.toString(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineLarge!
-                        .copyWith(fontSize: 20),
-                  )
-                ],
-                children: [
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    Text(
+                      model.selectedItemsList.length.toString(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineLarge!
+                          .copyWith(fontSize: 20),
+                    )
+                  ],
+                ),
+                actions: [
                   SVG(
                     Theme.of(context).brightness == Brightness.dark
                         ? SVGs.trash_light
@@ -268,24 +254,35 @@ class _HeaderWidget extends StatelessWidget {
                     size: size,
                     onPressed: () {},
                   ),
+                  const SizedBox(
+                    width: 14,
+                  ),
                 ],
               )
-            : HeaderWidget(
+            : AppBar(
                 key: const Key("normal"),
-                isShadow: model.isShowFloatingActionButton,
-                title: 'Сообщения',
-                children: [
-                  SizedBox(
-                    width: size,
-                    height: size,
-                    child: SVG(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.settings_light
-                          : SVGs.settings_dark,
-                      onPressed: () {},
-                    ),
+                elevation: model.isShowFloatingActionButton ? 1 : 0,
+                title: Text(
+                  'Сообщения',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineLarge!
+                      .copyWith(fontSize: 24),
+                ),
+                actions: [
+                  SVG(
+                    Theme.of(context).brightness == Brightness.dark
+                        ? SVGs.more_light
+                        : SVGs.more_dark,
+                    size: size,
+                  ),
+                  const SizedBox(
+                    width: 18,
                   ),
                 ],
               ));
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(height);
 }
