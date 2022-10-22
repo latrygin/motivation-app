@@ -67,7 +67,9 @@ class _ListForumWidget extends StatelessWidget {
       itemBuilder: (context, index) {
         return const _ForumItemWidget();
       },
-      separatorBuilder: (context, index) => const SizedBox(
+      separatorBuilder: (context, index) => Container(
+        width: double.infinity,
+        color: Theme.of(context).hintColor,
         height: 12,
       ),
     );
@@ -143,7 +145,8 @@ class _ForumItemWidget extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Theme.of(context).hintColor,
+          color: Theme.of(context).scaffoldBackgroundColor,
+          //color: Theme.of(context).hintColor,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,7 +160,7 @@ class _ForumItemWidget extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 2),
                       decoration: BoxDecoration(
-                          color: Theme.of(context).scaffoldBackgroundColor,
+                          color: Theme.of(context).hintColor,
                           borderRadius: BorderRadius.circular(12)),
                       child: const Text(
                         'Игры',
