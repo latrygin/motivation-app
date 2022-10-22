@@ -7,24 +7,37 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:motivation/main.dart';
+import 'package:motivation/screens/auth_pages/login_page/login_page_view_model.dart';
 
 void main() {
-  // testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-  //   // Build our app and trigger a frame.
-  //   await tester.pumpWidget(const MyApp());
+  loginTest();
+}
 
-  //   // Verify that our counter starts at 0.
-  //   expect(find.text('0'), findsOneWidget);
-  //   expect(find.text('1'), findsNothing);
+void loginTest() {
+  test('Тестирование валидации почты на незаполненное поле', () {
+    LoginPageViewModel loginViewModel = LoginPageViewModel();
 
-  //   // Tap the '+' icon and trigger a frame.
-  //   await tester.tap(find.byIcon(Icons.add));
-  //   await tester.pump();
+    loginViewModel.email.text = '';
 
-  //   // Verify that our counter has incremented.
-  //   expect(find.text('0'), findsNothing);
-  //   expect(find.text('1'), findsOneWidget);
-  // });
+    bool isValidationEmail = loginViewModel.validateEmail();
+    expect(isValidationEmail, false);
+  });
+
+  test('Тестирование валидации почты на короткое поле', () {
+    LoginPageViewModel loginViewModel = LoginPageViewModel();
+
+    loginViewModel.email.text = '123';
+
+    bool isValidationEmail = loginViewModel.validateEmail();
+    expect(isValidationEmail, false);
+  });
+
+  test('Тестирование валидации почты на правильно заполненное поле', () {
+    LoginPageViewModel loginViewModel = LoginPageViewModel();
+
+    loginViewModel.email.text = 'latrygin@gmail.com';
+
+    bool isValidationEmail = loginViewModel.validateEmail();
+    expect(isValidationEmail, true);
+  });
 }
