@@ -5,6 +5,7 @@ import 'package:motivation/screens/auth_pages/login_page/login_page.dart';
 import 'package:motivation/screens/auth_pages/pin_code_page/pin_code_page.dart';
 import 'package:motivation/screens/auth_pages/registration_page/registration_page.dart';
 import 'package:motivation/screens/auth_pages/reset_password_page/reset_password_page.dart';
+import 'package:motivation/screens/forum_page/forum_page.dart';
 import 'package:motivation/widgets/bottom_navigation_bar.dart';
 import 'package:provider/provider.dart';
 import 'assets/themes/change_theme.dart';
@@ -36,6 +37,7 @@ class Secondwidget extends StatelessWidget {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
+          //return const ForumScreen();
           return const BottomNavigationBarWidget();
           //return const LoginScreen();
         },
