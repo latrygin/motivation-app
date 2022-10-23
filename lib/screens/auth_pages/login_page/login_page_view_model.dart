@@ -1,24 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:motivation/domain/services/user_services.dart';
 
 class LoginPageViewModel extends ChangeNotifier {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-
   bool obscure = true;
-
+  final BuildContext context;
   String? errorPassword;
   String? errorEmail;
+  final _userServicesWithApiFunction = UserServices();
+
+  LoginPageViewModel({required this.context});
 
   void changeObscureValue() {
     obscure ? obscure = false : obscure = true;
     notifyListeners();
   }
 
-  void onTapButtonLogin() {
-    if (validateEmail() && validatePassword()) {}
+  void onTapButtonLogin(VoidCallback onSuccess) async {
+    if (_validateEmail() && _validatePassword()) {
+      var statuscode = await _userServicesWithApiFunction.loginUser(
+          email.text, password.text);
+      if (statuscode == 200) {
+        onSuccess.call();
+      } else if (statuscode == 401) {
+        errorPassword = 'Неправильный логин или пароль';
+        notifyListeners();
+      } else {
+        errorPassword = 'Произошла ошибка';
+        notifyListeners();
+      }
+    } else {
+      return;
+    }
   }
 
-  bool validatePassword() {
+  bool _validatePassword() {
     if (password.text.isEmpty) {
       errorPassword = 'Поле пароля не заполнено';
       notifyListeners();
@@ -32,7 +50,7 @@ class LoginPageViewModel extends ChangeNotifier {
     }
   }
 
-  bool validateEmail() {
+  bool _validateEmail() {
     if (email.text.isEmpty) {
       errorEmail = 'Поле почты не заполнено';
       notifyListeners();
