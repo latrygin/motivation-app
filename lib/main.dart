@@ -38,8 +38,7 @@ class Secondwidget extends StatelessWidget {
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
           //return const ForumScreen();
-          return const BottomNavigationBarWidget();
-          //return const LoginScreen();
+          return const LoginScreen();
         },
       ),
       GoRoute(
