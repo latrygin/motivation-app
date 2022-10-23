@@ -13,7 +13,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
-        create: (context) => LoginPageViewModel(),
+        create: (context) => LoginPageViewModel(context: context),
         child: const FrameWidget(child: _LoginBodyWidget()),
       );
 }
@@ -74,7 +74,9 @@ class _LoginBodyWidget extends StatelessWidget {
                 height: 24,
               ),
               ElevatedButton(
-                onPressed: () => context.go('/reset_password'),
+                onPressed: () => model.onTapButtonLogin(() {
+                  context.go('/main');
+                }),
                 //onPressed: () => model.onTapButtonLogin(),
                 child: Text(
                   'Войти',
