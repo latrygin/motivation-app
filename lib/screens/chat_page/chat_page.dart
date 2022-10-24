@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:motivation/assets/icons/svg.dart';
 import 'package:motivation/assets/icons/svgs.dart';
-import 'package:motivation/widgets/header.dart';
-import 'package:motivation/widgets/search_widget.dart';
 import 'package:provider/provider.dart';
 import 'chat_page_view_model.dart';
 
@@ -23,20 +21,34 @@ class _ChatBodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ChatPageViewModel>();
-    return Scaffold(
-      appBar: const ChatAppBar(),
-      body: const _ListChatsWidget(),
-      floatingActionButton: model.isShowFloatingActionButton
-          ? FloatingActionButton(
-              backgroundColor: Theme.of(context).primaryColor,
-              onPressed: () => model.scrollUpOnTapFloatingActionButton(),
-              tooltip: 'Подняться наверх',
-              child: const Icon(
-                CupertinoIcons.chevron_up,
-                size: 18,
-              ),
-            )
-          : const SizedBox(),
+    return DefaultTabController(
+      initialIndex: 0,
+      length: 3,
+      child: Scaffold(
+        appBar: const ChatAppBar(),
+        body: const TabBarView(
+          children: <Widget>[
+            _ListChatsWidget(),
+            Center(
+              child: Text("It's rainy here"),
+            ),
+            Center(
+              child: Text("It's sunny here"),
+            ),
+          ],
+        ),
+        floatingActionButton: model.isShowFloatingActionButton
+            ? FloatingActionButton(
+                backgroundColor: Theme.of(context).primaryColor,
+                onPressed: () => model.scrollUpOnTapFloatingActionButton(),
+                tooltip: 'Подняться наверх',
+                child: const Icon(
+                  CupertinoIcons.chevron_up,
+                  size: 18,
+                ),
+              )
+            : const SizedBox(),
+      ),
     );
   }
 }
@@ -191,96 +203,161 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   }) : super(key: key);
 
   static const double size = 26;
-  static const double height = 60;
+  static const double height = 88;
 
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ChatPageViewModel>();
-    return AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
-        switchInCurve: Curves.easeInBack,
-        switchOutCurve: Curves.easeInBack,
-        child: model.isModeSelected
-            ? AppBar(
-                elevation: model.isShowFloatingActionButton ? 1 : 0,
-                title: Row(
-                  children: [
-                    GestureDetector(
-                      child: SVG(
-                        Theme.of(context).brightness == Brightness.dark
-                            ? SVGs.close_light
-                            : SVGs.close_dark,
-                        size: size,
-                        onPressed: () => model.deletedListItems(),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 12,
-                    ),
-                    Text(
-                      model.selectedItemsList.length.toString(),
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineLarge!
-                          .copyWith(fontSize: 20),
-                    )
-                  ],
+    return model.isModeSelected
+        ? AppBar(
+            elevation: 2,
+            title: Row(
+              children: [
+                GestureDetector(
+                  child: SVG(
+                    Theme.of(context).brightness == Brightness.dark
+                        ? SVGs.close_light
+                        : SVGs.close_dark,
+                    size: size,
+                    onPressed: () => model.deletedListItems(),
+                  ),
                 ),
-                actions: [
-                  SVG(
-                    Theme.of(context).brightness == Brightness.dark
-                        ? SVGs.trash_light
-                        : SVGs.trash_dark,
-                    size: size,
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  SVG(
-                    Theme.of(context).brightness == Brightness.dark
-                        ? SVGs.volume_cross_light
-                        : SVGs.volume_cross_dark,
-                    size: size,
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    width: 14,
-                  ),
-                  SVG(
-                    Theme.of(context).brightness == Brightness.dark
-                        ? SVGs.volume_high_light
-                        : SVGs.volume_high_dark,
-                    size: size,
-                    onPressed: () {},
-                  ),
-                  const SizedBox(
-                    width: 14,
-                  ),
-                ],
-              )
-            : AppBar(
-                key: const Key("normal"),
-                elevation: model.isShowFloatingActionButton ? 1 : 0,
-                title: Text(
-                  'Сообщения',
+                const SizedBox(
+                  width: 12,
+                ),
+                Text(
+                  model.selectedItemsList.length.toString(),
                   style: Theme.of(context)
                       .textTheme
                       .headlineLarge!
-                      .copyWith(fontSize: 24),
+                      .copyWith(fontSize: 20),
+                )
+              ],
+            ),
+            actions: [
+              SVG(
+                Theme.of(context).brightness == Brightness.dark
+                    ? SVGs.trash_light
+                    : SVGs.trash_dark,
+                size: size,
+                onPressed: () {},
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              SVG(
+                Theme.of(context).brightness == Brightness.dark
+                    ? SVGs.volume_cross_light
+                    : SVGs.volume_cross_dark,
+                size: size,
+                onPressed: () {},
+              ),
+              const SizedBox(
+                width: 14,
+              ),
+              SVG(
+                Theme.of(context).brightness == Brightness.dark
+                    ? SVGs.volume_high_light
+                    : SVGs.volume_high_dark,
+                size: size,
+                onPressed: () {},
+              ),
+              const SizedBox(
+                width: 14,
+              ),
+            ],
+            bottom: TabBar(
+              indicatorColor: Theme.of(context).primaryColor,
+              splashBorderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(12), topRight: Radius.circular(12)),
+              tabs: <Widget>[
+                Tab(
+                  height: 32,
+                  child: Text(
+                    'Новые',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall!
+                        .copyWith(fontWeight: FontWeight.w400),
+                  ),
                 ),
-                actions: [
-                  SVG(
-                    Theme.of(context).brightness == Brightness.dark
-                        ? SVGs.more_light
-                        : SVGs.more_dark,
-                    size: size,
+                Tab(
+                    height: 32,
+                    child: Text(
+                      'Популярные',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall!
+                          .copyWith(fontWeight: FontWeight.w400),
+                    )),
+                Tab(
+                    height: 32,
+                    child: Text(
+                      'Мои',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall!
+                          .copyWith(fontWeight: FontWeight.w400),
+                    )),
+              ],
+            ),
+          )
+        : AppBar(
+            elevation: 2,
+            title: Text(
+              'Сообщения',
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineLarge!
+                  .copyWith(fontSize: 24),
+            ),
+            actions: [
+              SVG(
+                Theme.of(context).brightness == Brightness.dark
+                    ? SVGs.more_light
+                    : SVGs.more_dark,
+                size: size,
+              ),
+              const SizedBox(
+                width: 18,
+              ),
+            ],
+            bottom: TabBar(
+              indicatorColor: Theme.of(context).primaryColor,
+              splashBorderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(12), topRight: Radius.circular(12)),
+              tabs: <Widget>[
+                Tab(
+                  height: 32,
+                  child: Text(
+                    'Новые',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall!
+                        .copyWith(fontWeight: FontWeight.w400),
                   ),
-                  const SizedBox(
-                    width: 18,
-                  ),
-                ],
-              ));
+                ),
+                Tab(
+                    height: 32,
+                    child: Text(
+                      'Популярные',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall!
+                          .copyWith(fontWeight: FontWeight.w400),
+                    )),
+                Tab(
+                    height: 32,
+                    child: Text(
+                      'Мои',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall!
+                          .copyWith(fontWeight: FontWeight.w400),
+                    )),
+              ],
+            ),
+          );
   }
 
   @override
