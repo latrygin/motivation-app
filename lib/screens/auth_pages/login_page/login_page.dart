@@ -13,7 +13,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
-        create: (context) => LoginPageViewModel(context: context),
+        create: (_) => LoginPageViewModel(),
         child: const FrameWidget(child: _LoginBodyWidget()),
       );
 }
@@ -73,16 +73,7 @@ class _LoginBodyWidget extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              ElevatedButton(
-                onPressed: () => model.onTapButtonLogin(() {
-                  context.go('/main');
-                }),
-                //onPressed: () => model.onTapButtonLogin(),
-                child: Text(
-                  'Войти',
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-              ),
+              const _LogInButtonWidget(),
               const SizedBox(
                 height: 24,
               ),
@@ -145,6 +136,30 @@ class _LoginBodyWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class _LogInButtonWidget extends StatefulWidget {
+  const _LogInButtonWidget({Key? key}) : super(key: key);
+
+  @override
+  State<_LogInButtonWidget> createState() => _LogInButtonWidgetState();
+}
+
+class _LogInButtonWidgetState extends State<_LogInButtonWidget> {
+  @override
+  Widget build(BuildContext context) {
+    final model = context.watch<LoginPageViewModel>();
+    return ElevatedButton(
+        onPressed: () => model.onTapButtonLogin(context, mounted),
+        child: model.isActiveButton
+            ? Text(
+                'Войти',
+                style: Theme.of(context).textTheme.labelMedium,
+              )
+            : CircularProgressIndicator(
+                color: Theme.of(context).scaffoldBackgroundColor,
+              ));
   }
 }
 
