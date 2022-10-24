@@ -83,14 +83,7 @@ class _RegistrationBodyWidget extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              ElevatedButton(
-                onPressed: () => context.go('/registration/pincode'),
-                //onPressed: () => model.onTapButtonRegistration(),
-                child: Text(
-                  'Зарегистрироваться',
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-              ),
+              const _ButtonRegistrationWidget(),
               const SizedBox(
                 height: 24,
               ),
@@ -167,5 +160,30 @@ class _HeaderWidget extends StatelessWidget {
           padding: EdgeInsets.only(top: 20),
           child: ChangingThemeButtonWidget()),
     );
+  }
+}
+
+class _ButtonRegistrationWidget extends StatefulWidget {
+  const _ButtonRegistrationWidget({Key? key}) : super(key: key);
+
+  @override
+  State<_ButtonRegistrationWidget> createState() =>
+      _ButtonRegistrationWidgetState();
+}
+
+class _ButtonRegistrationWidgetState extends State<_ButtonRegistrationWidget> {
+  @override
+  Widget build(BuildContext context) {
+    final model = context.watch<RegistrationPageViewModel>();
+    return ElevatedButton(
+        onPressed: () => model.onTapButtonRegistration(context, mounted),
+        child: model.isActiveButton
+            ? Text(
+                'Войти',
+                style: Theme.of(context).textTheme.labelMedium,
+              )
+            : CircularProgressIndicator(
+                color: Theme.of(context).scaffoldBackgroundColor,
+              ));
   }
 }
