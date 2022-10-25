@@ -141,8 +141,17 @@ class BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               label: 'Profile',
             ),
           ],
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
+          selectedItemColor: Theme.of(context).primaryColor,
+          selectedLabelStyle: Theme.of(context)
+              .textTheme
+              .headlineMedium!
+              .copyWith(fontSize: 12),
+          unselectedLabelStyle: Theme.of(context)
+              .textTheme
+              .headlineMedium!
+              .copyWith(fontSize: 12),
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
         ),
