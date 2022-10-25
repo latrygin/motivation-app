@@ -34,7 +34,7 @@ class UserProvider {
   //
   ///@return void
 
-  Future<User> getUserDataFromLocalStorage() async {
+  Future<User?> getUserDataFromLocalStorage() async {
     //Достать коробку UserAdapter
 
     var box = await _getAndOpenBoxUserAdapter();
@@ -46,7 +46,7 @@ class UserProvider {
     //Закрываем коробку
 
     box.close();
-    return user!;
+    return user;
   }
 
   ///Проверка регистрации коробки
@@ -63,5 +63,18 @@ class UserProvider {
 
     var box = await Hive.openBox<User>(_USER_BOX);
     return box;
+  }
+
+  ///Выход пользователя из приложения
+  ///и очистка коробки User и системы
+  Future<bool> logOutUser() async {
+    //Открытие коробки и регистрации адаптера
+    var box = await _getAndOpenBoxUserAdapter();
+
+    //Очистка и закрытие коробки
+
+    box.deleteFromDisk();
+    box.close();
+    return true;
   }
 }
