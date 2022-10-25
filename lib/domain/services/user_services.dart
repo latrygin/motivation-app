@@ -93,7 +93,6 @@ class UserServices {
   /// <p>@param [password]</p>
   /// <p>http запрос на удаление профиля</p>
   /// <p>@return [statuscode]</p>
-
   Future<int> deleteUser(String email, String password) async {
     var body = jsonEncode({'email': email, 'password': password});
     var response =
@@ -103,5 +102,27 @@ class UserServices {
 
     _loggerNoStack.v(items);
     return response.statusCode;
+  }
+
+  ///Функция выполняния автоматического входа
+  ///достаются данные из локального хранилища Hive
+  ///выполняется функция входа передавая данныеи возвращает
+  ///Future<bool>: true - выполнен вход, false - данные устарели
+  ///или пользователь ещё не регистрировался
+  Future<bool> autoLogin() async {
+    var user = await _saveUserDataInLocalStorage.getUserDataFromLocalStorage();
+    //Проверка наличия пользователя
+    if (user != null) {
+      //Если пользователь есть в локальной бд
+      var statusCode = await loginUser(user.email, user.password ?? '');
+      if (statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      //Если пользователь отсутствует
+      return false;
+    }
   }
 }
