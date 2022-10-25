@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:motivation/assets/icons/svg.dart';
 import 'package:motivation/assets/icons/svgs.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
-        create: (context) => ProfilePageViewModel(),
+        create: (context) => ProfilePageViewModel(context: context),
         child: const _ProfileBodyWidget(),
       );
 }
@@ -33,6 +32,7 @@ class _HeaderForStatisticWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = context.read<ProfilePageViewModel>();
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).hintColor,
@@ -58,15 +58,12 @@ class _HeaderForStatisticWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    width: 32,
-                    height: 32,
-                    child: SVG(
-                        Theme.of(context).brightness == Brightness.dark
-                            ? SVGs.chevrone_left_light
-                            : SVGs.chevrone_left_dark,
-                        onPressed: () => context.go('/login')),
-                  ),
+                  SVG(
+                      Theme.of(context).brightness == Brightness.dark
+                          ? SVGs.exit_light
+                          : SVGs.exit_dark,
+                      size: 32,
+                      onPressed: () => model.logOutUserAndExitProfile()),
                   Container(
                     height: 80,
                     width: 80,
@@ -80,15 +77,12 @@ class _HeaderForStatisticWidget extends StatelessWidget {
                           : SVGs.unactive_user_dark,
                     ),
                   ),
-                  SizedBox(
-                    width: 32,
-                    height: 32,
-                    child: SVG(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.settings_light
-                          : SVGs.settings_dark,
-                      onPressed: () {},
-                    ),
+                  SVG(
+                    Theme.of(context).brightness == Brightness.dark
+                        ? SVGs.settings_light
+                        : SVGs.settings_dark,
+                    size: 32,
+                    onPressed: () {},
                   ),
                 ],
               ),
