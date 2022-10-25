@@ -38,4 +38,9 @@ class TokenProvider {
     await _storage.write(key: _KEY_TOKEN, value: newToken);
     loggerNoStack.v(await _storage.read(key: _KEY_TOKEN));
   }
+
+  ///Удаление данных из Secure Store
+  Future<void> deleteTokenFromSecureStore() async {
+    await _storage.delete(key: _KEY_TOKEN);
+  }
 }
