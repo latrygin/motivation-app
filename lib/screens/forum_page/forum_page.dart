@@ -60,17 +60,22 @@ class _ListForumWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ForumPageViewModel>();
-    return ListView.separated(
-      controller: model.controller,
-      physics: const BouncingScrollPhysics(),
-      itemCount: 20,
-      itemBuilder: (context, index) {
-        return const _ForumItemWidget();
-      },
-      separatorBuilder: (context, index) => Container(
-        width: double.infinity,
-        color: Theme.of(context).hintColor,
-        height: 12,
+    return RefreshIndicator(
+      color: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).hintColor,
+      onRefresh: model.pullRefresh,
+      child: ListView.separated(
+        controller: model.controller,
+        physics: const BouncingScrollPhysics(),
+        itemCount: 20,
+        itemBuilder: (context, index) {
+          return const _ForumItemWidget();
+        },
+        separatorBuilder: (context, index) => Container(
+          width: double.infinity,
+          color: Theme.of(context).hintColor,
+          height: 12,
+        ),
       ),
     );
   }

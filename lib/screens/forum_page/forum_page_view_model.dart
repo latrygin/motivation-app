@@ -26,4 +26,8 @@ class ForumPageViewModel extends ChangeNotifier {
         duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
     notifyListeners();
   }
+
+  Future<void> pullRefresh() async {
+    await Future.delayed(const Duration(seconds: 2));
+  }
 }

@@ -59,22 +59,27 @@ class _ListChatsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ChatPageViewModel>();
-    return ListView.separated(
-        controller: model.controller,
-        physics: const BouncingScrollPhysics(),
-        itemCount: 20,
-        separatorBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0),
-            child: Divider(
-              height: 1,
-              color: Theme.of(context).hintColor,
-            ),
-          );
-        },
-        itemBuilder: (context, index) {
-          return _ChatItemWidget(index: index);
-        });
+    return RefreshIndicator(
+      color: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).hintColor,
+      onRefresh: model.pullRefresh,
+      child: ListView.separated(
+          controller: model.controller,
+          physics: const BouncingScrollPhysics(),
+          itemCount: 20,
+          separatorBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 0),
+              child: Divider(
+                height: 1,
+                color: Theme.of(context).hintColor,
+              ),
+            );
+          },
+          itemBuilder: (context, index) {
+            return _ChatItemWidget(index: index);
+          }),
+    );
   }
 }
 
@@ -274,7 +279,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Tab(
                   height: 32,
                   child: Text(
-                    'Новые',
+                    'Друзья',
                     style: Theme.of(context)
                         .textTheme
                         .headlineSmall!
@@ -284,7 +289,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Tab(
                     height: 32,
                     child: Text(
-                      'Популярные',
+                      'Группы',
                       style: Theme.of(context)
                           .textTheme
                           .headlineSmall!
@@ -330,7 +335,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Tab(
                   height: 32,
                   child: Text(
-                    'Новые',
+                    'Друзья',
                     style: Theme.of(context)
                         .textTheme
                         .headlineSmall!
@@ -340,7 +345,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Tab(
                     height: 32,
                     child: Text(
-                      'Популярные',
+                      'Группы',
                       style: Theme.of(context)
                           .textTheme
                           .headlineSmall!
@@ -349,7 +354,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Tab(
                     height: 32,
                     child: Text(
-                      'Мои',
+                      'Новые',
                       style: Theme.of(context)
                           .textTheme
                           .headlineSmall!

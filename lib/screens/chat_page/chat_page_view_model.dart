@@ -18,6 +18,10 @@ class ChatPageViewModel extends ChangeNotifier {
 
   bool isSelectedItem(int index) => selectedItemsList.contains(index);
 
+  Future<void> pullRefresh() async {
+    await Future.delayed(const Duration(seconds: 2));
+  }
+
   void deletedListItems() {
     isModeSelected = false;
     selectedItemsList.clear();
