@@ -25,7 +25,7 @@ class UserProvider {
 
     //Закрываем коробку
 
-    box.close();
+    // box.close();
   }
 
   ///Получить данные о пальзователе из базы данных
@@ -45,7 +45,7 @@ class UserProvider {
 
     //Закрываем коробку
 
-    box.close();
+    // box.close();
     return user;
   }
 
@@ -76,5 +76,12 @@ class UserProvider {
     box.deleteFromDisk();
     box.close();
     return true;
+  }
+
+  ///Достать пользователя из открытой коробки
+  ///
+  User getUserFromOpenBox() {
+    var box = Hive.box<User>(_USER_BOX);
+    return box.get(_USER_BOX)!;
   }
 }
