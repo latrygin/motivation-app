@@ -260,4 +260,12 @@ class SVGs {
   /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Export.svg" alt="Export" height=100 width=100> custom icon "Export.svg".
   static SvgPicture exit_dark =
       SvgPicture.asset('assets/icons/icons_light_theme/Export.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_dark_theme/Eye.svg" alt="Eye.svg" height=100 width=100> custom icon "Eye.svg".
+  static SvgPicture unactive_eye_light =
+      SvgPicture.asset('assets/icons/unactive_icons_dark_theme/Eye.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/unactive_icons_light_theme/Eye.svg" alt="Eye.svg" height=100 width=100> custom icon "Eye.svg".
+  static SvgPicture unactive_eye_dark =
+      SvgPicture.asset('assets/icons/unactive_icons_light_theme/Eye.svg');
 }
