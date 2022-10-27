@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:motivation/domain/entity/post.dart';
 import 'package:motivation/widgets/header.dart';
 import 'package:motivation/widgets/search_widget.dart';
 import 'package:provider/provider.dart';
@@ -30,13 +31,11 @@ class _ForumBodyWidget extends StatelessWidget {
           appBar: const ForumAppBar(),
           body: const TabBarView(
             children: <Widget>[
-              _ListForumWidget(),
+              _ListAllForumWidget(),
               Center(
-                child: Text("It's rainy here"),
+                child: Text("Популярные вопросы"),
               ),
-              Center(
-                child: Text("It's sunny here"),
-              ),
+              _ListMyForumWidget(),
             ],
           ),
           floatingActionButton: model.isShowFloatingActionButton
@@ -54,38 +53,93 @@ class _ForumBodyWidget extends StatelessWidget {
   }
 }
 
-class _ListForumWidget extends StatelessWidget {
-  const _ListForumWidget({Key? key}) : super(key: key);
+class _ListAllForumWidget extends StatelessWidget {
+  const _ListAllForumWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final model = context.watch<ForumPageViewModel>();
-    return RefreshIndicator(
-      color: Theme.of(context).primaryColor,
-      backgroundColor: Theme.of(context).hintColor,
-      onRefresh: model.pullRefresh,
-      child: ListView.separated(
-        controller: model.controller,
-        physics: const BouncingScrollPhysics(),
-        itemCount: 20,
-        itemBuilder: (context, index) {
-          return const _ForumItemWidget();
-        },
-        separatorBuilder: (context, index) => Container(
-          width: double.infinity,
-          color: Theme.of(context).hintColor,
-          height: 12,
-        ),
-      ),
-    );
+    return FutureBuilder<List<Post>>(
+        future: model.getAllListForumPosts,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: Theme.of(context).primaryColor,
+              ),
+            );
+          } else {
+            return RefreshIndicator(
+              color: Theme.of(context).primaryColor,
+              backgroundColor: Theme.of(context).hintColor,
+              onRefresh: model.pullRefreshFirstTab,
+              child: ListView.separated(
+                controller: model.controller,
+                physics: const BouncingScrollPhysics(),
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  var data = snapshot.data![index];
+                  return _ForumItemWidget(
+                    post: data,
+                  );
+                },
+                separatorBuilder: (context, index) => Container(
+                  width: double.infinity,
+                  color: Theme.of(context).hintColor,
+                  height: 12,
+                ),
+              ),
+            );
+          }
+        });
+  }
+}
+
+class _ListMyForumWidget extends StatelessWidget {
+  const _ListMyForumWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final model = context.watch<ForumPageViewModel>();
+    return FutureBuilder<List<Post>>(
+        future: model.getMyListForumPosts,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: Theme.of(context).primaryColor,
+              ),
+            );
+          } else {
+            return RefreshIndicator(
+              color: Theme.of(context).primaryColor,
+              backgroundColor: Theme.of(context).hintColor,
+              onRefresh: model.pullRefreshSecondTab,
+              child: ListView.separated(
+                controller: model.controller,
+                physics: const BouncingScrollPhysics(),
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  var data = snapshot.data![index];
+                  return _ForumItemWidget(
+                    post: data,
+                  );
+                },
+                separatorBuilder: (context, index) => Container(
+                  width: double.infinity,
+                  color: Theme.of(context).hintColor,
+                  height: 12,
+                ),
+              ),
+            );
+          }
+        });
   }
 }
 
 class _ForumItemWidget extends StatelessWidget {
-  const _ForumItemWidget({Key? key}) : super(key: key);
-
-  static const String description =
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+  final Post post;
+  const _ForumItemWidget({Key? key, required this.post}) : super(key: key);
 
   void getDialogWindow(BuildContext context, TapDownDetails details) {
     showDialog<void>(
@@ -143,7 +197,7 @@ class _ForumItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final model = context.read<ForumPageViewModel>();
+    final model = context.read<ForumPageViewModel>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0),
       child: Container(
@@ -167,14 +221,15 @@ class _ForumItemWidget extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Theme.of(context).hintColor,
                           borderRadius: BorderRadius.circular(12)),
-                      child: const Text(
-                        'Игры',
+                      child: Text(
+                        post.theme,
                       ),
                     ),
                     const SizedBox(
                       width: 8,
                     ),
-                    Text('3ч', style: Theme.of(context).textTheme.titleSmall),
+                    Text(model.differenceDateTime(post.created_at),
+                        style: Theme.of(context).textTheme.titleSmall),
                   ],
                 ),
                 GestureDetector(
@@ -192,11 +247,11 @@ class _ForumItemWidget extends StatelessWidget {
               height: 8,
             ),
             Text(
-              'Что делать, если друг зовёт в доту?',
+              post.title,
               maxLines: 2,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            Text(description,
+            Text(post.description!,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.titleSmall),
@@ -213,13 +268,13 @@ class _ForumItemWidget extends StatelessWidget {
                           ? SVGs.unactive_message_light
                           : SVGs.unactive_message_dark,
                       onPressed: () {},
-                      size: 24,
+                      size: 22,
                     ),
                     const SizedBox(
                       width: 8,
                     ),
                     Text(
-                      '32',
+                      post.count_message.toString(),
                       style: Theme.of(context)
                           .textTheme
                           .headlineLarge!
@@ -230,10 +285,20 @@ class _ForumItemWidget extends StatelessWidget {
                     ),
                     SVG(
                       Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.unactive_bookmark_light
-                          : SVGs.unactive_bookmark_dark,
+                          ? SVGs.unactive_eye_light
+                          : SVGs.unactive_eye_dark,
                       onPressed: () {},
-                      size: 24,
+                      size: 22,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      post.count_view.toString(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineLarge!
+                          .copyWith(fontSize: 14),
                     ),
                   ],
                 ),
@@ -253,11 +318,15 @@ class _ForumItemWidget extends StatelessWidget {
                       width: 12,
                     ),
                     Text(
-                      '132',
+                      (post.count_up - post.count_down).toString(),
                       style: Theme.of(context)
                           .textTheme
                           .headlineLarge!
-                          .copyWith(fontSize: 14, color: Colors.green),
+                          .copyWith(
+                              fontSize: 14,
+                              color: post.count_up - post.count_down >= 0
+                                  ? Colors.green
+                                  : Colors.red),
                     ),
                     const SizedBox(
                       width: 12,
@@ -309,7 +378,7 @@ class ForumAppBar extends StatelessWidget implements PreferredSizeWidget {
           size: size,
         ),
         const SizedBox(
-          width: 18,
+          width: 20,
         ),
         SVG(
           Theme.of(context).brightness == Brightness.dark
@@ -318,16 +387,7 @@ class ForumAppBar extends StatelessWidget implements PreferredSizeWidget {
           size: size,
         ),
         const SizedBox(
-          width: 18,
-        ),
-        SVG(
-          Theme.of(context).brightness == Brightness.dark
-              ? SVGs.unactive_filter_light
-              : SVGs.unactive_filter_dark,
-          size: size,
-        ),
-        const SizedBox(
-          width: 18,
+          width: 20,
         ),
       ],
       bottom: TabBar(

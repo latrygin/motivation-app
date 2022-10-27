@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:motivation/domain/entity/post.dart';
+import 'package:motivation/domain/services/forum_services.dart';
 
 class ForumPageViewModel extends ChangeNotifier {
   ScrollController controller = ScrollController();
   bool isShowFloatingActionButton = false;
+  ForumServices forumServices = ForumServices();
+  Future<List<Post>> get getAllListForumPosts => _getAllListForumPosts();
+  // Future<List<Post>> get getAllListForumPosts => _getAllListForumPosts();
+  Future<List<Post>> get getMyListForumPosts => _getMyListForumPosts();
 
   @override
   void addListener(VoidCallback listener) {
@@ -17,6 +23,9 @@ class ForumPageViewModel extends ChangeNotifier {
         isShowFloatingActionButton = false;
         notifyListeners();
       }
+      if (controller.position.pixels == controller.position.maxScrollExtent) {
+        print('Конец скролла');
+      }
     });
     super.addListener(listener);
   }
@@ -27,7 +36,35 @@ class ForumPageViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> pullRefresh() async {
-    await Future.delayed(const Duration(seconds: 2));
+  Future<void> pullRefreshFirstTab() async {
+    await _getAllListForumPosts();
+    notifyListeners();
+  }
+
+  Future<List<Post>> _getAllListForumPosts() async {
+    var list = await forumServices.getAllForumListFromApi();
+    return list;
+  }
+
+  Future<void> pullRefreshSecondTab() async {
+    await _getMyListForumPosts();
+    notifyListeners();
+  }
+
+  Future<List<Post>> _getMyListForumPosts() async {
+    var list = await forumServices.getMyForumListFromApi();
+    return list;
+  }
+
+  String differenceDateTime(DateTime time) {
+    var now = DateTime.now();
+    var dif = now.difference(time);
+    if (dif.inMinutes < 60) {
+      return '${dif.inMinutes}м';
+    } else if (dif.inHours < 24) {
+      return '${dif.inHours}ч';
+    } else {
+      return '${dif.inDays}д';
+    }
   }
 }
