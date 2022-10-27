@@ -14,7 +14,7 @@ class PreloaderPageViewModel extends ChangeNotifier {
   ///Метод проверки авторизации пользователя
   ///в приложении.
   ///Запускается при создании экрана
-  _autoAuthrization(BuildContext context) async {
+  Future<void> _autoAuthrization(BuildContext context) async {
     var userIsAuth = await _checkAuthrizationUser.autoLogin();
     if (userIsAuth == true) {
       context.go('/main');
