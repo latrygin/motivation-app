@@ -9,7 +9,7 @@ void main() async {
   //await Hive.initFlutter();
   //WidgetsFlutterBinding.ensureInitialized();
   //validationTest();
-  loginTest();
+  //loginTest();
   //tokenProviderTest();
 }
 
