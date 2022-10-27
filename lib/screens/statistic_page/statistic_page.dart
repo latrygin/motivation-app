@@ -20,7 +20,6 @@ class _StatisticBodyWidget extends StatelessWidget {
   const _StatisticBodyWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    //final model = context.watch<StatisticPageViewModel>();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -120,6 +119,7 @@ class _HeaderForStatisticWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = context.watch<StatisticPageViewModel>();
     return Container(
       decoration: BoxDecoration(
         color: Theme.of(context).hintColor,
@@ -170,11 +170,11 @@ class _HeaderForStatisticWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              'Latrygin Arseniy',
+                              model.userInformation.name,
                               style: Theme.of(context).textTheme.headlineMedium,
                             ),
                             Text(
-                              'alatrygin@yandex.ru',
+                              model.userInformation.email,
                               style: Theme.of(context).textTheme.headlineSmall,
                             ),
                           ],
