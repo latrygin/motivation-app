@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:motivation/domain/entity/post.dart';
-import 'package:motivation/widgets/header.dart';
-import 'package:motivation/widgets/search_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:motivation/assets/icons/svg.dart';
 import 'package:motivation/assets/icons/svgs.dart';
@@ -79,9 +77,25 @@ class _ListAllForumWidget extends StatelessWidget {
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) {
                   var data = snapshot.data![index];
-                  return _ForumItemWidget(
-                    post: data,
-                  );
+                  if (index != snapshot.data.length - 1) {
+                    return _ForumItemWidget(
+                      post: data,
+                    );
+                  } else {
+                    return Column(
+                      children: [
+                        _ForumItemWidget(
+                          post: data,
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        LinearProgressIndicator(
+                          color: Theme.of(context).primaryColor,
+                        )
+                      ],
+                    );
+                  }
                 },
                 separatorBuilder: (context, index) => Container(
                   width: double.infinity,
