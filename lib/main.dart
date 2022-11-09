@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:motivation/assets/themes/theme_dark.dart';
 import 'package:motivation/assets/themes/theme_light.dart';
-import 'package:motivation/domain/services/user_services.dart';
 import 'package:motivation/screens/auth_pages/login_page/login_page.dart';
 import 'package:motivation/screens/auth_pages/pin_code_page/pin_code_page.dart';
 import 'package:motivation/screens/auth_pages/preloader_page.dart/preloader_page.dart';
