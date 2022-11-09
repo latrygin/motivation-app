@@ -6,8 +6,9 @@ class ForumPageViewModel extends ChangeNotifier {
   ScrollController controller = ScrollController();
   bool isShowFloatingActionButton = false;
   ForumServices forumServices = ForumServices();
+  int index = 0;
+  List<Post> testvalue = [];
   Future<List<Post>> get getAllListForumPosts => _getAllListForumPosts();
-  // Future<List<Post>> get getAllListForumPosts => _getAllListForumPosts();
   Future<List<Post>> get getMyListForumPosts => _getMyListForumPosts();
 
   @override
@@ -24,7 +25,9 @@ class ForumPageViewModel extends ChangeNotifier {
         notifyListeners();
       }
       if (controller.position.pixels == controller.position.maxScrollExtent) {
-        print('Конец скролла');
+        print(index);
+        //_getAllListForumPosts();
+        notifyListeners();
       }
     });
     super.addListener(listener);
@@ -43,7 +46,9 @@ class ForumPageViewModel extends ChangeNotifier {
 
   Future<List<Post>> _getAllListForumPosts() async {
     var list = await forumServices.getAllForumListFromApi();
-    return list;
+    testvalue.addAll(list);
+    index++;
+    return testvalue;
   }
 
   Future<void> pullRefreshSecondTab() async {
