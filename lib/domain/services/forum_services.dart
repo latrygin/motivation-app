@@ -27,6 +27,8 @@ class ForumServices {
       //_loggerNoStack.v(items);
       return listForumPosts;
     } else {
+      print(response.statusCode);
+      print(response.body);
       throw 'Лист не получен';
     }
   }
