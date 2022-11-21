@@ -13,25 +13,23 @@ class UserServices {
   static Map<String, String> header = {'Content-Type': 'application/json'};
 
   ///Объект класса Logger для вызова
-  ///воводов в консоль отладки
+  ///выводов в консоль отладки
   final _loggerNoStack = Logger(
     printer: PrettyPrinter(methodCount: 0),
   );
 
   ///Объект класса UserProvider для получения данных пользователя
   ///из локальной базы данных или для установления новых при входе
-  final _saveUserDataInLocalStorage = UserProvider();
+  final _userInLocalStorage = UserProvider();
 
   final _tokenProvider = TokenProvider();
 
-  /// <h1>Регистрация</h1>
-  /// <h3>Функция регистрации
-  /// пользователя для страницы Registration_page</h3>
-  /// (?) Отправлять письмо на почту
-  /// <p>@param [email]</p>
-  /// <p>@param [password]</p>
-  /// <p>http запрос на выполнение входа</p>
-  /// <p>@return [statuscode]</p>
+  /// Регистрация пользователя
+  /// Передача параметров name, email, password и
+  /// password_confirmation
+  ///
+  /// Возвращает статус запроса
+  ///
   /// При статусе 201 - Пользователь успешно зарегистрировался
   /// При статусе 422 - Данные не прошли валидацию
 
@@ -49,15 +47,9 @@ class UserServices {
     return response.statusCode;
   }
 
-  /// <h1>Вход</h1>
-  /// <h3>Функция для выполнения входа
-  /// пользователя в приложение через
-  /// логин и пароль</h3>
-  /// (?) Отправлять письмо на почту
-  /// <p>@param [email]</p>
-  /// <p>@param [password]</p>
-  /// <p>http запрос на выполнение входа</p>
-  /// <p>@return [statuscode]</p>
+  /// Вход
+  /// Выполнение входа, если успешно выполнен вход
+  /// Тогда данные заносятся в локальную базу данных
 
   Future<int> loginUser(String email, String password) async {
     var body = jsonEncode({'email': email, 'password': password});
@@ -78,21 +70,15 @@ class UserServices {
       ///Установить введённый пароль
 
       getUserFromLoginApi.password = password;
-      _saveUserDataInLocalStorage
-          .setUserDataInLocalStorage(getUserFromLoginApi);
+      _userInLocalStorage.setUserDataInLocalStorage(getUserFromLoginApi);
       return response.statusCode;
     } else {
       return response.statusCode;
     }
   }
 
-  /// <h1>Удаление профиля</h1>
-  /// <h3>Функция для удаления профиля по почте и паролю</h3>
-  /// (?) Отправлять письмо на почту с кодом
-  /// <p>@param [email]</p>
-  /// <p>@param [password]</p>
-  /// <p>http запрос на удаление профиля</p>
-  /// <p>@return [statuscode]</p>
+  /// Удаление пользователя
+  /// Отправляется запрос и возвращаетс статус запроса
   Future<int> deleteUser(String email, String password) async {
     var body = jsonEncode({'email': email, 'password': password});
     var response =
@@ -110,7 +96,7 @@ class UserServices {
   ///Future<bool>: true - выполнен вход, false - данные устарели
   ///или пользователь ещё не регистрировался
   Future<bool> autoLogin() async {
-    var user = await _saveUserDataInLocalStorage.getUserDataFromLocalStorage();
+    var user = await _userInLocalStorage.getUserDataFromLocalStorage();
     //Проверка наличия пользователя
     if (user != null) {
       //Если пользователь есть в локальной бд
