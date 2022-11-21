@@ -276,4 +276,20 @@ class SVGs {
   /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Loading.svg" alt="Eye.svg" height=100 width=100> custom icon "Eye".
   static SvgPicture loading_dark =
       SvgPicture.asset('assets/icons/icons_light_theme/Loading.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Arrow - Left-1.svg" alt="Arrow - Left-1.svg" height=100 width=100> custom icon "Eye".
+  static SvgPicture chevron_left_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Arrow - Left-1.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Arrow - Left-1.svg" alt="Arrow - Left-1.svg" height=100 width=100> custom icon "Eye".
+  static SvgPicture chevron_left_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Arrow - Left-1.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_dark_theme/Menu.svg" alt="Eye.svg" height=100 width=100> custom icon "Eye".
+  static SvgPicture menu_light =
+      SvgPicture.asset('assets/icons/icons_dark_theme/Menu.svg');
+
+  /// <img src="/Users/latrygin/Development/motivation/assets/icons/icons_light_theme/Menu.svg" alt="Eye.svg" height=100 width=100> custom icon "Eye".
+  static SvgPicture menu_dark =
+      SvgPicture.asset('assets/icons/icons_light_theme/Menu.svg');
 }
