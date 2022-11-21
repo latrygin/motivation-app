@@ -6,6 +6,7 @@ import 'package:motivation/screens/auth_pages/pin_code_page/pin_code_page.dart';
 import 'package:motivation/screens/auth_pages/preloader_page.dart/preloader_page.dart';
 import 'package:motivation/screens/auth_pages/registration_page/registration_page.dart';
 import 'package:motivation/screens/auth_pages/reset_password_page/reset_password_page.dart';
+import 'package:motivation/screens/chat_page/open_chat/open_chat_page.dart';
 import 'package:motivation/widgets/bottom_navigation_bar.dart';
 import 'package:provider/provider.dart';
 import 'assets/themes/change_theme.dart';
@@ -37,7 +38,7 @@ class Secondwidget extends StatelessWidget {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          //return const ForumScreen();
+          //return OpenChatScreen(id: 1);
           return const PreloaderScreen();
         },
       ),
@@ -68,11 +69,30 @@ class Secondwidget extends StatelessWidget {
             )
           ]),
       GoRoute(
-        path: '/main',
-        builder: (BuildContext context, GoRouterState state) {
-          return const BottomNavigationBarWidget();
-        },
-      ),
+          path: '/main',
+          builder: (BuildContext context, GoRouterState state) {
+            return const BottomNavigationBarWidget();
+          },
+          routes: [
+            GoRoute(
+              name: 'chat',
+              path: 'chat/:chatId',
+              builder: (BuildContext context, GoRouterState state) {
+                var chatId = int.parse(state.params['chatId'].toString());
+                var name = state.queryParams['name'].toString();
+                var image = state.queryParams['image'].toString();
+                var status = int.parse(state.queryParams['status'].toString());
+                var uid = int.parse(state.queryParams['uid'].toString());
+                return OpenChatScreen(
+                  chatId: chatId,
+                  name: name,
+                  image: image,
+                  status: status,
+                  uid: uid,
+                );
+              },
+            )
+          ]),
     ],
   );
 
