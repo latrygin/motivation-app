@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:motivation/assets/icons/svg.dart';
+import 'package:motivation/assets/icons/svgg.dart';
 import 'package:motivation/assets/icons/svgs.dart';
 import 'package:motivation/screens/statistic_page/statistic_page_view_model.dart';
 import 'package:motivation/widgets/change_theme_button.dart';
@@ -63,13 +64,7 @@ class _StatisticBodyWidget extends StatelessWidget {
                                 color: Theme.of(context).hintColor,
                                 title: 'Ваше сообщение ждут',
                                 colorsTitle: Theme.of(context).hoverColor,
-                                icon: SVG(
-                                  Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? SVGs.unactive_document_light
-                                      : SVGs.unactive_document_dark,
-                                  size: 36,
-                                )))
+                                icon: SVG(SVGg(context).document)))
                       ],
                     ),
                     const SizedBox(
