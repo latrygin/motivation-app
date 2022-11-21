@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:hive/hive.dart';
 import 'package:logger/logger.dart';
 
 class TokenProvider {
@@ -24,10 +25,17 @@ class TokenProvider {
   ///<p>@return Map<String, String> [_header]</p>
 
   Future<Map<String, String>> getHeaderWithToken() async {
-    String? value = await _storage.read(key: _KEY_TOKEN);
+    var box = await Hive.openBox(_KEY_TOKEN);
+    String value = box.get(_KEY_TOKEN);
     _header.addAll({'Authorization': 'Bearer $value'});
-    loggerNoStack.v(_header);
+
     return _header;
+  }
+
+  String getToken() {
+    var box = Hive.box(_KEY_TOKEN);
+    String value = box.get(_KEY_TOKEN);
+    return value;
   }
 
   ///Установить токен в secure_storage
@@ -35,12 +43,13 @@ class TokenProvider {
   ///<p>@return void</p>
 
   Future<void> setTokenInHeader(String newToken) async {
-    await _storage.write(key: _KEY_TOKEN, value: newToken);
+    var box = await Hive.openBox(_KEY_TOKEN);
+    box.put(_KEY_TOKEN, newToken);
     loggerNoStack.v(await _storage.read(key: _KEY_TOKEN));
   }
 
   ///Удаление данных из Secure Store
   Future<void> deleteTokenFromSecureStore() async {
-    await _storage.delete(key: _KEY_TOKEN);
+    await Hive.box(_KEY_TOKEN).clear();
   }
 }
