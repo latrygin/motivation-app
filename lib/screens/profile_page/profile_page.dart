@@ -21,8 +21,7 @@ class _ProfileBodyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     //final model = context.watch<ProfilePageViewModel>();
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [_HeaderForStatisticWidget()],
+      children: const [_HeaderForStatisticWidget(), _SettingsColumnWidget()],
     );
   }
 }
@@ -149,6 +148,41 @@ class _HeaderForStatisticWidget extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _SettingsColumnWidget extends StatelessWidget {
+  const _SettingsColumnWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 16,
+          ),
+          ListTile(
+            title: Text('Настройка темы'),
+            trailing: Switch(
+              value: true,
+              activeColor: Theme.of(context).primaryColor,
+              onChanged: (bool value) {},
+            ),
+          ),
+          Divider(),
+          ListTile(
+            title: Text('Настройка темы'),
+          ),
+          Divider(),
+          ListTile(
+            title: Text('Настройка темы'),
+          ),
+          Divider(),
+        ],
       ),
     );
   }
