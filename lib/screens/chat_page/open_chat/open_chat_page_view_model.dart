@@ -5,6 +5,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:motivation/assets/api/url.dart';
 import 'package:motivation/domain/entity/message.dart';
 import 'package:motivation/domain/provider/token_provider.dart';
 import 'package:motivation/domain/provider/user_provider.dart';
@@ -30,10 +31,7 @@ class OpenChatPageViewModel extends ChangeNotifier {
   }
   TextEditingController messageControler = TextEditingController();
 
-  IOWebSocketChannel channel = IOWebSocketChannel.connect(
-      Uri.parse(
-        'ws://5.181.109.239:8080',
-      ),
+  IOWebSocketChannel channel = IOWebSocketChannel.connect(Url.wsserver,
       headers: {'token-1': TokenProvider().getToken()});
 
   final _userProvider = UserProvider();

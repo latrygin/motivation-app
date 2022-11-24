@@ -3,6 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:motivation/domain/entity/chat.dart';
 import 'package:motivation/domain/services/chat_services.dart';
 
+//1. Create chat services
+//2. Provider => Bloc
+
 class ChatPageViewModel extends ChangeNotifier {
   ScrollController controller = ScrollController();
   bool isShowFloatingActionButton = false;
