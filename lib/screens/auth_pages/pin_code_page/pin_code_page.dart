@@ -131,9 +131,7 @@ class _HeaderWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SVG(
-                Theme.of(context).brightness == Brightness.dark
-                    ? SVGs.chevrone_left_light
-                    : SVGs.chevrone_left_dark,
+                SVGs(context).chevrone_left,
                 onPressed: () => context.go('/registration'),
                 size: 40,
               ),
