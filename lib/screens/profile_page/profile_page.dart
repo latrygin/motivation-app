@@ -57,10 +57,7 @@ class _HeaderForStatisticWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SVG(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.exit_light
-                          : SVGs.exit_dark,
+                  SVG(SVGs(context).exit,
                       size: 32,
                       onPressed: () => model.logOutUserAndExitProfile()),
                   Container(
@@ -71,15 +68,11 @@ class _HeaderForStatisticWidget extends StatelessWidget {
                         color: Theme.of(context).scaffoldBackgroundColor,
                         borderRadius: BorderRadius.circular(16)),
                     child: SVG(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.unactive_user_light
-                          : SVGs.unactive_user_dark,
+                      SVGs(context).unactive_user,
                     ),
                   ),
                   SVG(
-                    Theme.of(context).brightness == Brightness.dark
-                        ? SVGs.settings_light
-                        : SVGs.settings_dark,
+                    SVGs(context).settings,
                     size: 32,
                     onPressed: () {},
                   ),
