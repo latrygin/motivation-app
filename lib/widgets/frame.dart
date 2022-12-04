@@ -15,10 +15,8 @@ class FrameWidget extends StatelessWidget {
         builder: (context, ThemeModel themeNotifier, children) {
       return AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle(
-            statusBarIconBrightness:
-                themeNotifier.isDark ? Brightness.dark : Brightness.light,
-            statusBarBrightness:
-                themeNotifier.isDark ? Brightness.dark : Brightness.light,
+            statusBarIconBrightness: Theme.of(context).brightness,
+            statusBarBrightness: Theme.of(context).brightness,
           ),
           child: Scaffold(
               resizeToAvoidBottomInset: false,
@@ -44,10 +42,8 @@ class FrameForBottomNavigationItemWidget extends StatelessWidget {
         builder: (context, ThemeModel themeNotifier, children) {
       return AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle(
-            statusBarIconBrightness:
-                themeNotifier.isDark ? Brightness.dark : Brightness.light,
-            statusBarBrightness:
-                themeNotifier.isDark ? Brightness.dark : Brightness.light,
+            statusBarIconBrightness: Theme.of(context).brightness,
+            statusBarBrightness: Theme.of(context).brightness,
           ),
           child: child);
     });
