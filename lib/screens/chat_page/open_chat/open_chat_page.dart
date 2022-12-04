@@ -163,9 +163,7 @@ class _SendMessage extends StatelessWidget {
               child: IconButton(
                 onPressed: () => model.sendMessage(),
                 icon: SVG(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? SVGs.menu_light
-                      : SVGs.menu_dark,
+                  SVGs(context).menu,
                   size: 28,
                 ),
               ),
@@ -207,9 +205,7 @@ class _SendMessage extends StatelessWidget {
               child: IconButton(
                 onPressed: () => model.sendMessage(),
                 icon: SVG(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? SVGs.send_light
-                      : SVGs.send_dark,
+                  SVGs(context).send,
                   size: 28,
                 ),
               ),
@@ -344,9 +340,7 @@ class OpenChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                   width: 16,
                 ),
                 SVG(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? SVGs.chevron_left_light
-                      : SVGs.chevron_left_dark,
+                  SVGs(context).chevron_left,
                   size: size,
                   onPressed: () => context.pop(),
                 ),
@@ -364,9 +358,7 @@ class OpenChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                           color: Theme.of(context).hintColor,
                           borderRadius: BorderRadius.circular(30)),
                       child: SVG(
-                        Theme.of(context).brightness == Brightness.dark
-                            ? SVGs.unactive_user_light
-                            : SVGs.unactive_user_dark,
+                        SVGs(context).unactive_user,
                       ),
                     ),
                     const SizedBox(
@@ -401,9 +393,7 @@ class OpenChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ],
                 )),
                 SVG(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? SVGs.settings_light
-                      : SVGs.settings_dark,
+                  SVGs(context).settings,
                   size: size,
                 ),
                 const SizedBox(
