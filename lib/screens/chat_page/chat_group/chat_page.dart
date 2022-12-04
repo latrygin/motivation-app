@@ -31,7 +31,7 @@ class _ChatBodyWidget extends StatelessWidget {
           children: <Widget>[
             _ListChatsWidget(),
             Center(
-              child: Text("It's rainy here"),
+              child: Text("Группы"),
             ),
             Center(
               child: Text("It's sunny here"),
@@ -138,9 +138,7 @@ class _ChatItemWidget extends StatelessWidget {
                               : Theme.of(context).hintColor,
                           borderRadius: BorderRadius.circular(30)),
                       child: SVG(
-                        Theme.of(context).brightness == Brightness.dark
-                            ? SVGs.unactive_user_light
-                            : SVGs.unactive_user_dark,
+                        SVGs(context).unactive_user,
                       ),
                     ),
                     model.isSelectedItem(chat.id)
@@ -236,9 +234,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 GestureDetector(
                   child: SVG(
-                    Theme.of(context).brightness == Brightness.dark
-                        ? SVGs.close_light
-                        : SVGs.close_dark,
+                    SVGs(context).close,
                     size: size,
                     onPressed: () => model.deletedListItems(),
                   ),
@@ -257,9 +253,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             actions: [
               SVG(
-                Theme.of(context).brightness == Brightness.dark
-                    ? SVGs.trash_light
-                    : SVGs.trash_dark,
+                SVGs(context).trash,
                 size: size,
                 onPressed: () {},
               ),
@@ -267,9 +261,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                 width: 16,
               ),
               SVG(
-                Theme.of(context).brightness == Brightness.dark
-                    ? SVGs.volume_cross_light
-                    : SVGs.volume_cross_dark,
+                SVGs(context).volume_cross,
                 size: size,
                 onPressed: () {},
               ),
@@ -277,9 +269,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                 width: 14,
               ),
               SVG(
-                Theme.of(context).brightness == Brightness.dark
-                    ? SVGs.volume_high_light
-                    : SVGs.volume_high_dark,
+                SVGs(context).volume_high,
                 size: size,
                 onPressed: () {},
               ),
@@ -334,9 +324,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             actions: [
               SVG(
-                Theme.of(context).brightness == Brightness.dark
-                    ? SVGs.more_light
-                    : SVGs.more_dark,
+                SVGs(context).more,
                 size: size,
               ),
               const SizedBox(
