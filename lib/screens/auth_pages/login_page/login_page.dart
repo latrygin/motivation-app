@@ -60,12 +60,8 @@ class _LoginBodyWidget extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         child: SVG(
                           model.obscure
-                              ? Theme.of(context).brightness == Brightness.dark
-                                  ? SVGs.eye_light
-                                  : SVGs.eye_dark
-                              : Theme.of(context).brightness == Brightness.dark
-                                  ? SVGs.eye_slash_light
-                                  : SVGs.eye_slash_dark,
+                              ? SVGs(context).eye
+                              : SVGs(context).eye_slash,
                           onPressed: () => model.changeObscureValue(),
                           size: 12,
                         ),
@@ -101,7 +97,7 @@ class _LoginBodyWidget extends StatelessWidget {
                   const SizedBox(
                     width: 28,
                   ),
-                  SVG(SVGs.twitter, size: 40),
+                  SVG(SVGs(context).twitter, size: 40),
                   const SizedBox(
                     width: 28,
                   ),
