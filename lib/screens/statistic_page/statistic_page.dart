@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:motivation/assets/icons/svg.dart';
-import 'package:motivation/assets/icons/svgg.dart';
 import 'package:motivation/assets/icons/svgs.dart';
 import 'package:motivation/screens/statistic_page/statistic_page_view_model.dart';
 import 'package:motivation/widgets/change_theme_button.dart';
@@ -50,10 +49,7 @@ class _StatisticBodyWidget extends StatelessWidget {
                                 colorsTitle: Theme.of(context).hintColor,
                                 title: 'Ваше сообщение ждут',
                                 icon: SVG(
-                                  Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? SVGs.unactive_document_dark
-                                      : SVGs.unactive_document_light,
+                                  SVGs(context).unactive_document,
                                   size: 36,
                                 ))),
                         const SizedBox(
@@ -64,7 +60,10 @@ class _StatisticBodyWidget extends StatelessWidget {
                                 color: Theme.of(context).hintColor,
                                 title: 'Ваше сообщение ждут',
                                 colorsTitle: Theme.of(context).hoverColor,
-                                icon: SVG(SVGg(context).document)))
+                                icon: SVG(
+                                  SVGs(context).document,
+                                  size: 36,
+                                )))
                       ],
                     ),
                     const SizedBox(
@@ -78,10 +77,7 @@ class _StatisticBodyWidget extends StatelessWidget {
                                 title: 'Ваше сообщение ждут',
                                 colorsTitle: Theme.of(context).hoverColor,
                                 icon: SVG(
-                                  Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? SVGs.unactive_document_light
-                                      : SVGs.unactive_document_dark,
+                                  SVGs(context).unactive_document,
                                   size: 36,
                                 ))),
                         const SizedBox(
@@ -93,7 +89,7 @@ class _StatisticBodyWidget extends StatelessWidget {
                                 colorsTitle: Theme.of(context).hintColor,
                                 title: 'Ваше сообщение ждут',
                                 icon: SVG(
-                                  SVGs.unactive_document_light,
+                                  SVGs(context).unactive_document,
                                   size: 36,
                                 ))),
                       ],
@@ -150,9 +146,7 @@ class _HeaderForStatisticWidget extends StatelessWidget {
                             color: Theme.of(context).scaffoldBackgroundColor,
                             borderRadius: BorderRadius.circular(16)),
                         child: SVG(
-                          Theme.of(context).brightness == Brightness.dark
-                              ? SVGs.unactive_user_light
-                              : SVGs.unactive_user_dark,
+                          SVGs(context).unactive_user,
                         ),
                       ),
                       const SizedBox(
