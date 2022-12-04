@@ -182,23 +182,11 @@ class _ForumItemWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TextButton(
-                        onPressed: () {},
-                        child: SVG(
-                            Theme.of(context).brightness == Brightness.dark
-                                ? SVGs.close_light
-                                : SVGs.close_dark)),
+                        onPressed: () {}, child: SVG(SVGs(context).close)),
                     TextButton(
-                        onPressed: () {},
-                        child: SVG(
-                            Theme.of(context).brightness == Brightness.dark
-                                ? SVGs.saved_light
-                                : SVGs.saved_dark)),
+                        onPressed: () {}, child: SVG(SVGs(context).saved)),
                     TextButton(
-                        onPressed: () {},
-                        child: SVG(
-                            Theme.of(context).brightness == Brightness.dark
-                                ? SVGs.send_light
-                                : SVGs.send_dark)),
+                        onPressed: () {}, child: SVG(SVGs(context).send)),
                   ],
                 ),
               ),
@@ -249,9 +237,7 @@ class _ForumItemWidget extends StatelessWidget {
                 GestureDetector(
                   onTapDown: (details) => getDialogWindow(context, details),
                   child: SVG(
-                    Theme.of(context).brightness == Brightness.dark
-                        ? SVGs.more_light
-                        : SVGs.more_dark,
+                    SVGs(context).more,
                     onPressed: () {},
                   ),
                 )
@@ -278,9 +264,7 @@ class _ForumItemWidget extends StatelessWidget {
                 Row(
                   children: [
                     SVG(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.unactive_message_light
-                          : SVGs.unactive_message_dark,
+                      SVGs(context).unactive_message,
                       onPressed: () {},
                       size: 22,
                     ),
@@ -298,9 +282,7 @@ class _ForumItemWidget extends StatelessWidget {
                       width: 16,
                     ),
                     SVG(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.unactive_eye_light
-                          : SVGs.unactive_eye_dark,
+                      SVGs(context).unactive_eye,
                       onPressed: () {},
                       size: 22,
                     ),
@@ -319,9 +301,7 @@ class _ForumItemWidget extends StatelessWidget {
                 Row(
                   children: [
                     SVG(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.chevron_down_light
-                          : SVGs.chevron_down_dark,
+                      SVGs(context).chevron_down,
                       size: 32,
                     ),
                     // const Icon(
@@ -346,9 +326,7 @@ class _ForumItemWidget extends StatelessWidget {
                       width: 12,
                     ),
                     SVG(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.chevron_up_light
-                          : SVGs.chevron_up_dark,
+                      SVGs(context).chevron_up,
                       size: 32,
                     ),
                     // const Icon(
@@ -386,18 +364,14 @@ class ForumAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         SVG(
-          Theme.of(context).brightness == Brightness.dark
-              ? SVGs.unactive_bookmark_light
-              : SVGs.unactive_bookmark_dark,
+          SVGs(context).unactive_bookmark,
           size: size,
         ),
         const SizedBox(
           width: 20,
         ),
         SVG(
-          Theme.of(context).brightness == Brightness.dark
-              ? SVGs.unactive_edit1_light
-              : SVGs.unactive_edit1_dark,
+          SVGs(context).unactive_edit1,
           size: size,
         ),
         const SizedBox(
