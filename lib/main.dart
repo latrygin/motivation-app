@@ -25,15 +25,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => ThemeModel(),
-      child: Secondwidget(),
+      child: const Secondwidget(),
     );
   }
 }
 
 class Secondwidget extends StatelessWidget {
-  Secondwidget({super.key});
+  const Secondwidget({super.key});
 
-  final GoRouter _router = GoRouter(
+  static final GoRouter _router = GoRouter(
     routes: <GoRoute>[
       GoRoute(
         path: '/',
