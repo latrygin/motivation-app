@@ -12,9 +12,7 @@ class ChangingThemeButtonWidget extends StatelessWidget {
     return Consumer<ThemeModel>(
       builder: (context, ThemeModel themeNotifier, child) {
         return SVG(
-          Theme.of(context).brightness == Brightness.dark
-              ? SVGs.sun
-              : SVGs.moon,
+          SVGs(context).theme,
           onPressed: () {
             themeNotifier.isDark
                 ? themeNotifier.isDark = false
