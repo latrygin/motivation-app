@@ -114,23 +114,11 @@ class _BlogItemWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TextButton(
-                        onPressed: () {},
-                        child: SVG(
-                            Theme.of(context).brightness == Brightness.dark
-                                ? SVGs.close_light
-                                : SVGs.close_dark)),
+                        onPressed: () {}, child: SVG(SVGs(context).close)),
                     TextButton(
-                        onPressed: () {},
-                        child: SVG(
-                            Theme.of(context).brightness == Brightness.dark
-                                ? SVGs.saved_light
-                                : SVGs.saved_dark)),
+                        onPressed: () {}, child: SVG(SVGs(context).saved)),
                     TextButton(
-                        onPressed: () {},
-                        child: SVG(
-                            Theme.of(context).brightness == Brightness.dark
-                                ? SVGs.send_light
-                                : SVGs.send_dark)),
+                        onPressed: () {}, child: SVG(SVGs(context).send)),
                   ],
                 ),
               ),
@@ -175,9 +163,7 @@ class _BlogItemWidget extends StatelessWidget {
                     height: 24,
                     width: 24,
                     child: SVG(
-                      Theme.of(context).brightness == Brightness.dark
-                          ? SVGs.unactive_more_light
-                          : SVGs.unactive_more_dark,
+                      SVGs(context).unactive_more,
                       //onPressed: () => getDialogWindow(context),
                     ),
                   ),
@@ -211,9 +197,7 @@ class _BlogItemWidget extends StatelessWidget {
                           color: Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: BorderRadius.circular(30)),
                       child: SVG(
-                        Theme.of(context).brightness == Brightness.dark
-                            ? SVGs.unactive_user_light
-                            : SVGs.unactive_user_dark,
+                        SVGs(context).unactive_user,
                       ),
                     ),
                     const SizedBox(
@@ -279,9 +263,7 @@ class _HeaderWidget extends StatelessWidget {
           width: size,
           height: size,
           child: SVG(
-            Theme.of(context).brightness == Brightness.dark
-                ? SVGs.saved_light
-                : SVGs.saved_dark,
+            SVGs(context).saved,
             onPressed: () {},
           ),
         ),
@@ -292,9 +274,7 @@ class _HeaderWidget extends StatelessWidget {
           width: size,
           height: size,
           child: SVG(
-            Theme.of(context).brightness == Brightness.dark
-                ? SVGs.edit_light
-                : SVGs.edit_dark,
+            SVGs(context).edit,
             onPressed: () {},
           ),
         ),
@@ -305,9 +285,7 @@ class _HeaderWidget extends StatelessWidget {
           width: size,
           height: size,
           child: SVG(
-            Theme.of(context).brightness == Brightness.dark
-                ? SVGs.filter_light
-                : SVGs.filter_dark,
+            SVGs(context).filter,
             onPressed: () {},
           ),
         ),
