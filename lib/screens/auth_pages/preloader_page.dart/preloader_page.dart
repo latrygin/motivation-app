@@ -9,6 +9,7 @@ class PreloaderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
         create: (context) => PreloaderPageViewModel(context: context),
+        lazy: false,
         child: const FrameWidget(child: _PreloaderBodyWidget()),
       );
 }
@@ -18,7 +19,7 @@ class _PreloaderBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<PreloaderPageViewModel>();
+    //context.read<PreloaderPageViewModel>();
     return Center(
       child: CircularProgressIndicator(
         color: Theme.of(context).primaryColor,
