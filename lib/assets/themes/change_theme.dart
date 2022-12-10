@@ -17,7 +17,7 @@ class ThemeModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  getPreferences() async {
+  Future<void> getPreferences() async {
     _isDark = await _hivetheme.getTheme();
     notifyListeners();
   }
@@ -28,12 +28,12 @@ class ThemeHive {
   static const IS_DARK = 'dark';
 
   Future<void> setTheme(bool value) async {
-    var box = await Hive.openBox(THEME_KEY);
-    box.put(IS_DARK, value);
+    final box = await Hive.openBox<bool>(THEME_KEY);
+    await box.put(IS_DARK, value);
   }
 
   Future<bool> getTheme() async {
-    var box = await Hive.openBox(THEME_KEY);
+    final box = await Hive.openBox<bool>(THEME_KEY);
     return box.get(IS_DARK) ?? false;
   }
 }
