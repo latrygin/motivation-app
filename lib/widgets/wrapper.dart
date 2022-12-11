@@ -11,7 +11,7 @@ class Wrapper extends StatelessWidget {
   const Wrapper(
       {Key? key,
       required this.child,
-      required this.appBar,
+      this.appBar,
       this.bottom = true,
       this.padding = const EdgeInsets.all(0)})
       : super(key: key);
