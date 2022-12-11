@@ -13,10 +13,10 @@ class SVG extends StatelessWidget {
         ? SizedBox.fromSize(
             size: Size(size ?? 24, size ?? 24),
             child: FittedBox(
-              fit: BoxFit.contain,
-              alignment: Alignment.center,
               child: SizedBox.fromSize(
-                  size: Size(size ?? 24, size ?? 24), child: icon),
+                size: Size(size ?? 24, size ?? 24),
+                child: icon,
+              ),
             ),
           )
         : InkWell(
@@ -26,10 +26,10 @@ class SVG extends StatelessWidget {
               height: size,
               width: size,
               child: FittedBox(
-                fit: BoxFit.contain,
-                alignment: Alignment.center,
                 child: SizedBox.fromSize(
-                    size: Size(size ?? 24, size ?? 24), child: icon),
+                  size: Size(size ?? 24, size ?? 24),
+                  child: icon,
+                ),
               ),
             ),
           );
