@@ -10,7 +10,7 @@ class ChangingThemeButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeModel>(
-      builder: (context, ThemeModel themeNotifier, child) {
+      builder: (context, themeNotifier, child) {
         return SVG(
           SVGs(context).theme,
           onPressed: () {
