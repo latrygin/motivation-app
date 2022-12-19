@@ -12,22 +12,25 @@ class FrameWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeModel>(
-        builder: (context, ThemeModel themeNotifier, children) {
-      return AnnotatedRegion<SystemUiOverlayStyle>(
+      builder: (context, themeNotifier, children) {
+        return AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle(
             statusBarIconBrightness: Theme.of(context).brightness,
             statusBarBrightness: Theme.of(context).brightness,
           ),
           child: Scaffold(
-              resizeToAvoidBottomInset: false,
-              body: SafeArea(
-                bottom: false,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: child,
-                ),
-              )));
-    });
+            resizeToAvoidBottomInset: false,
+            body: SafeArea(
+              bottom: false,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: child,
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -39,13 +42,15 @@ class FrameForBottomNavigationItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeModel>(
-        builder: (context, ThemeModel themeNotifier, children) {
-      return AnnotatedRegion<SystemUiOverlayStyle>(
+      builder: (context, ThemeModel themeNotifier, children) {
+        return AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle(
             statusBarIconBrightness: Theme.of(context).brightness,
             statusBarBrightness: Theme.of(context).brightness,
           ),
-          child: child);
-    });
+          child: child,
+        );
+      },
+    );
   }
 }
