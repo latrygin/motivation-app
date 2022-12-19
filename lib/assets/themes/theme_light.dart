@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:motivation/assets/colors/colors.dart';
 
-var lightTheme = ThemeData(
+final lightTheme = ThemeData(
   brightness: Brightness.light,
   appBarTheme: const AppBarTheme(
     backgroundColor: whiteColorForLightTheme,
