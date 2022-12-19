@@ -1,10 +1,3 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:motivation/screens/auth_pages/login_page/login_page_view_model.dart';
-
-import 'login_test.dart';
-
 void main() async {
   //await Hive.initFlutter();
   //WidgetsFlutterBinding.ensureInitialized();
