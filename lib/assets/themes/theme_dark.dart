@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:motivation/assets/colors/colors.dart';
 
-var darkTheme = ThemeData(
+final darkTheme = ThemeData(
   brightness: Brightness.dark,
   appBarTheme: const AppBarTheme(
     backgroundColor: blackColorForDarkTheme,
