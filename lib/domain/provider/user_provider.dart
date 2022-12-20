@@ -14,18 +14,18 @@ class UserProvider {
   ///@param [user]
   ///@return void
 
-  Future<void> setUserDataInLocalStorage(User user) async {
+  Future<void> setUser(User user) async {
     //Достать коробку UserAdapter
 
-    var box = await _getAndOpenBoxUserAdapter();
+    final box = await _getAndOpenBoxUserAdapter();
 
     //Установить параметры пользователя
 
-    box.put(_USER_BOX, user);
+    await box.put(_USER_BOX, user);
 
     //Закрываем коробку
 
-    // box.close();
+    await box.close();
   }
 
   ///Получить данные о пальзователе из базы данных
@@ -34,19 +34,32 @@ class UserProvider {
   //
   ///@return void
 
-  Future<User?> getUserDataFromLocalStorage() async {
+  Future<User?> getUser() async {
     //Достать коробку UserAdapter
 
-    var box = await _getAndOpenBoxUserAdapter();
+    final box = await _getAndOpenBoxUserAdapter();
 
     //Достать пользователя по ключу
 
-    var user = box.get(_USER_BOX);
+    final user = box.get(_USER_BOX);
 
     //Закрываем коробку
 
-    // box.close();
+    await box.close();
     return user;
+  }
+
+  ///Выход пользователя из приложения
+  ///и очистка коробки User и системы
+  Future<bool> deleteUser() async {
+    //Открытие коробки и регистрации адаптера
+    final box = await _getAndOpenBoxUserAdapter();
+
+    //Очистка и закрытие коробки
+
+    await box.deleteFromDisk();
+    await box.close();
+    return true;
   }
 
   ///Проверка регистрации коробки
@@ -61,27 +74,7 @@ class UserProvider {
 
     //Открытие коробки
 
-    var box = await Hive.openBox<User>(_USER_BOX);
+    final box = await Hive.openBox<User>(_USER_BOX);
     return box;
-  }
-
-  ///Выход пользователя из приложения
-  ///и очистка коробки User и системы
-  Future<bool> logOutUser() async {
-    //Открытие коробки и регистрации адаптера
-    var box = await _getAndOpenBoxUserAdapter();
-
-    //Очистка и закрытие коробки
-
-    box.deleteFromDisk();
-    box.close();
-    return true;
-  }
-
-  ///Достать пользователя из открытой коробки
-  ///
-  User getUserFromOpenBox() {
-    var box = Hive.box<User>(_USER_BOX);
-    return box.get(_USER_BOX)!;
   }
 }
