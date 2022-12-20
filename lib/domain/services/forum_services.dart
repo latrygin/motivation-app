@@ -2,79 +2,91 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:motivation/assets/api/url.dart';
-import 'package:motivation/domain/entity/post.dart';
 import 'package:motivation/domain/provider/token_provider.dart';
 
-/**
- * 1. Написать запрос на
- *    ПОЛУЧЕНИЕ поста форума.
- * 2. Написать запрос на
- *    ИЗМЕНЕНИЕ поста форума.
- * 3. Написать запрос на 
- *    УДАЛЕНИЕ поста форума.
- * 4. Написать запрос на 
- *    СОЗДАНИЕ поста форума.
- */
+import '../entity/forum/forum.dart';
+import '../entity/forum/forum_response.dart';
+import '../middleware/response_middleware.dart';
 
 class ForumServices implements ForumServicesInterface {
   final _tokenProvider = TokenProvider();
-  static const String MESSAGE_ERROR =
-      'Неизвестная ошибка. Мы решаем эту проблему';
+  final _middleware = ResponseMiddleware();
 
   @override
-  Future<dynamic> getForums(TypeForum type, int page) async {
-    var header = await _tokenProvider.getHeaderWithToken();
+  Future<ForumResponse> getForums(TypeForum type, int page) async {
+    final header = await _tokenProvider.getHeaderWithToken();
     http.Response response;
     switch (type) {
-      case TypeForum.New:
+      case TypeForum.news:
         response = await http.get(Url.new_forum(page), headers: header);
         break;
-      case TypeForum.Popular:
+      case TypeForum.popular:
         response = await http.get(Url.popular_forum(page), headers: header);
         break;
-      case TypeForum.My:
+      case TypeForum.my:
         response = await http.get(Url.my_forum(page), headers: header);
         break;
       default:
-        throw 'Неизвестный тип';
+        throw UnimplementedError();
     }
-
-    if (response.statusCode == 200) {
-      var items = json.decode(response.body);
-      List<Post> listForumPosts = items.map<Post>((json) {
-        return Post.fromJson(json);
-      }).toList();
-      return listForumPosts;
-    } else {
-      return MESSAGE_ERROR;
-    }
+    //Переделать
+    _middleware.checkResponse(response.statusCode);
+    final items = json.decode(response.body) as Map<String, dynamic>;
+    return ForumResponse.fromJson(items);
   }
 
   @override
-  Future<void> createForum(Map<String, dynamic> body) {
-    throw UnimplementedError();
+  Future<void> createForum(Map<String, dynamic> body) async {
+    final header = await _tokenProvider.getHeaderWithToken();
+    final response = await http.post(
+      Url.post_forum(),
+      headers: header,
+      body: jsonEncode(body),
+    );
+    //Переделать
+    _middleware.checkResponse(response.statusCode);
   }
 
   @override
-  Future<void> deleteForum(int id) {
-    throw UnimplementedError();
+  Future<void> deleteForum(int id) async {
+    final header = await _tokenProvider.getHeaderWithToken();
+    final response = await http.delete(
+      Url.delete_forum(id),
+      headers: header,
+    );
+    //Переделать
+    _middleware.checkResponse(response.statusCode);
   }
 
   @override
-  Future getForum(int id) {
-    throw UnimplementedError();
+  Future<Forum> getForum(int id) async {
+    final header = await _tokenProvider.getHeaderWithToken();
+    final response = await http.get(
+      Url.get_forum(id),
+      headers: header,
+    );
+    //Переделать
+    _middleware.checkResponse(response.statusCode);
+    final items = json.decode(response.body) as Map<String, dynamic>;
+    return Forum.fromJson(items);
   }
 
   @override
-  Future<void> putForum(int id, Map<String, dynamic> body) {
-    throw UnimplementedError();
+  Future<void> putForum(int id, Map<String, dynamic> body) async {
+    final header = await _tokenProvider.getHeaderWithToken();
+    final response = await http.put(
+      Url.put_forum(id),
+      headers: header,
+      body: jsonEncode(body),
+    );
+    _middleware.checkResponse(response.statusCode);
   }
 }
 
 abstract class ForumServicesInterface {
-  Future<dynamic> getForums(TypeForum type, int page);
+  Future<ForumResponse> getForums(TypeForum type, int page);
 
-  Future<dynamic> getForum(int id);
+  Future<Forum> getForum(int id);
 
   Future<void> createForum(Map<String, dynamic> body);
 
@@ -83,4 +95,4 @@ abstract class ForumServicesInterface {
   Future<void> deleteForum(int id);
 }
 
-enum TypeForum { New, My, Popular }
+enum TypeForum { news, my, popular }
