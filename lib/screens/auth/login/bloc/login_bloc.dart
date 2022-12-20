@@ -9,9 +9,14 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final _userServices = UserServices();
-  final _userProvider = UserProvider();
-  LoginBloc() : super(const LoginState()) {
+  final UserServices _userServices;
+  final UserProvider _userProvider;
+  LoginBloc({
+    required UserServices userServices,
+    required UserProvider userProvider,
+  })  : _userServices = userServices,
+        _userProvider = userProvider,
+        super(const LoginState()) {
     on<LoginEmailChanged>(_onEmailChanged);
     on<LoginPasswordChanged>(_onPasswordChanged);
     on<LoginSubmitted>(_onSubmitted);
