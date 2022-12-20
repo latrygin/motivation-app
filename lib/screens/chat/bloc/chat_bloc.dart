@@ -9,8 +9,11 @@ part 'chat_event.dart';
 part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
-  final _chatServices = ChatServices();
-  ChatBloc() : super(const ChatState()) {
+  final ChatServices _chatServices;
+  ChatBloc({
+    required ChatServices chatServices,
+  })  : _chatServices = chatServices,
+        super(const ChatState()) {
     on<ChatEvent>((event, emit) {
       // TODO: implement event handler
     });
