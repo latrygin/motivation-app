@@ -11,9 +11,14 @@ part 'preloader_event.dart';
 part 'preloader_state.dart';
 
 class PreloaderBloc extends Bloc<PreloaderEvent, PreloaderState> {
-  final _userServices = UserServices();
-  final _userProvider = UserProvider();
-  PreloaderBloc() : super(const PreloaderState()) {
+  final UserServices _userServices;
+  final UserProvider _userProvider;
+  PreloaderBloc({
+    required UserServices userServices,
+    required UserProvider userProvider,
+  })  : _userServices = userServices,
+        _userProvider = userProvider,
+        super(const PreloaderState()) {
     on<PreloaderLoadingEvent>(_onLoadingPage);
   }
 
