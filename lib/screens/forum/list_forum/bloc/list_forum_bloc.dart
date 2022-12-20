@@ -9,8 +9,11 @@ part 'list_forum_event.dart';
 part 'list_forum_state.dart';
 
 class ListForumBloc extends Bloc<ListForumEvent, ListForumState> {
-  final _forumServices = ForumServices();
-  ListForumBloc() : super(const ListForumState()) {
+  final ForumServices _forumServices;
+  ListForumBloc({
+    required ForumServices forumServices,
+  })  : _forumServices = forumServices,
+        super(const ListForumState()) {
     on<InitialNewForumEvent>(_initialNewForum);
     on<InitialPopularForumEvent>(_initialPopularForum);
     on<InitialMyForumEvent>(_initialMyForum);
