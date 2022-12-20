@@ -2,11 +2,15 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:motivation/domain/provider/user_provider.dart';
+import 'package:motivation/domain/services/user_services.dart';
 import '../models/models.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  final _userServices = UserServices();
+  final _userProvider = UserProvider();
   LoginBloc() : super(const LoginState()) {
     on<LoginEmailChanged>(_onEmailChanged);
     on<LoginPasswordChanged>(_onPasswordChanged);
@@ -46,8 +50,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     if (state.email.validator(state.email.value) == null &&
         state.password.validator(state.password.value) == null) {
-      // some code ..
-
+      final user =
+          await _userServices.login(state.email.value, state.password.value);
+      await _userProvider.setUser(user);
+      emit(state.copyWith(isAuth: true));
     } else {
       switch (state.email.validator(state.email.value)) {
         case EmailValidationError.empty:

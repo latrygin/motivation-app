@@ -9,6 +9,7 @@ class LoginState extends Equatable {
     this.obscureText = true,
     this.errorEmail = 'null',
     this.errorPassword = 'null',
+    this.isAuth = false,
   });
 
   final FormzStatus status;
@@ -17,6 +18,7 @@ class LoginState extends Equatable {
   final bool obscureText;
   final String errorEmail;
   final String errorPassword;
+  final bool isAuth;
 
   LoginState copyWith({
     FormzStatus? status,
@@ -25,6 +27,7 @@ class LoginState extends Equatable {
     bool? obscureText,
     String? errorEmail,
     String? errorPassword,
+    bool? isAuth,
   }) {
     return LoginState(
       status: status ?? this.status,
@@ -33,12 +36,13 @@ class LoginState extends Equatable {
       obscureText: obscureText ?? this.obscureText,
       errorEmail: errorEmail ?? this.errorEmail,
       errorPassword: errorPassword ?? this.errorPassword,
+      isAuth: isAuth ?? this.isAuth,
     );
   }
 
   @override
   List<Object> get props =>
-      [status, email, password, obscureText, errorEmail, errorPassword];
+      [status, email, password, obscureText, errorEmail, errorPassword, isAuth];
 
   @override
   bool get stringify => true;
