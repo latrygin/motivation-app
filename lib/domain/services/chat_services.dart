@@ -1,15 +1,19 @@
 // ignore_for_file: constant_identifier_names, depend_on_referenced_packages
 
-import 'package:motivation/assets/api/url.dart';
-import 'package:motivation/domain/entity/chat.dart';
 import 'dart:convert';
+
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:motivation/assets/api/url.dart';
+import 'package:motivation/domain/entity/chat/chat_response.dart';
 import 'package:motivation/domain/provider/token_provider.dart';
 
+import '../entity/chat/chat.dart';
+import '../middleware/response_middleware.dart';
+
 class ChatServices implements ChatServicesInterface {
+  final _middleware = ResponseMiddleware();
   final _tokenProvider = TokenProvider();
-  static const String MESSAGE_ERROR =
-      'Неизвестная ошибка. Мы решаем эту проблему';
 
   @override
   Future<List<Chat>> deleteChat() async {
@@ -17,23 +21,18 @@ class ChatServices implements ChatServicesInterface {
   }
 
   @override
-  Future<dynamic> getChatsList() async {
-    var token = await _tokenProvider.getHeaderWithToken();
-    var response = await http.get(Url.chat, headers: token);
-    if (response.statusCode == 200) {
-      var items = json.decode(response.body);
-      List<Chat> listChat = items.map<Chat>((json) {
-        return Chat.fromMap(json);
-      }).toList();
-      return listChat;
-    } else {
-      return MESSAGE_ERROR;
-    }
+  Future<ChatResponse> getChats() async {
+    final token = await _tokenProvider.getHeaderWithToken();
+    final response = await http.get(Url.chat, headers: token);
+    debugPrint(response.statusCode.toString());
+    _middleware.checkResponse(response.statusCode);
+    final items = json.decode(response.body) as Map<String, dynamic>;
+    return ChatResponse.fromJson(items);
   }
 }
 
 abstract class ChatServicesInterface {
-  Future<dynamic> getChatsList();
+  Future<dynamic> getChats();
 
   Future<dynamic> deleteChat();
 }
