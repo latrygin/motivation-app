@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:motivation/widgets/wrapper.dart';
 
 import '../preloader.dart';
@@ -13,11 +14,19 @@ class PreloaderPage extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: BlocProvider(
         lazy: false,
-        create: (context) =>
-            PreloaderBloc(context)..add(const PreloaderLoadingEvent()),
-        child: Center(
-          child: CircularProgressIndicator(
-            color: Theme.of(context).primaryColor,
+        create: (_) => PreloaderBloc()..add(const PreloaderLoadingEvent()),
+        child: BlocListener<PreloaderBloc, PreloaderState>(
+          listener: (context, state) {
+            if (state.status == AuthStatus.authentificated) {
+              context.go('/main');
+            } else {
+              context.go('/login');
+            }
+          },
+          child: Center(
+            child: CircularProgressIndicator(
+              color: Theme.of(context).primaryColor,
+            ),
           ),
         ),
       ),
