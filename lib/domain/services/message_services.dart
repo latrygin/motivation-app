@@ -1,10 +1,6 @@
-// ignore_for_file: depend_on_referenced_packages, constant_identifier_names
-
-import 'dart:convert';
-
-import 'package:motivation/assets/api/url.dart';
-import 'package:motivation/domain/entity/chat/message.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
+import 'package:motivation/assets/api/url.dart';
 import 'package:motivation/domain/middleware/response_middleware.dart';
 import 'package:motivation/domain/provider/token_provider.dart';
 
@@ -21,13 +17,11 @@ class MessageServices implements MessageServicesInterface {
 
   @override
   Future<void> deleteMessages(int messageId) {
-    // TODO: implement deleteMessages
     throw UnimplementedError();
   }
 
   @override
   Future<void> editMessages(int messageId) {
-    // TODO: implement editMessages
     throw UnimplementedError();
   }
 }
