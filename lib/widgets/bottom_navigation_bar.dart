@@ -43,7 +43,6 @@ class BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   ];
 
   void _onItemTapped(int index) {
-    debugPrint(index.toString());
     setState(() {
       _selectedIndex = index;
       _pageController.jumpToPage(index);
