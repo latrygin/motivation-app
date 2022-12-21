@@ -11,7 +11,6 @@ import 'screens/auth/pin_code/pin_code.dart';
 import 'screens/auth/preloader/preloader.dart';
 import 'screens/auth/registration/registration.dart';
 import 'screens/auth/reset_password/reset_password.dart';
-import 'screens/chat/view/chat_page.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -38,8 +37,6 @@ class Secondwidget extends StatelessWidget {
       GoRoute(
         path: '/',
         builder: (context, state) {
-          //return const ChatPage();
-          //return const PinCodePage();
           return const PreloaderPage();
         },
       ),
