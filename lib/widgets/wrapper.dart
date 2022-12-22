@@ -10,6 +10,7 @@ class Wrapper extends StatelessWidget {
   final PreferredSizeWidget? appBar;
   final bool bottom;
   final EdgeInsets padding;
+  final Color? safeAreaColor;
   final Color? backgroundColor;
   final BottomNavigationBar? bottomNavigationBar;
   const Wrapper({
@@ -18,6 +19,7 @@ class Wrapper extends StatelessWidget {
     this.appBar,
     this.bottom = true,
     this.padding = const EdgeInsets.all(0),
+    this.safeAreaColor = Colors.transparent,
     this.backgroundColor = Colors.transparent,
     this.bottomNavigationBar,
   }) : super(key: key);
@@ -36,13 +38,15 @@ class Wrapper extends StatelessWidget {
             appBar: appBar,
             bottomNavigationBar: bottomNavigationBar,
             body: Container(
-              color: backgroundColor,
+              color: safeAreaColor,
               child: SafeArea(
                 bottom: bottom,
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
-                  color: Theme.of(context).scaffoldBackgroundColor,
+                  color: backgroundColor == Colors.transparent
+                      ? Theme.of(context).scaffoldBackgroundColor
+                      : Theme.of(context).hintColor,
                   padding: padding,
                   child: child,
                 ),
