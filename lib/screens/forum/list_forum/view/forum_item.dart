@@ -35,10 +35,13 @@ class _ForumItemWidgetState extends State<ForumItemWidget> {
       color: Theme.of(context).scaffoldBackgroundColor,
       elevation: 2,
       child: InkWell(
+        splashColor: Theme.of(context).hintColor.withOpacity(0.5),
+        highlightColor: Theme.of(context).hintColor.withOpacity(0.5),
         onTap: () => debugPrint('material'),
         child: Container(
           width: double.infinity,
-          padding: const EdgeInsets.all(16),
+          padding:
+              const EdgeInsets.only(bottom: 16, left: 16, right: 16, top: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -124,7 +127,10 @@ class _ForumItemWidgetState extends State<ForumItemWidget> {
                   child: Container(
                     width: double.infinity,
                     height: 240,
-                    color: Theme.of(context).hintColor,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).hintColor,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                     child: Icon(
                       Icons.photo,
                       size: 58,
@@ -135,28 +141,37 @@ class _ForumItemWidgetState extends State<ForumItemWidget> {
               else
                 Padding(
                   padding: const EdgeInsets.only(top: 12.0, bottom: 4.0),
-                  child: Image.network(
-                    widget.forum.image!,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Container(
-                        width: double.infinity,
-                        height: 240,
-                        color: Theme.of(context).hintColor,
-                        child: Icon(
-                          Icons.photo,
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                        ),
-                      );
-                    },
-                    errorBuilder: (context, error, stackTrace) {
-                      return const SizedBox();
-                    },
-                    width: double.infinity,
-                    height: 240,
-                    fit: BoxFit.fitWidth,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: Image.network(
+                      widget.forum.image!,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Container(
+                          width: double.infinity,
+                          height: 240,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).hintColor,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(
+                            Icons.photo,
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                          ),
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return const SizedBox();
+                      },
+                      width: double.infinity,
+                      height: 240,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                 ),
+              const SizedBox(
+                height: 8,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
