@@ -9,11 +9,12 @@ class ListForumBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DefaultTabController(
+    return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: ForumAppBar(),
-        body: TabBarView(
+        backgroundColor: Theme.of(context).hintColor,
+        appBar: const ForumAppBar(),
+        body: const TabBarView(
           children: <Widget>[
             ListNewForumWidget(),
             ListPopularForumWidget(),
