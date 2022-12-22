@@ -84,22 +84,36 @@ class ListForumBloc extends Bloc<ListForumEvent, ListForumState> {
     LoadingNewForumEvent event,
     Emitter<ListForumState> emit,
   ) async {
-    try {
-      final newPageForum = await _forumServices.getForums(
-        TypeForum.news,
-        state.newPage + 1,
-      );
-      final allPages = state.newForums;
-      allPages?.addAll(newPageForum.forum);
-      emit(
-        state.copyWith(
-          newForums: allPages,
-          newPage: state.newPage + 1,
-          newStatus: newPageForum.forum.length < 5 ? NewForumStatus.end : null,
-        ),
-      );
-    } catch (error) {
-      debugPrint(error.toString());
+    if (state.isLoading) {
+      debugPrint('Exit method');
+      return;
+    } else {
+      try {
+        debugPrint('Start method');
+        emit(state.copyWith(isLoading: true));
+        debugPrint('isLoading true');
+        final newPageForum = await _forumServices.getForums(
+          TypeForum.news,
+          state.newPage + 1,
+        );
+        final allPages = state.newForums;
+        allPages?.addAll(newPageForum.forum);
+        emit(
+          state.copyWith(
+            newForums: allPages,
+            newPage: state.newPage + 1,
+            newStatus: newPageForum.forum.length < 5
+                ? NewForumStatus.end
+                : NewForumStatus.notEnd,
+          ),
+        );
+        debugPrint('End method');
+      } catch (error) {
+        debugPrint(error.toString());
+      } finally {
+        emit(state.copyWith(isLoading: false));
+        debugPrint('isLoading false');
+      }
     }
   }
 
@@ -107,23 +121,31 @@ class ListForumBloc extends Bloc<ListForumEvent, ListForumState> {
     LoadingPopularForumEvent event,
     Emitter<ListForumState> emit,
   ) async {
-    try {
-      final popularPageForum = await _forumServices.getForums(
-        TypeForum.popular,
-        state.popularPage + 1,
-      );
-      final allPages = state.popularForums;
-      allPages?.addAll(popularPageForum.forum);
-      emit(
-        state.copyWith(
-          popularForums: allPages,
-          popularPage: state.popularPage + 1,
-          popularStatus:
-              popularPageForum.forum.length < 5 ? PopularForumStatus.end : null,
-        ),
-      );
-    } catch (error) {
-      debugPrint(error.toString());
+    if (state.isLoading) {
+      return;
+    } else {
+      try {
+        emit(state.copyWith(isLoading: true));
+        final popularPageForum = await _forumServices.getForums(
+          TypeForum.popular,
+          state.popularPage + 1,
+        );
+        final allPages = state.popularForums;
+        allPages?.addAll(popularPageForum.forum);
+        emit(
+          state.copyWith(
+            popularForums: allPages,
+            popularPage: state.popularPage + 1,
+            popularStatus: popularPageForum.forum.length < 5
+                ? PopularForumStatus.end
+                : null,
+          ),
+        );
+      } catch (error) {
+        debugPrint(error.toString());
+      } finally {
+        emit(state.copyWith(isLoading: false));
+      }
     }
   }
 
@@ -131,22 +153,29 @@ class ListForumBloc extends Bloc<ListForumEvent, ListForumState> {
     LoadingMyForumEvent event,
     Emitter<ListForumState> emit,
   ) async {
-    try {
-      final myPageForum = await _forumServices.getForums(
-        TypeForum.my,
-        state.myPage + 1,
-      );
-      final allPages = state.myForums;
-      allPages?.addAll(myPageForum.forum);
-      emit(
-        state.copyWith(
-          myForums: allPages,
-          myPage: state.myPage + 1,
-          myStatus: myPageForum.forum.length < 5 ? MyForumStatus.end : null,
-        ),
-      );
-    } catch (error) {
-      debugPrint(error.toString());
+    if (state.isLoading) {
+      return;
+    } else {
+      try {
+        emit(state.copyWith(isLoading: true));
+        final myPageForum = await _forumServices.getForums(
+          TypeForum.my,
+          state.myPage + 1,
+        );
+        final allPages = state.myForums;
+        allPages?.addAll(myPageForum.forum);
+        emit(
+          state.copyWith(
+            myForums: allPages,
+            myPage: state.myPage + 1,
+            myStatus: myPageForum.forum.length < 5 ? MyForumStatus.end : null,
+          ),
+        );
+      } catch (error) {
+        debugPrint(error.toString());
+      } finally {
+        emit(state.copyWith(isLoading: false));
+      }
     }
   }
 }
