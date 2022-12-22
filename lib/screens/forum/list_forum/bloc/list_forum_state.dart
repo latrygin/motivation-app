@@ -11,6 +11,7 @@ class ListForumState extends Equatable {
   final NewForumStatus newStatus;
   final PopularForumStatus popularStatus;
   final MyForumStatus myStatus;
+  final bool isLoading;
 
   const ListForumState({
     this.newForums,
@@ -22,6 +23,7 @@ class ListForumState extends Equatable {
     this.newStatus = NewForumStatus.notEnd,
     this.popularStatus = PopularForumStatus.notEnd,
     this.myStatus = MyForumStatus.notEnd,
+    this.isLoading = false,
   });
 
   @override
@@ -35,6 +37,7 @@ class ListForumState extends Equatable {
         newStatus,
         popularStatus,
         myStatus,
+        isLoading,
       ];
 
   ListForumState copyWith({
@@ -47,6 +50,7 @@ class ListForumState extends Equatable {
     NewForumStatus? newStatus,
     PopularForumStatus? popularStatus,
     MyForumStatus? myStatus,
+    bool? isLoading,
   }) {
     return ListForumState(
       newForums: newForums ?? this.newForums,
@@ -58,6 +62,7 @@ class ListForumState extends Equatable {
       newStatus: newStatus ?? this.newStatus,
       popularStatus: popularStatus ?? this.popularStatus,
       myStatus: myStatus ?? this.myStatus,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
 }
