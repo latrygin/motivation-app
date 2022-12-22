@@ -34,12 +34,14 @@ class _ListNewForumWidgetState extends State<ListNewForumWidget> {
           context.read<ListForumBloc>().add(const InitialNewForumEvent()),
       child: BlocBuilder<ListForumBloc, ListForumState>(
         buildWhen: (previous, current) =>
-            previous.newForums != current.newForums ||
+            previous.newForums?.length != current.newForums?.length ||
+            previous.newPage != current.newPage ||
             previous.newStatus != current.newStatus,
         builder: (context, state) {
           if (state.newForums == null) {
             return Center(
               child: CircularProgressIndicator(
+                backgroundColor: Theme.of(context).hintColor,
                 color: Theme.of(context).primaryColor,
               ),
             );
