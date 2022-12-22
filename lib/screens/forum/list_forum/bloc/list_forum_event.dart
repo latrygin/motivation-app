@@ -34,3 +34,24 @@ class LoadingNewForumEvent extends ListForumEvent {
   @override
   List<Object> get props => [];
 }
+
+class LoadingPopularForumEvent extends ListForumEvent {
+  const LoadingPopularForumEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class LoadingMyForumEvent extends ListForumEvent {
+  const LoadingMyForumEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class ViewScrollButtonEvent extends ListForumEvent {
+  const ViewScrollButtonEvent();
+
+  @override
+  List<Object> get props => [];
+}
