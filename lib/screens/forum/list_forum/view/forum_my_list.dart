@@ -36,6 +36,7 @@ class _ListMyForumWidgetState extends State<ListMyForumWidget> {
       child: BlocBuilder<ListForumBloc, ListForumState>(
         buildWhen: (previous, current) =>
             previous.myForums != current.myForums ||
+            previous.myPage != current.myPage ||
             previous.myStatus != current.myStatus,
         builder: (context, state) {
           if (state.myForums == null) {
