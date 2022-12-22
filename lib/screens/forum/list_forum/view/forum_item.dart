@@ -40,8 +40,12 @@ class _ForumItemWidgetState extends State<ForumItemWidget> {
         onTap: () => debugPrint('material'),
         child: Container(
           width: double.infinity,
-          padding:
-              const EdgeInsets.only(bottom: 16, left: 16, right: 16, top: 8),
+          padding: const EdgeInsets.only(
+            bottom: 16,
+            left: 16,
+            right: 16,
+            top: 8,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
