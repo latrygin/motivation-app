@@ -14,37 +14,42 @@ class SearchWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TextFormField(
-          controller: controller,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
+        controller: controller,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+        ),
+        decoration: InputDecoration(
+          focusColor: Theme.of(context).hintColor,
+          fillColor: Theme.of(context).hintColor,
+          hoverColor: Theme.of(context).hintColor,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide.none,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide.none,
+          ),
+          contentPadding: const EdgeInsets.only(right: 50),
+          hintText: title,
+          hintStyle: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
+            color: Theme.of(context).hoverColor,
           ),
-          decoration: InputDecoration(
-            focusColor: Theme.of(context).hintColor,
-            fillColor: Theme.of(context).hintColor,
-            hoverColor: Theme.of(context).hintColor,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide.none),
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide.none),
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide.none),
-            contentPadding: const EdgeInsets.only(right: 50),
-            hintText: title,
-            hintStyle: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: Theme.of(context).hoverColor),
-            prefixIcon: Icon(
-              Icons.search,
-              size: 18,
-              color: Theme.of(context).hoverColor,
-            ),
-          )),
+          prefixIcon: Icon(
+            Icons.search,
+            size: 18,
+            color: Theme.of(context).hoverColor,
+          ),
+        ),
+      ),
     );
   }
 }
