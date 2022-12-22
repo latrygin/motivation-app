@@ -11,8 +11,9 @@ class ListForumPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ListForumBloc(forumServices: ForumServices())
-        ..add(const InitialNewForumEvent()),
+      create: (context) => ListForumBloc(
+        forumServices: ForumServices(),
+      )..add(const InitialNewForumEvent()),
       child: const ListForumBody(),
     );
   }
