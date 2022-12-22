@@ -68,16 +68,14 @@ class _ListNewForumWidgetState extends State<ListNewForumWidget> {
                           children: [
                             Container(
                               width: double.infinity,
-                              color: Theme.of(context).hintColor,
                               alignment: Alignment.center,
                               padding:
                                   const EdgeInsets.symmetric(vertical: 16.0),
                               child: const Text('Конец списка'),
                             ),
-                            Container(
+                            const SizedBox(
                               width: double.infinity,
                               height: 24,
-                              color: Theme.of(context).scaffoldBackgroundColor,
                             ),
                           ],
                         ),
