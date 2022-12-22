@@ -4,18 +4,39 @@ import 'package:motivation/screens/forum/list_forum/bloc/list_forum_bloc.dart';
 
 import 'forum_item.dart';
 
-class ListPopularForumWidget extends StatelessWidget {
+class ListPopularForumWidget extends StatefulWidget {
   const ListPopularForumWidget({super.key});
+
+  @override
+  State<ListPopularForumWidget> createState() => _ListPopularForumWidgetState();
+}
+
+class _ListPopularForumWidgetState extends State<ListPopularForumWidget> {
+  late final ScrollController _controller;
+
+  @override
+  void initState() {
+    _controller = ScrollController()..addListener(_scrollController);
+    super.initState();
+  }
+
+  Future<void> _scrollController() async {
+    if (_controller.position.pixels == _controller.position.maxScrollExtent) {
+      context.read<ListForumBloc>().add(const LoadingPopularForumEvent());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
       color: Theme.of(context).primaryColor,
       backgroundColor: Theme.of(context).hintColor,
-      onRefresh: () async {},
+      onRefresh: () async =>
+          context.read<ListForumBloc>().add(const InitialPopularForumEvent()),
       child: BlocBuilder<ListForumBloc, ListForumState>(
         buildWhen: (previous, current) =>
-            previous.popularForums != current.popularForums,
+            previous.popularForums != current.popularForums ||
+            previous.popularStatus != current.popularStatus,
         builder: (context, state) {
           if (state.popularForums == null) {
             return Center(
@@ -25,6 +46,7 @@ class ListPopularForumWidget extends StatelessWidget {
             );
           } else {
             return ListView.separated(
+              controller: _controller,
               physics: const BouncingScrollPhysics(),
               itemCount: state.popularForums!.length,
               itemBuilder: (context, index) {
@@ -38,12 +60,28 @@ class ListPopularForumWidget extends StatelessWidget {
                       ForumItemWidget(
                         forum: state.popularForums![index],
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      LinearProgressIndicator(
-                        color: Theme.of(context).primaryColor,
-                      )
+                      if (state.popularStatus == PopularForumStatus.notEnd)
+                        LinearProgressIndicator(
+                          color: Theme.of(context).primaryColor,
+                        )
+                      else
+                        Column(
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              color: Theme.of(context).hintColor,
+                              alignment: Alignment.center,
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 16.0),
+                              child: const Text('Конец списка'),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: 24,
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                            ),
+                          ],
+                        ),
                     ],
                   );
                 }
