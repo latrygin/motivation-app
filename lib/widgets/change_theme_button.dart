@@ -18,7 +18,7 @@ class ChangingThemeButtonWidget extends StatelessWidget {
                 ? themeNotifier.isDark = false
                 : themeNotifier.isDark = true;
           },
-          size: 36,
+          size: 46,
         );
       },
     );
