@@ -3,7 +3,7 @@ import 'package:motivation/assets/icons/svg.dart';
 import 'package:motivation/assets/icons/svgs.dart';
 import 'package:motivation/screens/chat/view/chat_page.dart';
 import 'package:motivation/screens/forum/list_forum/view/forum_page.dart';
-import 'package:motivation/screens/profile_page/profile_page.dart';
+import 'package:motivation/screens/profile/view/profile_page.dart';
 import 'package:motivation/screens/statistic/statistic/statistic.dart';
 import '../screens/blog_page/blog_page.dart';
 import 'wrapper.dart';
@@ -39,7 +39,7 @@ class BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     ChatPage(),
     ListForumPage(),
     BlogScreen(), //Старая страница. Переписать на Блок
-    ProfileScreen(), //Старая страница. Переписать на Блок
+    ProfilePage(), //Старая страница. Переписать на Блок
   ];
 
   void _onItemTapped(int index) {
@@ -52,7 +52,10 @@ class BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Wrapper(
-      backgroundColor: _selectedIndex == 0 || _selectedIndex == 4
+      safeAreaColor: _selectedIndex == 0 || _selectedIndex == 4
+          ? Theme.of(context).hintColor
+          : Colors.transparent,
+      backgroundColor: _selectedIndex == 4
           ? Theme.of(context).hintColor
           : Colors.transparent,
       bottom: false,
