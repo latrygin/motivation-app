@@ -36,6 +36,7 @@ class _ListPopularForumWidgetState extends State<ListPopularForumWidget> {
       child: BlocBuilder<ListForumBloc, ListForumState>(
         buildWhen: (previous, current) =>
             previous.popularForums != current.popularForums ||
+            previous.popularPage != current.popularPage ||
             previous.popularStatus != current.popularStatus,
         builder: (context, state) {
           if (state.popularForums == null) {
