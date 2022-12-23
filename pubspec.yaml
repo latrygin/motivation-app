@@ -28,6 +28,9 @@ dependencies:
   # dio: ^4.0.6
   formz: ^0.4.1
   equatable: ^2.0.5
+  flutter_quill: ^6.1.7
+  flutter_quill_extensions: ^0.1.0
+  chip_list: ^2.3.3+8
   # isar: ^3.0.5
 dev_dependencies:
   flutter_test:
