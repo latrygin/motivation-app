@@ -30,8 +30,12 @@ class Wrapper extends StatelessWidget {
       builder: (context, themeNotifier, children) {
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle(
+            //systemNavigationBarDividerColor: Colors.blue,
+            //systemNavigationBarColor: Colors.red,
+            systemNavigationBarIconBrightness: Theme.of(context).brightness,
             statusBarIconBrightness: Theme.of(context).brightness,
             statusBarBrightness: Theme.of(context).brightness,
+            //statusBarColor: Colors.green,
           ),
           child: Scaffold(
             resizeToAvoidBottomInset: false,
