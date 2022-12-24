@@ -6,8 +6,6 @@ part 'notes_state.dart';
 
 class NotesBloc extends Bloc<NotesEvent, NotesState> {
   NotesBloc() : super(NotesInitial()) {
-    on<NotesEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<NotesEvent>((event, emit) {});
   }
 }
