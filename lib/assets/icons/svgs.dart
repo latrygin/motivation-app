@@ -73,7 +73,7 @@ class SVGs {
       ? SvgPicture.asset('assets/icons/icons_dark_theme/Status.svg')
       : SvgPicture.asset('assets/icons/icons_light_theme/Status.svg');
 
-  /// <img src="../../../assets/icons/unactive_icons_dark_theme/Status.svg" height=100 width=100>
+  /// <img src="../../../assets/icons/unactive_icons_dark_theme/Status.svg" alt="123" height=100 width=100>
   SvgPicture get unactive_statistic => Theme.of(context).brightness ==
           Brightness.dark
       ? SvgPicture.asset('assets/icons/unactive_icons_dark_theme/Status.svg')
