@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:motivation/screens/forum/create_forum/bloc/create_forum_bloc.dart';
+import 'package:provider/provider.dart';
 
 class ThirdForumPage extends StatelessWidget {
   const ThirdForumPage({super.key});
@@ -25,18 +28,30 @@ class ThirdForumPage extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          const TextField(
-            // onChanged: (name) => context
-            //     .read<RegistrationBloc>()
-            //     .add(RegistrationNameChanged(name)),
-            maxLines: 16,
-            decoration: InputDecoration(
-              hintText: 'Описание вопроса',
-              //errorText: state.errorName == 'null' ? null : state.errorName,
-            ),
-          ),
+          const _InputBody(),
         ],
       ),
+    );
+  }
+}
+
+class _InputBody extends StatelessWidget {
+  const _InputBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CreateForumBloc, CreateForumState>(
+      builder: (context, state) {
+        return TextFormField(
+          initialValue: state.body,
+          onChanged: (body) =>
+              context.read<CreateForumBloc>().add(ForumBodyChanged(body)),
+          maxLines: 16,
+          decoration: const InputDecoration(
+            hintText: 'Описание вопроса',
+          ),
+        );
+      },
     );
   }
 }
