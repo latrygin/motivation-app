@@ -11,6 +11,7 @@ class CreateForumPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrapper(
+      bottom: false,
       child: BlocProvider(
         create: (context) => CreateForumBloc(),
         child: const CreateForumBody(),
