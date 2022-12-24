@@ -1,4 +1,10 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+
+import '../../bloc/create_forum_bloc.dart';
 
 class FirstForumPage extends StatelessWidget {
   const FirstForumPage({super.key});
@@ -23,36 +29,41 @@ class FirstForumPage extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          const TextField(
-            // onChanged: (name) => context
-            //     .read<RegistrationBloc>()
-            //     .add(RegistrationNameChanged(name)),
-
-            decoration: InputDecoration(
-              hintText: 'Вопрос',
-              //errorText: state.errorName == 'null' ? null : state.errorName,
-            ),
-          ),
+          const _InputTitle(),
           const SizedBox(
             height: 24,
           ),
-          const SwitchAnonimWidget(),
-          const SwitchActiveWidget(),
+          const _SwitchAnonimWidget(),
+          const _SwitchActiveWidget(),
         ],
       ),
     );
   }
 }
 
-class SwitchAnonimWidget extends StatefulWidget {
-  const SwitchAnonimWidget({super.key});
+class _InputTitle extends StatelessWidget {
+  const _InputTitle({Key? key}) : super(key: key);
 
   @override
-  State<SwitchAnonimWidget> createState() => _SwitchAnonimWidgetState();
+  Widget build(BuildContext context) {
+    return BlocBuilder<CreateForumBloc, CreateForumState>(
+      builder: (context, state) {
+        return TextFormField(
+          initialValue: state.title,
+          onChanged: (title) =>
+              context.read<CreateForumBloc>().add(ForumTitleChanged(title)),
+          decoration: const InputDecoration(
+            hintText: 'Вопрос',
+          ),
+        );
+      },
+    );
+  }
 }
 
-class _SwitchAnonimWidgetState extends State<SwitchAnonimWidget> {
-  bool light = false;
+class _SwitchAnonimWidget extends StatelessWidget {
+  const _SwitchAnonimWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -64,13 +75,17 @@ class _SwitchAnonimWidgetState extends State<SwitchAnonimWidget> {
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
-        Switch(
-          value: light,
-          activeColor: Theme.of(context).primaryColor,
-          onChanged: (value) {
-            setState(() {
-              light = value;
-            });
+        BlocBuilder<CreateForumBloc, CreateForumState>(
+          buildWhen: (previous, current) =>
+              previous.is_anonymous != current.is_anonymous,
+          builder: (context, state) {
+            return Switch(
+              value: state.is_anonymous,
+              activeColor: Theme.of(context).primaryColor,
+              onChanged: (is_anonymous) => context
+                  .read<CreateForumBloc>()
+                  .add(ForumIsAnonymousChanged(is_anonymous)),
+            );
           },
         ),
       ],
@@ -78,15 +93,8 @@ class _SwitchAnonimWidgetState extends State<SwitchAnonimWidget> {
   }
 }
 
-class SwitchActiveWidget extends StatefulWidget {
-  const SwitchActiveWidget({super.key});
-
-  @override
-  State<SwitchActiveWidget> createState() => _SwitchActiveWidgetState();
-}
-
-class _SwitchActiveWidgetState extends State<SwitchActiveWidget> {
-  bool light = false;
+class _SwitchActiveWidget extends StatelessWidget {
+  const _SwitchActiveWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -98,13 +106,17 @@ class _SwitchActiveWidgetState extends State<SwitchActiveWidget> {
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
-        Switch(
-          value: light,
-          activeColor: Theme.of(context).primaryColor,
-          onChanged: (value) {
-            setState(() {
-              light = value;
-            });
+        BlocBuilder<CreateForumBloc, CreateForumState>(
+          buildWhen: (previous, current) =>
+              previous.is_active != current.is_active,
+          builder: (context, state) {
+            return Switch(
+              value: state.is_active,
+              activeColor: Theme.of(context).primaryColor,
+              onChanged: (is_active) => context
+                  .read<CreateForumBloc>()
+                  .add(ForumIsActiveChanged(is_active)),
+            );
           },
         ),
       ],
