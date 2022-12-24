@@ -29,7 +29,10 @@ class SVG extends StatelessWidget {
                 height: size ?? 38,
                 width: size ?? 38,
                 child: FittedBox(
-                  child: icon,
+                  child: SizedBox.fromSize(
+                    size: Size(size ?? 38, size ?? 38),
+                    child: icon,
+                  ),
                   fit: BoxFit.fill,
                 ),
               ),
