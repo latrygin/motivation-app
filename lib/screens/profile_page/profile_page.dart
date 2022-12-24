@@ -57,16 +57,19 @@ class _HeaderForStatisticWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SVG(SVGs(context).exit,
-                      size: 32,
-                      onPressed: () => model.logOutUserAndExitProfile()),
+                  SVG(
+                    SVGs(context).exit,
+                    size: 32,
+                    onPressed: model.logOutUserAndExitProfile,
+                  ),
                   Container(
                     height: 80,
                     width: 80,
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                        color: Theme.of(context).scaffoldBackgroundColor,
-                        borderRadius: BorderRadius.circular(16)),
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                     child: SVG(
                       SVGs(context).unactive_user,
                     ),
@@ -88,53 +91,6 @@ class _HeaderForStatisticWidget extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                width: double.infinity,
-                height: 80,
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    borderRadius: BorderRadius.circular(16)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const SizedBox(),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        const Text('Друзья'),
-                        Text(
-                          '241',
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                      ],
-                    ),
-                    const VerticalDivider(),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        const Text('Диалогов'),
-                        Text(
-                          '1032',
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                      ],
-                    ),
-                    const VerticalDivider(),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        const Text('Помощи'),
-                        Text(
-                          '241',
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(),
-                  ],
-                ),
-              ),
               const SizedBox(
                 width: 16,
               ),
@@ -147,7 +103,7 @@ class _HeaderForStatisticWidget extends StatelessWidget {
 }
 
 class _SettingsColumnWidget extends StatelessWidget {
-  const _SettingsColumnWidget({super.key});
+  const _SettingsColumnWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -155,26 +111,26 @@ class _SettingsColumnWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14.0),
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           ListTile(
-            title: Text('Настройка темы'),
+            title: const Text('Настройка темы'),
             trailing: Switch(
               value: true,
               activeColor: Theme.of(context).primaryColor,
-              onChanged: (bool value) {},
+              onChanged: (value) {},
             ),
           ),
-          Divider(),
-          ListTile(
+          const Divider(),
+          const ListTile(
             title: Text('Настройка темы'),
           ),
-          Divider(),
-          ListTile(
+          const Divider(),
+          const ListTile(
             title: Text('Настройка темы'),
           ),
-          Divider(),
+          const Divider(),
         ],
       ),
     );
