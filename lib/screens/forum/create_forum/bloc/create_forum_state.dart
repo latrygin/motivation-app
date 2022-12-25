@@ -9,7 +9,7 @@ class CreateForumState extends Equatable {
   final int theme;
   final String body;
   final bool gallaryIsOpen;
-  final List<AssetEntity>? photosFromGallary;
+  final List<Uint8List?>? photosFromGallary;
   const CreateForumState({
     this.page = 0,
     this.title = '',
@@ -41,7 +41,7 @@ class CreateForumState extends Equatable {
     int? theme,
     String? body,
     bool? gallaryIsOpen,
-    List<AssetEntity>? photosFromGallary,
+    List<Uint8List?>? photosFromGallary,
   }) {
     return CreateForumState(
       page: page ?? this.page,
