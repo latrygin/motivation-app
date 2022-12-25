@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:motivation/assets/icons/svg.dart';
-import 'package:motivation/assets/icons/svgs.dart';
 import 'package:provider/provider.dart';
 
 import '../bloc/list_forum_bloc.dart';
