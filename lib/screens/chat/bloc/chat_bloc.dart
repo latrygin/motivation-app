@@ -14,9 +14,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     required ChatServices chatServices,
   })  : _chatServices = chatServices,
         super(const ChatState()) {
-    on<ChatEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<ChatEvent>((event, emit) {});
     on<InitialChatEvent>(_initialChats);
   }
 
