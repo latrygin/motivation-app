@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motivation/screens/forum/create_forum/bloc/create_forum_bloc.dart';
-import 'package:provider/provider.dart';
 
 class ThirdForumPage extends StatelessWidget {
   const ThirdForumPage({super.key});
