@@ -22,8 +22,11 @@ class BlogPageViewModel extends ChangeNotifier {
   }
 
   void scrollUpOnTapFloatingActionButton() {
-    controller.animateTo(0,
-        duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+    controller.animateTo(
+      0,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeIn,
+    );
     notifyListeners();
   }
 }
