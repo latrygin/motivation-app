@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motivation/assets/icons/svg.dart';
 import 'package:motivation/assets/icons/svgs.dart';
-import 'package:photo_manager/photo_manager.dart';
 
 import '../../bloc/create_forum_bloc.dart';
 
@@ -105,15 +104,35 @@ class _InputPhoto extends StatelessWidget {
   }
 }
 
-class _OpenGallary extends StatelessWidget {
+class _OpenGallary extends StatefulWidget {
   const _OpenGallary({Key? key}) : super(key: key);
+
+  @override
+  State<_OpenGallary> createState() => _OpenGallaryState();
+}
+
+class _OpenGallaryState extends State<_OpenGallary> {
+  late DraggableScrollableController controller;
+
+  @override
+  void initState() {
+    controller = DraggableScrollableController()
+      ..addListener(() {
+        debugPrint(controller.pixels.toString());
+        if (controller.pixels == controller.size) {
+          debugPrint('End List');
+        }
+      });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
       initialChildSize: 0.6,
-      minChildSize: 0.6,
+      minChildSize: 0.0,
       maxChildSize: 0.9,
+      controller: controller,
       builder: (context, scrollController) {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -140,9 +159,16 @@ class _OpenGallary extends StatelessWidget {
                     SVG(
                       SVGs(context).close,
                       size: 44,
-                      onPressed: () => context
-                          .read<CreateForumBloc>()
-                          .add(const ForumOpenGallary()),
+                      onPressed: () {
+                        controller.animateTo(
+                          0.0,
+                          duration: const Duration(milliseconds: 200),
+                          curve: Curves.easeInOut,
+                        );
+                        // context
+                        //     .read<CreateForumBloc>()
+                        //     .add(const ForumOpenGallary());
+                      },
                     )
                   ],
                 ),
