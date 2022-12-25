@@ -11,6 +11,7 @@ import 'screens/auth/pin_code/pin_code.dart';
 import 'screens/auth/preloader/preloader.dart';
 import 'screens/auth/registration/registration.dart';
 import 'screens/auth/reset_password/reset_password.dart';
+import 'screens/forum/create_forum/view/create_forum_page.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -37,6 +38,7 @@ class Secondwidget extends StatelessWidget {
       GoRoute(
         path: '/',
         builder: (context, state) {
+          //return const CreateForumPage();
           return const PreloaderPage();
         },
       ),
@@ -71,6 +73,14 @@ class Secondwidget extends StatelessWidget {
         builder: (context, state) {
           return const BottomNavigationBarWidget();
         },
+        routes: [
+          GoRoute(
+            path: 'createForum',
+            builder: (context, state) {
+              return const CreateForumPage();
+            },
+          )
+        ],
       ),
     ],
   );
