@@ -76,10 +76,9 @@ class _ListPopularForumWidgetState extends State<ListPopularForumWidget> {
                                   const EdgeInsets.symmetric(vertical: 16.0),
                               child: const Text('Конец списка'),
                             ),
-                            Container(
+                            const SizedBox(
                               width: double.infinity,
                               height: 24,
-                              color: Theme.of(context).scaffoldBackgroundColor,
                             ),
                           ],
                         ),
@@ -87,9 +86,8 @@ class _ListPopularForumWidgetState extends State<ListPopularForumWidget> {
                   );
                 }
               },
-              separatorBuilder: (context, index) => Container(
+              separatorBuilder: (context, index) => const SizedBox(
                 width: double.infinity,
-                color: Theme.of(context).hintColor,
                 height: 12,
               ),
             );
