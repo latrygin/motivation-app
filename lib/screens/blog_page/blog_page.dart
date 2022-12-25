@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:motivation/screens/blog_page/blog_page_view_model.dart';
-import 'package:motivation/widgets/header.dart';
-import 'package:motivation/widgets/search_widget.dart';
-import 'package:provider/provider.dart';
 import 'package:motivation/assets/icons/svg.dart';
 import 'package:motivation/assets/icons/svgs.dart';
+import 'package:motivation/screens/blog_page/blog_page_view_model.dart';
+import 'package:motivation/widgets/header.dart';
+import 'package:provider/provider.dart';
 
 class BlogScreen extends StatelessWidget {
   const BlogScreen({super.key});
@@ -30,19 +29,20 @@ class _BlogBodyWidget extends StatelessWidget {
             const _HeaderWidget(),
             Expanded(
               child: SingleChildScrollView(
-                  controller: model.controller,
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    children: const [
-                      // SearchWidget(
-                      //   title: 'Поиск по форуму',
-                      // ),
-                      // SizedBox(
-                      //   height: 16,
-                      // ),
-                      _ListBlogWidget(),
-                    ],
-                  )),
+                controller: model.controller,
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: const [
+                    // SearchWidget(
+                    //   title: 'Поиск по форуму',
+                    // ),
+                    // SizedBox(
+                    //   height: 16,
+                    // ),
+                    _ListBlogWidget(),
+                  ],
+                ),
+              ),
             )
           ],
         ),
@@ -50,7 +50,7 @@ class _BlogBodyWidget extends StatelessWidget {
       floatingActionButton: model.isShowFloatingActionButton
           ? FloatingActionButton(
               backgroundColor: Theme.of(context).primaryColor,
-              onPressed: () => model.scrollUpOnTapFloatingActionButton(),
+              onPressed: model.scrollUpOnTapFloatingActionButton,
               tooltip: 'Подняться наверх',
               child: const Icon(
                 CupertinoIcons.chevron_up,
@@ -90,7 +90,6 @@ class _BlogItemWidget extends StatelessWidget {
   void getDialogWindow(BuildContext context, TapDownDetails details) {
     showDialog<void>(
       useSafeArea: false,
-      barrierDismissible: true,
       context: context,
       builder: (context) {
         return Column(
@@ -98,27 +97,37 @@ class _BlogItemWidget extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                  right: 54, top: details.globalPosition.dy - 50),
+                right: 54,
+                top: details.globalPosition.dy - 50,
+              ),
               child: Container(
                 height: 50,
                 width: 160,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                    color: Theme.of(context).hintColor,
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(25),
-                        topRight: Radius.circular(25),
-                        bottomLeft: Radius.circular(25))),
+                  color: Theme.of(context).hintColor,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(25),
+                    topRight: Radius.circular(25),
+                    bottomLeft: Radius.circular(25),
+                  ),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TextButton(
-                        onPressed: () {}, child: SVG(SVGs(context).close)),
+                      onPressed: () {},
+                      child: SVG(SVGs(context).close),
+                    ),
                     TextButton(
-                        onPressed: () {}, child: SVG(SVGs(context).saved)),
+                      onPressed: () {},
+                      child: SVG(SVGs(context).saved),
+                    ),
                     TextButton(
-                        onPressed: () {}, child: SVG(SVGs(context).send)),
+                      onPressed: () {},
+                      child: SVG(SVGs(context).send),
+                    ),
                   ],
                 ),
               ),
@@ -138,8 +147,9 @@ class _BlogItemWidget extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            color: Theme.of(context).hintColor,
-            borderRadius: BorderRadius.circular(12)),
+          color: Theme.of(context).hintColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -150,8 +160,9 @@ class _BlogItemWidget extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                      borderRadius: BorderRadius.circular(12)),
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   child: Text(
                     'Игры',
                     style: Theme.of(context).textTheme.headlineSmall,
@@ -177,10 +188,12 @@ class _BlogItemWidget extends StatelessWidget {
               'Что делать, если друг зовёт в доту?',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            Text(description,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.titleSmall),
+            Text(
+              description,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
             const SizedBox(
               height: 8,
             ),
@@ -194,8 +207,9 @@ class _BlogItemWidget extends StatelessWidget {
                       width: 28,
                       padding: const EdgeInsets.all(6),
                       decoration: BoxDecoration(
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                          borderRadius: BorderRadius.circular(30)),
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                       child: SVG(
                         SVGs(context).unactive_user,
                       ),
