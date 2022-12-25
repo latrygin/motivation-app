@@ -68,12 +68,12 @@ class CreateForumBloc extends Bloc<CreateForumEvent, CreateForumState> {
         start: 0, // start at index 0
         end: 1000000, // end at a very big index (to get all the assets)
       );
-      var newByteList = <Uint8List?>[];
+      final newByteList = <Uint8List?>[];
 
-      recentAssets.forEach((value) async {
+      for (final value in recentAssets) {
         final index = await value.thumbnailData;
         newByteList.add(index);
-      });
+      }
 
       emit(
         state.copyWith(
