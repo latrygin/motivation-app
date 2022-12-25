@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:motivation/assets/icons/svg.dart';
 import 'package:motivation/assets/icons/svgs.dart';
 import 'package:provider/provider.dart';
@@ -24,19 +26,19 @@ class ForumAppBar extends StatelessWidget implements PreferredSizeWidget {
             Theme.of(context).textTheme.headlineLarge!.copyWith(fontSize: 24),
       ),
       actions: [
-        SVG(
-          SVGs(context).unactive_bookmark,
-          size: size,
+        IconButton(
+          onPressed: () => context.go('/main/createForum'),
+          icon: Icon(
+            CupertinoIcons.bookmark,
+            color: Theme.of(context).hoverColor,
+          ),
         ),
-        const SizedBox(
-          width: 20,
-        ),
-        SVG(
-          SVGs(context).unactive_edit1,
-          size: size,
-        ),
-        const SizedBox(
-          width: 20,
+        IconButton(
+          onPressed: () => context.go('/main/createForum'),
+          icon: Icon(
+            CupertinoIcons.add,
+            color: Theme.of(context).hoverColor,
+          ),
         ),
       ],
       bottom: TabBar(
