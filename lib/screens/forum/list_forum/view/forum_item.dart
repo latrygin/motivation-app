@@ -33,7 +33,7 @@ class _ForumItemWidgetState extends State<ForumItemWidget> {
   Widget build(BuildContext context) {
     return Material(
       color: Theme.of(context).scaffoldBackgroundColor,
-      elevation: 2,
+      elevation: 0.4,
       child: InkWell(
         splashColor: Theme.of(context).hintColor.withOpacity(0.5),
         highlightColor: Theme.of(context).hintColor.withOpacity(0.5),
