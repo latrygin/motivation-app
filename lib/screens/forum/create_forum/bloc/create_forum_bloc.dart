@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:photo_manager/photo_manager.dart';
 part 'create_forum_event.dart';
@@ -67,10 +68,17 @@ class CreateForumBloc extends Bloc<CreateForumEvent, CreateForumState> {
         start: 0, // start at index 0
         end: 1000000, // end at a very big index (to get all the assets)
       );
+      var newByteList = <Uint8List?>[];
+
+      recentAssets.forEach((value) async {
+        final index = await value.thumbnailData;
+        newByteList.add(index);
+      });
+
       emit(
         state.copyWith(
           gallaryIsOpen: !state.gallaryIsOpen,
-          photosFromGallary: recentAssets,
+          photosFromGallary: newByteList,
         ),
       );
     }
