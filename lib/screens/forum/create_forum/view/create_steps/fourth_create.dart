@@ -167,18 +167,6 @@ class _OpenGallary extends StatelessWidget {
                             asset: state.photosFromGallary![index],
                             index: index,
                           );
-                          // return Container(
-                          //   width: (MediaQuery.of(context).size.width - 72) / 2,
-                          //   height: (MediaQuery.of(context).size.width - 72) / 2,
-                          //   padding: getPadding(index),
-                          //   child: ClipRRect(
-                          //     borderRadius: BorderRadius.circular(8),
-                          //     child: Image.network(
-                          //       'https://funart.pro/uploads/posts/2021-03/1617070032_58-p-oboi-izobrazhenie-prirodi-59.jpg',
-                          //       fit: BoxFit.fitHeight,
-                          //     ),
-                          //   ),
-                          // );
                         },
                       );
                     }
@@ -194,7 +182,7 @@ class _OpenGallary extends StatelessWidget {
 }
 
 class _PhotoItem extends StatelessWidget {
-  final AssetEntity asset;
+  final Uint8List? asset;
   final int index;
   const _PhotoItem({Key? key, required this.asset, required this.index})
       : super(key: key);
@@ -202,50 +190,33 @@ class _PhotoItem extends StatelessWidget {
   EdgeInsetsGeometry getPadding(int index) {
     return index % 3 == 0
         ? const EdgeInsets.only(
-            right: 6,
-            bottom: 12,
+            right: 3,
+            bottom: 6,
           )
         : index % 3 == 1
             ? const EdgeInsets.only(
-                left: 6,
-                right: 6,
-                bottom: 12,
+                left: 3,
+                right: 3,
+                bottom: 6,
               )
             : const EdgeInsets.only(
-                left: 6,
-                bottom: 12,
+                left: 3,
+                bottom: 6,
               );
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Uint8List>(
-      future: asset.thumbnailData as Future<Uint8List>,
-      builder: (_, snapshot) {
-        final bytes = snapshot.data;
-        // If we have no data, display a spinner
-        if (bytes == null) {
-          return Container(
-            width: (MediaQuery.of(context).size.width - 72) / 2,
-            height: (MediaQuery.of(context).size.width - 72) / 2,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Theme.of(context).scaffoldBackgroundColor,
-            ),
-            padding: getPadding(index),
-          );
-        } else {
-          return Container(
-            width: (MediaQuery.of(context).size.width - 72) / 2,
-            height: (MediaQuery.of(context).size.width - 72) / 2,
-            padding: getPadding(index),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.memory(bytes, fit: BoxFit.cover),
-            ),
-          );
-        }
-      },
+    return Container(
+      width: (MediaQuery.of(context).size.width - 72) / 2,
+      height: (MediaQuery.of(context).size.width - 72) / 2,
+      padding: getPadding(index),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(4),
+        child: asset == null
+            ? const SizedBox()
+            : Image.memory(asset!, fit: BoxFit.cover),
+      ),
     );
   }
 }
