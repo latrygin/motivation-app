@@ -91,7 +91,9 @@ class _CreateForumBodyState extends State<CreateForumBody> {
                           }
                         },
                         child: Text(
-                          'Далее',
+                          _listPages.length - 1 == _selectedIndex
+                              ? 'Сохранить'
+                              : 'Далее',
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ),
