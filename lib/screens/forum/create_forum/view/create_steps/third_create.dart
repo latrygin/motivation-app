@@ -28,6 +28,20 @@ class ThirdForumPage extends StatelessWidget {
             height: 24,
           ),
           const _InputBody(),
+          const SizedBox(
+            height: 12,
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: BlocBuilder<CreateForumBloc, CreateForumState>(
+              builder: (context, state) {
+                return Text(
+                  '0/10000',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
@@ -48,6 +62,7 @@ class _InputBody extends StatelessWidget {
           maxLines: 16,
           decoration: const InputDecoration(
             hintText: 'Описание вопроса',
+            //errorText: 'Минимум 100 символов',
           ),
         );
       },
