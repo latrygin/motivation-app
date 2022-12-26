@@ -38,7 +38,6 @@ class Secondwidget extends StatelessWidget {
       GoRoute(
         path: '/',
         builder: (context, state) {
-          //return const CreateForumPage();
           return const PreloaderPage();
         },
       ),
